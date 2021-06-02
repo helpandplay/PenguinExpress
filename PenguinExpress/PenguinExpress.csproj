@@ -63,6 +63,12 @@
     <Compile Include="seller\AddProduct.Designer.cs">
       <DependentUpon>AddProduct.cs</DependentUpon>
     </Compile>
+    <Compile Include="seller\Join.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="seller\Join.Designer.cs">
+      <DependentUpon>Join.cs</DependentUpon>
+    </Compile>
     <Compile Include="seller\Seller_list.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -81,6 +87,9 @@
     </Compile>
     <EmbeddedResource Include="seller\AddProduct.resx">
       <DependentUpon>AddProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="seller\Join.resx">
+      <DependentUpon>Join.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="seller\Seller_list.resx">
       <DependentUpon>Seller_list.cs</DependentUpon>

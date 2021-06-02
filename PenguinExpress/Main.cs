@@ -22,7 +22,8 @@ namespace PenguinExpress
     }
     private void onLoadSellerDashBoard()
     {
-      new Seller_list(1).ShowDialog();
+      new Join().ShowDialog();
+      //new Seller_list(1).ShowDialog();
     }
   }
 }
