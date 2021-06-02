@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using System.Diagnostics;
+using PenguinExpress.seller;
 
 namespace PenguinExpress
 {
@@ -20,6 +21,12 @@ namespace PenguinExpress
     {
       InitializeComponent();
       onConnect();
+      onLoadSellerDashBoard();
+    }
+    private void onLoadSellerDashBoard()
+    {
+      Seller_list list = new Seller_list(cmd, "carrot");
+      list.ShowDialog();
     }
     private void onConnect()
     {
