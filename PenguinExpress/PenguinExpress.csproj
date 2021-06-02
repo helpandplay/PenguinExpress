@@ -57,6 +57,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="seller\AddProduct.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="seller\AddProduct.Designer.cs">
+      <DependentUpon>AddProduct.cs</DependentUpon>
+    </Compile>
     <Compile Include="seller\Seller_list.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -73,6 +79,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="seller\AddProduct.resx">
+      <DependentUpon>AddProduct.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="seller\Seller_list.resx">
       <DependentUpon>Seller_list.cs</DependentUpon>
     </EmbeddedResource>

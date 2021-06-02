@@ -12,8 +12,12 @@ namespace PenguinExpress.seller
 {
   public partial class AddProduct : Form
   {
-    public AddProduct()
+    Seller_list sellerList;
+    Dictionary<string, string> seller;
+    public AddProduct(Dictionary<string, string>seller, Seller_list sellerList)
     {
+      this.sellerList = sellerList;
+      this.seller = seller;
       InitializeComponent();
     }
   }

@@ -35,7 +35,7 @@ namespace PenguinExpress.seller
         "SELECT tracking_id, p_name, p_qty, b_phone, b_addr, rv_status, cp_time " +
         "FROM {0} rv, {1} cd " +
         "WHERE rv.s_id={2} AND rv.tracking_id = cd.rv_tracking_id;"
-        ,MyDatabase.reservationListTbl, MyDatabase.completeListTbl, userid);
+        , MyDatabase.reservationListTbl, MyDatabase.completeListTbl, userid);
       MyDatabase.cmd.CommandText = sql;
 
       MySqlDataReader reader = MyDatabase.cmd.ExecuteReader();
@@ -73,7 +73,7 @@ namespace PenguinExpress.seller
       string sql = string.Format(
         "SELECT tracking_id, p_name, p_qty, b_phone, b_addr, rv_time, rv_status " +
         "FROM {0} " +
-        "WHERE s_id={1};",MyDatabase.reservationListTbl, userid);
+        "WHERE s_id={1};", MyDatabase.reservationListTbl, userid);
       MyDatabase.cmd.CommandText = sql;
 
       MySqlDataReader reader = MyDatabase.cmd.ExecuteReader();
@@ -96,7 +96,7 @@ namespace PenguinExpress.seller
 
           string status = stus.getReservationCode((int)reader["rv_status"]);
           lvi.SubItems.Add(status);
-          
+
 
           lv_reg.Items.Add(lvi);
         }
@@ -138,12 +138,12 @@ namespace PenguinExpress.seller
       if (lv_reg.SelectedItems.Count == 0) return;
 
       string status = lv_reg.SelectedItems[0].SubItems[6].Text;
-      if(status != "예약 완료")
+      if (status != "예약 완료")
       {
         MessageBox.Show("배송 중이므로 취소가 불가능합니다.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
         return;
       }
-      DialogResult result =  MessageBox.Show("예약을 취소하시겠어요?", "Info", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+      DialogResult result = MessageBox.Show("예약을 취소하시겠어요?", "Info", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
       if (result == DialogResult.Cancel) return;
 
       int trackingId = int.Parse(lv_reg.SelectedItems[0].Text);
@@ -158,11 +158,12 @@ namespace PenguinExpress.seller
 
         getAllRegList();
       }
-      catch(Exception error)
+      catch (Exception error)
       {
         Debug.WriteLine(error.Message);
       }
-      finally{
+      finally
+      {
         Debug.Close();
       }
 
@@ -170,7 +171,42 @@ namespace PenguinExpress.seller
 
     private void btn_add_rv_Click(object sender, EventArgs e)
     {
-     
+      string sql = string.Format(
+        "SELECT id, name, phone, addr " +
+        "FROM {0} " +
+        "WHERE id = {1};", MyDatabase.sellerTbl, userid);
+      MyDatabase.cmd.CommandText = sql;
+      MySqlDataReader reader = MyDatabase.cmd.ExecuteReader();
+      Dictionary<string, string> seller = null;
+      try
+      {
+        if (!reader.Read())
+        {
+          MessageBox.Show("값이 없습니다!");
+          return;
+        }
+
+        string name = reader["name"].ToString();
+        string phone = reader["phone"].ToString();
+        string addr = reader["addr"].ToString();
+
+        seller = new Dictionary<string, string>()
+        {
+          {"name", name },
+          {"phone",phone },
+          {"addr", addr }
+        };
+      }catch(Exception error)
+      {
+        Debug.WriteLine(error.Message);
+      }
+      finally
+      {
+        Debug.Close();
+        reader.Close();
+      }
+      if (seller == null) return;
+      new AddProduct(seller, this).ShowDialog();
     }
   }
 }
