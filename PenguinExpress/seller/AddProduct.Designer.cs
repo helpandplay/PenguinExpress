@@ -56,6 +56,7 @@ namespace PenguinExpress.seller
       this.tb_b_phone3 = new System.Windows.Forms.TextBox();
       this.label10 = new System.Windows.Forms.Label();
       this.label11 = new System.Windows.Forms.Label();
+      this.cb_b_addr_captital = new System.Windows.Forms.ComboBox();
       this.panel1.SuspendLayout();
       this.panel2.SuspendLayout();
       this.panel3.SuspendLayout();
@@ -95,8 +96,9 @@ namespace PenguinExpress.seller
       // 
       this.tb_p_qty.Location = new System.Drawing.Point(105, 38);
       this.tb_p_qty.Name = "tb_p_qty";
-      this.tb_p_qty.Size = new System.Drawing.Size(182, 25);
+      this.tb_p_qty.Size = new System.Drawing.Size(42, 25);
       this.tb_p_qty.TabIndex = 5;
+      this.tb_p_qty.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_p_qty_KeyPress);
       // 
       // label2
       // 
@@ -156,6 +158,7 @@ namespace PenguinExpress.seller
       // 
       // tb_s_phone
       // 
+      this.tb_s_phone.Enabled = false;
       this.tb_s_phone.Location = new System.Drawing.Point(105, 38);
       this.tb_s_phone.Name = "tb_s_phone";
       this.tb_s_phone.ReadOnly = true;
@@ -173,6 +176,7 @@ namespace PenguinExpress.seller
       // 
       // tb_s_name
       // 
+      this.tb_s_name.Enabled = false;
       this.tb_s_name.Location = new System.Drawing.Point(105, 7);
       this.tb_s_name.MaxLength = 100;
       this.tb_s_name.Name = "tb_s_name";
@@ -191,6 +195,7 @@ namespace PenguinExpress.seller
       // 
       // panel3
       // 
+      this.panel3.Controls.Add(this.cb_b_addr_captital);
       this.panel3.Controls.Add(this.label11);
       this.panel3.Controls.Add(this.label10);
       this.panel3.Controls.Add(this.tb_b_phone3);
@@ -203,7 +208,7 @@ namespace PenguinExpress.seller
       this.panel3.Controls.Add(this.label9);
       this.panel3.Location = new System.Drawing.Point(12, 222);
       this.panel3.Name = "panel3";
-      this.panel3.Size = new System.Drawing.Size(302, 99);
+      this.panel3.Size = new System.Drawing.Size(302, 137);
       this.panel3.TabIndex = 8;
       // 
       // label7
@@ -217,6 +222,7 @@ namespace PenguinExpress.seller
       // 
       // tb_b_phone
       // 
+      this.tb_b_phone.Enabled = false;
       this.tb_b_phone.Location = new System.Drawing.Point(105, 38);
       this.tb_b_phone.MaxLength = 13;
       this.tb_b_phone.Name = "tb_b_phone";
@@ -253,6 +259,7 @@ namespace PenguinExpress.seller
       // 
       // tb_s_addr
       // 
+      this.tb_s_addr.Enabled = false;
       this.tb_s_addr.Location = new System.Drawing.Point(105, 69);
       this.tb_s_addr.Name = "tb_s_addr";
       this.tb_s_addr.ReadOnly = true;
@@ -261,44 +268,48 @@ namespace PenguinExpress.seller
       // 
       // tb_b_addr
       // 
-      this.tb_b_addr.Location = new System.Drawing.Point(105, 69);
+      this.tb_b_addr.Location = new System.Drawing.Point(105, 102);
       this.tb_b_addr.Name = "tb_b_addr";
       this.tb_b_addr.Size = new System.Drawing.Size(182, 25);
       this.tb_b_addr.TabIndex = 7;
       // 
       // btn_addProduct
       // 
-      this.btn_addProduct.Location = new System.Drawing.Point(12, 336);
+      this.btn_addProduct.Location = new System.Drawing.Point(12, 365);
       this.btn_addProduct.Name = "btn_addProduct";
       this.btn_addProduct.Size = new System.Drawing.Size(147, 56);
       this.btn_addProduct.TabIndex = 9;
       this.btn_addProduct.Text = "택배 예약";
       this.btn_addProduct.UseVisualStyleBackColor = true;
+      this.btn_addProduct.Click += new System.EventHandler(this.btn_addProduct_Click);
       // 
       // btn_cancel
       // 
-      this.btn_cancel.Location = new System.Drawing.Point(167, 336);
+      this.btn_cancel.Location = new System.Drawing.Point(167, 365);
       this.btn_cancel.Name = "btn_cancel";
       this.btn_cancel.Size = new System.Drawing.Size(147, 56);
       this.btn_cancel.TabIndex = 10;
       this.btn_cancel.Text = "취소";
       this.btn_cancel.UseVisualStyleBackColor = true;
+      this.btn_cancel.Click += new System.EventHandler(this.btn_cancel_Click);
       // 
       // tb_b_phone2
       // 
       this.tb_b_phone2.Location = new System.Drawing.Point(175, 38);
-      this.tb_b_phone2.MaxLength = 13;
+      this.tb_b_phone2.MaxLength = 4;
       this.tb_b_phone2.Name = "tb_b_phone2";
       this.tb_b_phone2.Size = new System.Drawing.Size(42, 25);
       this.tb_b_phone2.TabIndex = 8;
+      this.tb_b_phone2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_b_phone2_KeyPress);
       // 
       // tb_b_phone3
       // 
       this.tb_b_phone3.Location = new System.Drawing.Point(245, 38);
-      this.tb_b_phone3.MaxLength = 13;
+      this.tb_b_phone3.MaxLength = 4;
       this.tb_b_phone3.Name = "tb_b_phone3";
       this.tb_b_phone3.Size = new System.Drawing.Size(42, 25);
       this.tb_b_phone3.TabIndex = 9;
+      this.tb_b_phone3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_b_phone3_KeyPress);
       // 
       // label10
       // 
@@ -318,11 +329,34 @@ namespace PenguinExpress.seller
       this.label11.TabIndex = 11;
       this.label11.Text = "-";
       // 
+      // cb_b_addr_captital
+      // 
+      this.cb_b_addr_captital.FormattingEnabled = true;
+      this.cb_b_addr_captital.Items.AddRange(new object[] {
+            "서울특별시",
+            "경기도",
+            "인천광역시",
+            "충청북도",
+            "충청남도",
+            "대전광역시",
+            "강원도",
+            "전라북도",
+            "전라남도",
+            "광주광역시",
+            "경상북도",
+            "경상남도",
+            "대구광역시",
+            "부산광역시"});
+      this.cb_b_addr_captital.Location = new System.Drawing.Point(105, 69);
+      this.cb_b_addr_captital.Name = "cb_b_addr_captital";
+      this.cb_b_addr_captital.Size = new System.Drawing.Size(112, 23);
+      this.cb_b_addr_captital.TabIndex = 8;
+      // 
       // AddProduct
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(326, 400);
+      this.ClientSize = new System.Drawing.Size(326, 430);
       this.Controls.Add(this.btn_cancel);
       this.Controls.Add(this.btn_addProduct);
       this.Controls.Add(this.panel3);
@@ -369,5 +403,6 @@ namespace PenguinExpress.seller
     private System.Windows.Forms.Label label9;
     private System.Windows.Forms.Button btn_addProduct;
     private System.Windows.Forms.Button btn_cancel;
+    private System.Windows.Forms.ComboBox cb_b_addr_captital;
   }
 }

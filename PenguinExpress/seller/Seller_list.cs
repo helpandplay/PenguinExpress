@@ -29,6 +29,7 @@ namespace PenguinExpress.seller
       getAllRegList();
       getAllCompleteList();
     }
+    //리스트 불러오기
     private void getAllCompleteList()
     {
       string sql = string.Format(
@@ -192,6 +193,7 @@ namespace PenguinExpress.seller
 
         seller = new Dictionary<string, string>()
         {
+          {"id", userid.ToString() },
           {"name", name },
           {"phone",phone },
           {"addr", addr }
@@ -207,6 +209,7 @@ namespace PenguinExpress.seller
       }
       if (seller == null) return;
       new AddProduct(seller, this).ShowDialog();
+      getAllRegList();
     }
   }
 }
