@@ -30,7 +30,6 @@ namespace PenguinExpress.seller
     private void InitializeComponent()
     {
       this.lv_reg = new System.Windows.Forms.ListView();
-      this.ch_tracking_id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
       this.ch_prod_name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
       this.ch_prod_qty = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
       this.ch_b_phone = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -42,15 +41,16 @@ namespace PenguinExpress.seller
       this.label1 = new System.Windows.Forms.Label();
       this.btn_reg_refresh = new System.Windows.Forms.Button();
       this.lv_cp = new System.Windows.Forms.ListView();
-      this.ch_cp_tracking_id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
       this.ch_cp_prod_name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
       this.ch_cp_prod_qty = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
       this.ch_cp_b_phone = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
       this.ch_cp_b_addr = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-      this.btn_cp_refresh = new System.Windows.Forms.Button();
-      this.label2 = new System.Windows.Forms.Label();
       this.ch_cp_time = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
       this.ch_cp_status = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+      this.btn_cp_refresh = new System.Windows.Forms.Button();
+      this.label2 = new System.Windows.Forms.Label();
+      this.ch_tracking_id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+      this.ch_cp_tracking_id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
       this.SuspendLayout();
       // 
       // lv_reg
@@ -74,38 +74,39 @@ namespace PenguinExpress.seller
       this.lv_reg.View = System.Windows.Forms.View.Details;
       this.lv_reg.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lv_reg_ColumnClick);
       // 
-      // ch_tracking_id
-      // 
-      this.ch_tracking_id.Text = "운송장번호";
-      this.ch_tracking_id.Width = 100;
-      // 
       // ch_prod_name
       // 
+      this.ch_prod_name.Tag = "false";
       this.ch_prod_name.Text = "이름";
       this.ch_prod_name.Width = 150;
       // 
       // ch_prod_qty
       // 
+      this.ch_prod_qty.Tag = "false";
       this.ch_prod_qty.Text = "수량";
       this.ch_prod_qty.Width = 50;
       // 
       // ch_b_phone
       // 
+      this.ch_b_phone.Tag = "false";
       this.ch_b_phone.Text = "연락처";
       this.ch_b_phone.Width = 90;
       // 
       // ch_b_addr
       // 
+      this.ch_b_addr.Tag = "false";
       this.ch_b_addr.Text = "주소";
       this.ch_b_addr.Width = 100;
       // 
       // ch_rv_time
       // 
+      this.ch_rv_time.Tag = "false";
       this.ch_rv_time.Text = "예약된 시간";
       this.ch_rv_time.Width = 120;
       // 
       // ch_status
       // 
+      this.ch_status.Tag = "false";
       this.ch_status.Text = "상태";
       this.ch_status.Width = 90;
       // 
@@ -126,6 +127,7 @@ namespace PenguinExpress.seller
       this.btn_rv_cancel.TabIndex = 2;
       this.btn_rv_cancel.Text = "예약 취소";
       this.btn_rv_cancel.UseVisualStyleBackColor = true;
+      this.btn_rv_cancel.Click += new System.EventHandler(this.btn_rv_cancel_Click);
       // 
       // label1
       // 
@@ -165,31 +167,43 @@ namespace PenguinExpress.seller
       this.lv_cp.TabIndex = 5;
       this.lv_cp.UseCompatibleStateImageBehavior = false;
       this.lv_cp.View = System.Windows.Forms.View.Details;
-      // 
-      // ch_cp_tracking_id
-      // 
-      this.ch_cp_tracking_id.Text = "운송장번호";
-      this.ch_cp_tracking_id.Width = 100;
+      this.lv_cp.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lv_cp_ColumnClick);
       // 
       // ch_cp_prod_name
       // 
+      this.ch_cp_prod_name.Tag = "false";
       this.ch_cp_prod_name.Text = "이름";
       this.ch_cp_prod_name.Width = 150;
       // 
       // ch_cp_prod_qty
       // 
+      this.ch_cp_prod_qty.Tag = "false";
       this.ch_cp_prod_qty.Text = "수량";
       this.ch_cp_prod_qty.Width = 50;
       // 
       // ch_cp_b_phone
       // 
+      this.ch_cp_b_phone.Tag = "false";
       this.ch_cp_b_phone.Text = "연락처";
       this.ch_cp_b_phone.Width = 90;
       // 
       // ch_cp_b_addr
       // 
+      this.ch_cp_b_addr.Tag = "false";
       this.ch_cp_b_addr.Text = "주소";
       this.ch_cp_b_addr.Width = 100;
+      // 
+      // ch_cp_time
+      // 
+      this.ch_cp_time.Tag = "false";
+      this.ch_cp_time.Text = "도착 시간";
+      this.ch_cp_time.Width = 130;
+      // 
+      // ch_cp_status
+      // 
+      this.ch_cp_status.Tag = "false";
+      this.ch_cp_status.Text = "상태";
+      this.ch_cp_status.Width = 80;
       // 
       // btn_cp_refresh
       // 
@@ -210,15 +224,17 @@ namespace PenguinExpress.seller
       this.label2.TabIndex = 7;
       this.label2.Text = "완료 리스트";
       // 
-      // ch_cp_time
+      // ch_tracking_id
       // 
-      this.ch_cp_time.Text = "도착 시간";
-      this.ch_cp_time.Width = 130;
+      this.ch_tracking_id.Tag = "false";
+      this.ch_tracking_id.Text = "운송장번호";
+      this.ch_tracking_id.Width = 100;
       // 
-      // ch_cp_status
+      // ch_cp_tracking_id
       // 
-      this.ch_cp_status.Text = "상태";
-      this.ch_cp_status.Width = 80;
+      this.ch_cp_tracking_id.Tag = "false";
+      this.ch_cp_tracking_id.Text = "운송장번호";
+      this.ch_cp_tracking_id.Width = 100;
       // 
       // Seller_list
       // 
@@ -244,7 +260,6 @@ namespace PenguinExpress.seller
     #endregion
 
     private System.Windows.Forms.ListView lv_reg;
-    private System.Windows.Forms.ColumnHeader ch_tracking_id;
     private System.Windows.Forms.ColumnHeader ch_prod_name;
     private System.Windows.Forms.ColumnHeader ch_prod_qty;
     private System.Windows.Forms.ColumnHeader ch_b_phone;
@@ -256,7 +271,6 @@ namespace PenguinExpress.seller
     private System.Windows.Forms.Label label1;
     private System.Windows.Forms.Button btn_reg_refresh;
     private System.Windows.Forms.ListView lv_cp;
-    private System.Windows.Forms.ColumnHeader ch_cp_tracking_id;
     private System.Windows.Forms.ColumnHeader ch_cp_prod_name;
     private System.Windows.Forms.ColumnHeader ch_cp_prod_qty;
     private System.Windows.Forms.ColumnHeader ch_cp_b_phone;
@@ -265,5 +279,7 @@ namespace PenguinExpress.seller
     private System.Windows.Forms.Label label2;
     private System.Windows.Forms.ColumnHeader ch_cp_time;
     private System.Windows.Forms.ColumnHeader ch_cp_status;
+    private System.Windows.Forms.ColumnHeader ch_tracking_id;
+    private System.Windows.Forms.ColumnHeader ch_cp_tracking_id;
   }
 }

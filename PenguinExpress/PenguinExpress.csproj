@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="config\MyDatabase.cs" />
     <Compile Include="Env.cs" />
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
