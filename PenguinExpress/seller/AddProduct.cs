@@ -14,11 +14,9 @@ namespace PenguinExpress.seller
 {
   public partial class AddProduct : Form
   {
-    Seller_list sellerList;
     Dictionary<string, string> seller;
-    public AddProduct(Dictionary<string, string> seller, Seller_list sellerList)
+    public AddProduct(Dictionary<string, string> seller)
     {
-      this.sellerList = sellerList;
       this.seller = seller;
       InitializeComponent();
       setSellerInfo();

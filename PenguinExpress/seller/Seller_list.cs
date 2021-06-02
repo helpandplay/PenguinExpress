@@ -208,7 +208,7 @@ namespace PenguinExpress.seller
         reader.Close();
       }
       if (seller == null) return;
-      new AddProduct(seller, this).ShowDialog();
+      new AddProduct(seller).ShowDialog();
       getAllRegList();
     }
   }
