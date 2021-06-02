@@ -25,7 +25,7 @@ namespace PenguinExpress
     }
     private void onLoadSellerDashBoard()
     {
-      Seller_list list = new Seller_list(cmd, "carrot");
+      Seller_list list = new Seller_list(cmd, 1);
       list.ShowDialog();
     }
     private void onConnect()

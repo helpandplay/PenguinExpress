@@ -41,15 +41,16 @@ namespace PenguinExpress.seller
       this.btn_rv_cancel = new System.Windows.Forms.Button();
       this.label1 = new System.Windows.Forms.Label();
       this.btn_reg_refresh = new System.Windows.Forms.Button();
-      this.listView2 = new System.Windows.Forms.ListView();
+      this.lv_cp = new System.Windows.Forms.ListView();
       this.ch_cp_tracking_id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
       this.ch_cp_prod_name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
       this.ch_cp_prod_qty = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
       this.ch_cp_b_phone = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
       this.ch_cp_b_addr = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-      this.ch_cp_time = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
       this.btn_cp_refresh = new System.Windows.Forms.Button();
       this.label2 = new System.Windows.Forms.Label();
+      this.ch_cp_time = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+      this.ch_cp_status = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
       this.SuspendLayout();
       // 
       // lv_reg
@@ -71,6 +72,7 @@ namespace PenguinExpress.seller
       this.lv_reg.TabIndex = 0;
       this.lv_reg.UseCompatibleStateImageBehavior = false;
       this.lv_reg.View = System.Windows.Forms.View.Details;
+      this.lv_reg.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lv_reg_ColumnClick);
       // 
       // ch_tracking_id
       // 
@@ -144,24 +146,25 @@ namespace PenguinExpress.seller
       this.btn_reg_refresh.UseVisualStyleBackColor = true;
       this.btn_reg_refresh.Click += new System.EventHandler(this.btn_reg_refresh_Click);
       // 
-      // listView2
+      // lv_cp
       // 
-      this.listView2.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+      this.lv_cp.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.ch_cp_tracking_id,
             this.ch_cp_prod_name,
             this.ch_cp_prod_qty,
             this.ch_cp_b_phone,
             this.ch_cp_b_addr,
-            this.ch_cp_time});
-      this.listView2.FullRowSelect = true;
-      this.listView2.GridLines = true;
-      this.listView2.HideSelection = false;
-      this.listView2.Location = new System.Drawing.Point(12, 382);
-      this.listView2.Name = "listView2";
-      this.listView2.Size = new System.Drawing.Size(776, 320);
-      this.listView2.TabIndex = 5;
-      this.listView2.UseCompatibleStateImageBehavior = false;
-      this.listView2.View = System.Windows.Forms.View.Details;
+            this.ch_cp_time,
+            this.ch_cp_status});
+      this.lv_cp.FullRowSelect = true;
+      this.lv_cp.GridLines = true;
+      this.lv_cp.HideSelection = false;
+      this.lv_cp.Location = new System.Drawing.Point(12, 382);
+      this.lv_cp.Name = "lv_cp";
+      this.lv_cp.Size = new System.Drawing.Size(776, 320);
+      this.lv_cp.TabIndex = 5;
+      this.lv_cp.UseCompatibleStateImageBehavior = false;
+      this.lv_cp.View = System.Windows.Forms.View.Details;
       // 
       // ch_cp_tracking_id
       // 
@@ -188,11 +191,6 @@ namespace PenguinExpress.seller
       this.ch_cp_b_addr.Text = "주소";
       this.ch_cp_b_addr.Width = 100;
       // 
-      // ch_cp_time
-      // 
-      this.ch_cp_time.Text = "배송된 시간";
-      this.ch_cp_time.Width = 120;
-      // 
       // btn_cp_refresh
       // 
       this.btn_cp_refresh.Location = new System.Drawing.Point(697, 353);
@@ -201,6 +199,7 @@ namespace PenguinExpress.seller
       this.btn_cp_refresh.TabIndex = 6;
       this.btn_cp_refresh.Text = "새로고침";
       this.btn_cp_refresh.UseVisualStyleBackColor = true;
+      this.btn_cp_refresh.Click += new System.EventHandler(this.btn_cp_refresh_Click);
       // 
       // label2
       // 
@@ -211,6 +210,16 @@ namespace PenguinExpress.seller
       this.label2.TabIndex = 7;
       this.label2.Text = "완료 리스트";
       // 
+      // ch_cp_time
+      // 
+      this.ch_cp_time.Text = "도착 시간";
+      this.ch_cp_time.Width = 130;
+      // 
+      // ch_cp_status
+      // 
+      this.ch_cp_status.Text = "상태";
+      this.ch_cp_status.Width = 80;
+      // 
       // Seller_list
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -218,7 +227,7 @@ namespace PenguinExpress.seller
       this.ClientSize = new System.Drawing.Size(800, 685);
       this.Controls.Add(this.label2);
       this.Controls.Add(this.btn_cp_refresh);
-      this.Controls.Add(this.listView2);
+      this.Controls.Add(this.lv_cp);
       this.Controls.Add(this.btn_reg_refresh);
       this.Controls.Add(this.label1);
       this.Controls.Add(this.btn_rv_cancel);
@@ -246,14 +255,15 @@ namespace PenguinExpress.seller
     private System.Windows.Forms.Button btn_rv_cancel;
     private System.Windows.Forms.Label label1;
     private System.Windows.Forms.Button btn_reg_refresh;
-    private System.Windows.Forms.ListView listView2;
+    private System.Windows.Forms.ListView lv_cp;
     private System.Windows.Forms.ColumnHeader ch_cp_tracking_id;
     private System.Windows.Forms.ColumnHeader ch_cp_prod_name;
     private System.Windows.Forms.ColumnHeader ch_cp_prod_qty;
     private System.Windows.Forms.ColumnHeader ch_cp_b_phone;
     private System.Windows.Forms.ColumnHeader ch_cp_b_addr;
-    private System.Windows.Forms.ColumnHeader ch_cp_time;
     private System.Windows.Forms.Button btn_cp_refresh;
     private System.Windows.Forms.Label label2;
+    private System.Windows.Forms.ColumnHeader ch_cp_time;
+    private System.Windows.Forms.ColumnHeader ch_cp_status;
   }
 }
