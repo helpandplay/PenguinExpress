@@ -84,6 +84,7 @@ namespace PenguinExpress.seller
         while (reader.Read())
         {
           if ((int)reader["rv_status"] == 3) continue;
+          if ((int)reader["rv_status"] == -1) continue;
 
           ListViewItem lvi = new ListViewItem();
           lvi.Text = reader["tracking_id"].ToString();
@@ -139,7 +140,7 @@ namespace PenguinExpress.seller
       string status = lv_reg.SelectedItems[0].SubItems[6].Text;
       if(status != "예약 완료")
       {
-        MessageBox.Show("취소할 수 없는 상태입니다.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        MessageBox.Show("배송 중이므로 취소가 불가능합니다.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
         return;
       }
       DialogResult result =  MessageBox.Show("예약을 취소하시겠어요?", "Info", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
@@ -165,6 +166,11 @@ namespace PenguinExpress.seller
         Debug.Close();
       }
 
+    }
+
+    private void btn_add_rv_Click(object sender, EventArgs e)
+    {
+     
     }
   }
 }
