@@ -1,7 +1,7 @@
 ﻿
 namespace PenguinExpress.seller
 {
-  partial class List
+  partial class Seller_list
   {
     /// <summary>
     /// Required designer variable.
@@ -225,6 +225,7 @@ namespace PenguinExpress.seller
       this.Controls.Add(this.listView1);
       this.Name = "List";
       this.Text = "List";
+      this.Load += new System.EventHandler(this.List_Load);
       this.ResumeLayout(false);
       this.PerformLayout();
 

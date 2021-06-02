@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace PenguinExpress.seller
 {
-  public partial class List : Form
+  public partial class Seller_list : Form
   {
-    public List()
+    public Seller_list()
     {
       InitializeComponent();
+    }
+
+    private void List_Load(object sender, EventArgs e)
+    {
+
     }
   }
 }
