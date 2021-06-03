@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace PenguinExpress.employee
 {
@@ -22,6 +23,11 @@ namespace PenguinExpress.employee
     private void Deliever_Load(object sender, EventArgs e)
     {
       label1.Text = id;
+    }
+
+    private void Deliever_FormClosed(object sender, FormClosedEventArgs e)
+    {
+      
     }
   }
 }

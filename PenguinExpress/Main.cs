@@ -20,11 +20,17 @@ namespace PenguinExpress
     {
       InitializeComponent();
       MyDatabase.onConnect();
-      start();
+      SetVisibleCore(false);
     }
     private void start()
     {
       new Login().ShowDialog();
+    }
+
+    private void Main_Load(object sender, EventArgs e)
+    {
+      start();
+      this.Close();
     }
     protected override void SetVisibleCore(bool value)
     {
@@ -34,11 +40,6 @@ namespace PenguinExpress
         value = false;
       }
       base.SetVisibleCore(value);
-    }
-
-    private void Main_Load(object sender, EventArgs e)
-    {
-      SetVisibleCore(false);
     }
   }
 }
