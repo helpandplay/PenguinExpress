@@ -60,6 +60,12 @@
     <Compile Include="employee\Deliever.Designer.cs">
       <DependentUpon>Deliever.cs</DependentUpon>
     </Compile>
+    <Compile Include="employee\SetWorker.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="employee\SetWorker.Designer.cs">
+      <DependentUpon>SetWorker.cs</DependentUpon>
+    </Compile>
     <Compile Include="Env.cs" />
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
@@ -99,6 +105,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="employee\Deliever.resx">
       <DependentUpon>Deliever.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="employee\SetWorker.resx">
+      <DependentUpon>SetWorker.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>

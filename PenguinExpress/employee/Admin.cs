@@ -29,7 +29,44 @@ namespace PenguinExpress.employee
 
     private void listTab_Selected(object sender, TabControlEventArgs e)
     {
-      Debug.WriteLine(e.TabPageIndex);
+      if (e.TabPageIndex == 0) getDeliveryList();
+      else getCompleteList();
+    }
+    private void getCompleteList()
+    {
+      string sql = string.Format(
+        "SELECT tracking_id, s_id, s_phone, b_phone, e_id, rv_time, cp_time " +
+        "FROM {0} rv;"
+        , MyDatabase.completeListTbl);
+      MyDatabase.cmd.CommandText = sql;
+      MySqlDataReader reader = MyDatabase.cmd.ExecuteReader();
+      try
+      {
+        lv_complete.Items.Clear();
+        while (reader.Read())
+        {
+          string trackingId = reader["tracking_id"].ToString();
+          string sellerId = reader["s_id"].ToString();
+          string sellerPhone = reader["s_phone"].ToString();
+          string buyerPhone = reader["b_phone"].ToString();
+          string delieverId = reader["e_id"].ToString();
+          string rvTime = reader["rv_time"].ToString();
+          string cpTime = reader["cp_time"].ToString();
+
+          string[] row = new string[] 
+          { trackingId, sellerId, sellerPhone, buyerPhone, delieverId, rvTime, cpTime };
+          ListViewItem lvi = new ListViewItem(row);
+          lv_complete.Items.Add(lvi);
+        }
+      }
+      catch (Exception error)
+      {
+        Debug.WriteLine(error.Message);
+      }
+      finally
+      {
+        reader.Close();
+      }
     }
     private void getDeliveryList()
     {
@@ -40,6 +77,7 @@ namespace PenguinExpress.employee
         , MyDatabase.reservationListTbl, MyDatabase.sellerTbl);
       MyDatabase.cmd.CommandText = sql;
       MySqlDataReader reader = MyDatabase.cmd.ExecuteReader();
+      
       try
       {
         lv_delivery.Items.Clear();
@@ -90,10 +128,47 @@ namespace PenguinExpress.employee
           return "Error";
       }
     }
+
+    private void lv_delivery_DoubleClick(object sender, EventArgs e)
+    {
+      Dictionary<string, string> rowData = new Dictionary<string, string>();
+      var lvi = sender as ListView;
+      string status = lvi.SelectedItems[0].SubItems[7].Text;
+
+      if (status != "배정 대기중") return;
+      string trackingId = lvi.SelectedItems[0].SubItems[0].Text;
+
+      string sql = string.Format(
+        "SELECT b_region_code, b_addr " +
+        "FROM {0} " +
+        "WHERE tracking_id = {1};"
+        , MyDatabase.reservationListTbl, trackingId);
+      MyDatabase.cmd.CommandText = sql;
+      MySqlDataReader reader = MyDatabase.cmd.ExecuteReader();
+      try
+      {
+        if (!reader.Read())
+        {
+          throw new Exception("불러온 값이 없습니다.");
+        }
+        rowData.Add("trackingId", trackingId);
+        rowData.Add("regionCode", reader["b_region_code"].ToString());
+        rowData.Add("buyerAddr", reader["b_addr"].ToString());
+        new SetWorker(rowData).ShowDialog();
+      }
+      catch(Exception error)
+      {
+        Debug.WriteLine(error.Message);
+      }
+      finally
+      {
+        reader.Close();
+      }
+    }
     /*
 private string getRegionName(string code)
 {
- * 강원도
+* 강원도
 경기도
 경상남도
 경상북도
@@ -107,7 +182,7 @@ private string getRegionName(string code)
 전라북도
 충청남도
 충청북도
-  }
-     */
+}
+*/
   }
 }

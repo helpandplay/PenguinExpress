@@ -120,6 +120,7 @@ namespace PenguinExpress.employee
       this.lv_delivery.TabIndex = 0;
       this.lv_delivery.UseCompatibleStateImageBehavior = false;
       this.lv_delivery.View = System.Windows.Forms.View.Details;
+      this.lv_delivery.DoubleClick += new System.EventHandler(this.lv_delivery_DoubleClick);
       // 
       // lv_complete
       // 
