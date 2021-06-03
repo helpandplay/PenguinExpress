@@ -62,12 +62,13 @@ namespace PenguinExpress.main
     }
     private void onSellerLogin(int id)
     {
-      this.Close();
+      SetVisibleCore(false);
       new Seller_list(id).Show();
+      this.Close();
     }
     private void onEmployeeLogin(int id, bool isAdmin)
     {
-      this.Close();
+      SetVisibleCore(false);
       if (isAdmin)
       {
         new Admin(id.ToString()).ShowDialog();
@@ -76,6 +77,7 @@ namespace PenguinExpress.main
       {
         new Deliever(id.ToString()).ShowDialog();
       }
+      this.Close();
     }
     private bool checkIsAdmin(int id)
     {
@@ -153,8 +155,16 @@ namespace PenguinExpress.main
     }
     private void btn_join_Click(object sender, EventArgs e)
     {
-      this.Close();
       new Join().ShowDialog();
+    }
+    protected override void SetVisibleCore(bool value)
+    {
+      if (!this.IsHandleCreated)
+      {
+        this.CreateHandle();
+        value = false;
+      }
+      base.SetVisibleCore(value);
     }
 
   }

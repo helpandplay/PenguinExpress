@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using PenguinExpress.config;
+using PenguinExpress.main;
 using System.Diagnostics;
 
 namespace PenguinExpress.seller
@@ -82,6 +83,7 @@ namespace PenguinExpress.seller
         return;
       }
       addSeller();
+      this.Close();
     }
     private string validateSeller()
     {

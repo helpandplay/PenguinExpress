@@ -50,7 +50,6 @@ namespace PenguinExpress.employee
       this.Name = "Deliever";
       this.Text = "Deliever";
       this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Deliever_FormClosed);
-      this.Load += new System.EventHandler(this.Deliever_Load);
       this.ResumeLayout(false);
       this.PerformLayout();
 

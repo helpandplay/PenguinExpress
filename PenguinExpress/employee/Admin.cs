@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace PenguinExpress.employee
 {
@@ -21,7 +22,18 @@ namespace PenguinExpress.employee
 
     private void Admin_Load(object sender, EventArgs e)
     {
-      lb_id.Text = id;
+      getDeliveryList();
+    }
+
+    private void listTab_Selected(object sender, TabControlEventArgs e)
+    {
+      Debug.WriteLine(e.TabPageIndex);
+    }
+    private void getDeliveryList()
+    {
+      string sql = string.Format(
+        "SELECT "
+        );
     }
   }
 }
