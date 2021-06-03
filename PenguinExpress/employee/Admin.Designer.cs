@@ -46,6 +46,13 @@ namespace PenguinExpress.employee
       this.ch_region_code = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
       this.ch_rv_time = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
       this.ch_status = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+      this.ch_cp_tracking_id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+      this.ch_cp_s_id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+      this.ch_cp_s_phone = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+      this.ch_cp_b_phone = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+      this.ch_cp_worker_name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+      this.ch_cp_rv_time = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+      this.ch_cp_time = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
       this.listTab.SuspendLayout();
       this.tabPage1.SuspendLayout();
       this.tabPage2.SuspendLayout();
@@ -116,12 +123,23 @@ namespace PenguinExpress.employee
       // 
       // lv_complete
       // 
+      this.lv_complete.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.ch_cp_tracking_id,
+            this.ch_cp_s_id,
+            this.ch_cp_s_phone,
+            this.ch_cp_b_phone,
+            this.ch_cp_worker_name,
+            this.ch_cp_rv_time,
+            this.ch_cp_time});
+      this.lv_complete.FullRowSelect = true;
+      this.lv_complete.GridLines = true;
       this.lv_complete.HideSelection = false;
       this.lv_complete.Location = new System.Drawing.Point(6, 6);
       this.lv_complete.Name = "lv_complete";
       this.lv_complete.Size = new System.Drawing.Size(756, 323);
       this.lv_complete.TabIndex = 0;
       this.lv_complete.UseCompatibleStateImageBehavior = false;
+      this.lv_complete.View = System.Windows.Forms.View.Details;
       // 
       // button2
       // 
@@ -190,6 +208,41 @@ namespace PenguinExpress.employee
       this.ch_status.Text = "배송상태";
       this.ch_status.Width = 80;
       // 
+      // ch_cp_tracking_id
+      // 
+      this.ch_cp_tracking_id.Text = "운송장번호";
+      this.ch_cp_tracking_id.Width = 90;
+      // 
+      // ch_cp_s_id
+      // 
+      this.ch_cp_s_id.Text = "판매자 ID";
+      this.ch_cp_s_id.Width = 80;
+      // 
+      // ch_cp_s_phone
+      // 
+      this.ch_cp_s_phone.Text = "판매자연락처";
+      this.ch_cp_s_phone.Width = 105;
+      // 
+      // ch_cp_b_phone
+      // 
+      this.ch_cp_b_phone.Text = "구매자연락처";
+      this.ch_cp_b_phone.Width = 105;
+      // 
+      // ch_cp_worker_name
+      // 
+      this.ch_cp_worker_name.Text = "배송자";
+      this.ch_cp_worker_name.Width = 80;
+      // 
+      // ch_cp_rv_time
+      // 
+      this.ch_cp_rv_time.Text = "예약 시간";
+      this.ch_cp_rv_time.Width = 140;
+      // 
+      // ch_cp_time
+      // 
+      this.ch_cp_time.Text = "배송완료시간";
+      this.ch_cp_time.Width = 140;
+      // 
       // Admin
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -229,5 +282,12 @@ namespace PenguinExpress.employee
     private System.Windows.Forms.ColumnHeader ch_region_code;
     private System.Windows.Forms.ColumnHeader ch_rv_time;
     private System.Windows.Forms.ColumnHeader ch_status;
+    private System.Windows.Forms.ColumnHeader ch_cp_tracking_id;
+    private System.Windows.Forms.ColumnHeader ch_cp_s_id;
+    private System.Windows.Forms.ColumnHeader ch_cp_s_phone;
+    private System.Windows.Forms.ColumnHeader ch_cp_b_phone;
+    private System.Windows.Forms.ColumnHeader ch_cp_worker_name;
+    private System.Windows.Forms.ColumnHeader ch_cp_rv_time;
+    private System.Windows.Forms.ColumnHeader ch_cp_time;
   }
 }

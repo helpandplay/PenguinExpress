@@ -73,7 +73,6 @@ namespace PenguinExpress.seller
         this.Close();
       }
     }
-
     private void btn_onJoin_Click(object sender, EventArgs e)
     {
       string result = validateSeller();
@@ -95,7 +94,6 @@ namespace PenguinExpress.seller
       }
       return "OK";
     }
-
     private void tb_phone2_KeyPress(object sender, KeyPressEventArgs e)
     {
       checkOnlyNumberKeyPress(e);
