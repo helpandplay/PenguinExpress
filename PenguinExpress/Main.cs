@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using PenguinExpress.seller;
 using PenguinExpress.config;
+using PenguinExpress.main;
+using System.Diagnostics;
 
 namespace PenguinExpress
 {
@@ -18,12 +20,25 @@ namespace PenguinExpress
     {
       InitializeComponent();
       MyDatabase.onConnect();
-      onLoadSellerDashBoard();
+      start();
     }
-    private void onLoadSellerDashBoard()
+    private void start()
     {
-      new Join().ShowDialog();
-      //new Seller_list(1).ShowDialog();
+      new Login().ShowDialog();
+    }
+    protected override void SetVisibleCore(bool value)
+    {
+      if (!this.IsHandleCreated)
+      {
+        this.CreateHandle();
+        value = false;
+      }
+      base.SetVisibleCore(value);
+    }
+
+    private void Main_Load(object sender, EventArgs e)
+    {
+      SetVisibleCore(false);
     }
   }
 }

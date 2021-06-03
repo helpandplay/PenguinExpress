@@ -12,7 +12,7 @@ namespace PenguinExpress.config
     public static string reservationListTbl = "reservation_list";
     public static string sellerTbl = "seller";
     public static string deliverWorkerTbl = "deliver_worker";
-    public static string deliverListTbl = "deliver_list";
+    public static string employeeTbl = "employee";
     public static string completeListTbl = "complete_list";
 
     public static void onConnect()
