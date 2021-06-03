@@ -48,6 +48,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="config\MyDatabase.cs" />
+    <Compile Include="employee\Admin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="employee\Admin.Designer.cs">
+      <DependentUpon>Admin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="employee\Deliever.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="employee\Deliever.Designer.cs">
+      <DependentUpon>Deliever.cs</DependentUpon>
+    </Compile>
     <Compile Include="Env.cs" />
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
@@ -82,6 +94,12 @@
       <DependentUpon>Seller_list.cs</DependentUpon>
     </Compile>
     <Compile Include="Status.cs" />
+    <EmbeddedResource Include="employee\Admin.resx">
+      <DependentUpon>Admin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="employee\Deliever.resx">
+      <DependentUpon>Deliever.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>

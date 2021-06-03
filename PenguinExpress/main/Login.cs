@@ -8,9 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using PenguinExpress.config;
+using PenguinExpress.seller;
+using PenguinExpress.employee;
 using MySql.Data.MySqlClient;
 using System.Diagnostics;
-using PenguinExpress.seller;
+
 
 namespace PenguinExpress.main
 {
@@ -68,11 +70,11 @@ namespace PenguinExpress.main
       this.Close();
       if (isAdmin)
       {
-        Debug.WriteLine("관리자 폼 실행");
+        new Admin(id.ToString()).ShowDialog();
       }
       else
       {
-        Debug.WriteLine("배송기사 폼 실행");
+        new Deliever(id.ToString()).ShowDialog();
       }
     }
     private bool checkIsAdmin(int id)
