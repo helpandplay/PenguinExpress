@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using PenguinExpress.seller;
 using PenguinExpress.config;
 using PenguinExpress.main;
-using System.Diagnostics;
+using PenguinExpress.employee;
 
 namespace PenguinExpress
 {
@@ -29,7 +29,8 @@ namespace PenguinExpress
 
     private void Main_Load(object sender, EventArgs e)
     {
-      start();
+      //start();
+      new Admin("50000").ShowDialog();
       this.Close();
     }
     protected override void SetVisibleCore(bool value)
