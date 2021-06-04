@@ -154,7 +154,7 @@ namespace PenguinExpress.employee
         rowData.Add("trackingId", trackingId);
         rowData.Add("regionCode", reader["b_region_code"].ToString());
         rowData.Add("buyerAddr", reader["b_addr"].ToString());
-        new SetWorker(rowData).ShowDialog();
+        
       }
       catch(Exception error)
       {
@@ -164,6 +164,7 @@ namespace PenguinExpress.employee
       {
         reader.Close();
       }
+      new SetWorker(rowData).ShowDialog();
     }
     /*
 private string getRegionName(string code)
