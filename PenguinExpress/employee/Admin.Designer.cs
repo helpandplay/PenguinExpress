@@ -51,7 +51,7 @@ namespace PenguinExpress.employee
       this.ch_cp_rv_time = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
       this.ch_cp_time = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
       this.button1 = new System.Windows.Forms.Button();
-      this.button2 = new System.Windows.Forms.Button();
+      this.btn_getItemGraph = new System.Windows.Forms.Button();
       this.button3 = new System.Windows.Forms.Button();
       this.button4 = new System.Windows.Forms.Button();
       this.btn_logout = new System.Windows.Forms.Button();
@@ -225,14 +225,15 @@ namespace PenguinExpress.employee
       this.button1.Text = "새로고침";
       this.button1.UseVisualStyleBackColor = true;
       // 
-      // button2
+      // btn_getItemGraph
       // 
-      this.button2.Location = new System.Drawing.Point(12, 405);
-      this.button2.Name = "button2";
-      this.button2.Size = new System.Drawing.Size(130, 48);
-      this.button2.TabIndex = 3;
-      this.button2.Text = "품목별 통계";
-      this.button2.UseVisualStyleBackColor = true;
+      this.btn_getItemGraph.Location = new System.Drawing.Point(12, 405);
+      this.btn_getItemGraph.Name = "btn_getItemGraph";
+      this.btn_getItemGraph.Size = new System.Drawing.Size(130, 48);
+      this.btn_getItemGraph.TabIndex = 3;
+      this.btn_getItemGraph.Text = "품목별 통계";
+      this.btn_getItemGraph.UseVisualStyleBackColor = true;
+      this.btn_getItemGraph.Click += new System.EventHandler(this.btn_getItemGraph_Click);
       // 
       // button3
       // 
@@ -270,7 +271,7 @@ namespace PenguinExpress.employee
       this.Controls.Add(this.btn_logout);
       this.Controls.Add(this.button4);
       this.Controls.Add(this.button3);
-      this.Controls.Add(this.button2);
+      this.Controls.Add(this.btn_getItemGraph);
       this.Controls.Add(this.button1);
       this.Controls.Add(this.listTab);
       this.Name = "Admin";
@@ -291,7 +292,7 @@ namespace PenguinExpress.employee
     private System.Windows.Forms.TabPage tabPage2;
     private System.Windows.Forms.ListView lv_complete;
     private System.Windows.Forms.Button button1;
-    private System.Windows.Forms.Button button2;
+    private System.Windows.Forms.Button btn_getItemGraph;
     private System.Windows.Forms.Button button3;
     private System.Windows.Forms.Button button4;
     private System.Windows.Forms.ColumnHeader ch_tracking_id;

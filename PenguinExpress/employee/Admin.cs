@@ -194,6 +194,11 @@ namespace PenguinExpress.employee
       this.Close();
       new Login().Show();
     }
+
+    private void btn_getItemGraph_Click(object sender, EventArgs e)
+    {
+
+    }
     /*
 private string getRegionName(string code)
 {
