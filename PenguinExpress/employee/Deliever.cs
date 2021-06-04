@@ -29,5 +29,12 @@ namespace PenguinExpress.employee
     {
       
     }
+
+    private void Deliever_Load_1(object sender, EventArgs e)
+    {
+        string sql = string.Format(
+          "SELECT"
+          )
+    }
   }
 }
