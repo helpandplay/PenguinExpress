@@ -71,7 +71,7 @@ namespace PenguinExpress.employee
     private void getDeliveryList()
     {
       string sql = string.Format(
-        "SELECT tracking_id, se.userid, p_name, p_qty, p_code, b_region_code, rv_time, rv_status " +
+        "SELECT tracking_id, se.userid, p_name, p_qty, p_code, b_region_code, rv_time, rv.e_id, rv_status " +
         "FROM {0} rv, {1} se " +
         "WHERE rv.s_id = se.id;"
         , MyDatabase.reservationListTbl, MyDatabase.sellerTbl);
@@ -96,9 +96,10 @@ namespace PenguinExpress.employee
           string prodCode = reader["p_code"].ToString();
           
           string rvTime = reader["rv_time"].ToString();
+          string eId = reader["e_id"].ToString();
           
 
-          string[] row = new string[] { trackingId, sellerId, prodName, prodQty, prodCode, regionCode, rvTime, rvStatus };
+          string[] row = new string[] { trackingId, sellerId, prodName, prodQty, prodCode, regionCode, rvTime, eId, rvStatus };
           ListViewItem lvi = new ListViewItem(row);
           lv_delivery.Items.Add(lvi);
         }
@@ -133,7 +134,7 @@ namespace PenguinExpress.employee
     {
       Dictionary<string, string> rowData = new Dictionary<string, string>();
       var lvi = sender as ListView;
-      string status = lvi.SelectedItems[0].SubItems[7].Text;
+      string status = lvi.SelectedItems[0].SubItems[8].Text;
 
       if (status != "배정 대기중") return;
       string trackingId = lvi.SelectedItems[0].SubItems[0].Text;

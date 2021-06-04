@@ -31,13 +31,7 @@ namespace PenguinExpress.employee
     {
       this.listTab = new System.Windows.Forms.TabControl();
       this.tabPage1 = new System.Windows.Forms.TabPage();
-      this.tabPage2 = new System.Windows.Forms.TabPage();
-      this.button1 = new System.Windows.Forms.Button();
       this.lv_delivery = new System.Windows.Forms.ListView();
-      this.lv_complete = new System.Windows.Forms.ListView();
-      this.button2 = new System.Windows.Forms.Button();
-      this.button3 = new System.Windows.Forms.Button();
-      this.button4 = new System.Windows.Forms.Button();
       this.ch_tracking_id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
       this.ch_seller_id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
       this.ch_p_name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -46,6 +40,8 @@ namespace PenguinExpress.employee
       this.ch_region_code = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
       this.ch_rv_time = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
       this.ch_status = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+      this.tabPage2 = new System.Windows.Forms.TabPage();
+      this.lv_complete = new System.Windows.Forms.ListView();
       this.ch_cp_tracking_id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
       this.ch_cp_s_id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
       this.ch_cp_s_phone = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -53,6 +49,11 @@ namespace PenguinExpress.employee
       this.ch_cp_worker_name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
       this.ch_cp_rv_time = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
       this.ch_cp_time = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+      this.button1 = new System.Windows.Forms.Button();
+      this.button2 = new System.Windows.Forms.Button();
+      this.button3 = new System.Windows.Forms.Button();
+      this.button4 = new System.Windows.Forms.Button();
+      this.ch_e_id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
       this.listTab.SuspendLayout();
       this.tabPage1.SuspendLayout();
       this.tabPage2.SuspendLayout();
@@ -65,7 +66,7 @@ namespace PenguinExpress.employee
       this.listTab.Location = new System.Drawing.Point(12, 35);
       this.listTab.Name = "listTab";
       this.listTab.SelectedIndex = 0;
-      this.listTab.Size = new System.Drawing.Size(776, 364);
+      this.listTab.Size = new System.Drawing.Size(910, 364);
       this.listTab.TabIndex = 0;
       this.listTab.Selected += new System.Windows.Forms.TabControlEventHandler(this.listTab_Selected);
       // 
@@ -75,30 +76,10 @@ namespace PenguinExpress.employee
       this.tabPage1.Location = new System.Drawing.Point(4, 25);
       this.tabPage1.Name = "tabPage1";
       this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-      this.tabPage1.Size = new System.Drawing.Size(768, 335);
+      this.tabPage1.Size = new System.Drawing.Size(902, 335);
       this.tabPage1.TabIndex = 0;
       this.tabPage1.Text = "배송 현황";
       this.tabPage1.UseVisualStyleBackColor = true;
-      // 
-      // tabPage2
-      // 
-      this.tabPage2.Controls.Add(this.lv_complete);
-      this.tabPage2.Location = new System.Drawing.Point(4, 25);
-      this.tabPage2.Name = "tabPage2";
-      this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-      this.tabPage2.Size = new System.Drawing.Size(768, 335);
-      this.tabPage2.TabIndex = 1;
-      this.tabPage2.Text = "배송 완료 리스트";
-      this.tabPage2.UseVisualStyleBackColor = true;
-      // 
-      // button1
-      // 
-      this.button1.Location = new System.Drawing.Point(693, 12);
-      this.button1.Name = "button1";
-      this.button1.Size = new System.Drawing.Size(88, 34);
-      this.button1.TabIndex = 2;
-      this.button1.Text = "새로고침";
-      this.button1.UseVisualStyleBackColor = true;
       // 
       // lv_delivery
       // 
@@ -110,64 +91,18 @@ namespace PenguinExpress.employee
             this.ch_p_code,
             this.ch_region_code,
             this.ch_rv_time,
+            this.ch_e_id,
             this.ch_status});
       this.lv_delivery.FullRowSelect = true;
       this.lv_delivery.GridLines = true;
       this.lv_delivery.HideSelection = false;
       this.lv_delivery.Location = new System.Drawing.Point(6, 6);
       this.lv_delivery.Name = "lv_delivery";
-      this.lv_delivery.Size = new System.Drawing.Size(756, 323);
+      this.lv_delivery.Size = new System.Drawing.Size(890, 323);
       this.lv_delivery.TabIndex = 0;
       this.lv_delivery.UseCompatibleStateImageBehavior = false;
       this.lv_delivery.View = System.Windows.Forms.View.Details;
       this.lv_delivery.DoubleClick += new System.EventHandler(this.lv_delivery_DoubleClick);
-      // 
-      // lv_complete
-      // 
-      this.lv_complete.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.ch_cp_tracking_id,
-            this.ch_cp_s_id,
-            this.ch_cp_s_phone,
-            this.ch_cp_b_phone,
-            this.ch_cp_worker_name,
-            this.ch_cp_rv_time,
-            this.ch_cp_time});
-      this.lv_complete.FullRowSelect = true;
-      this.lv_complete.GridLines = true;
-      this.lv_complete.HideSelection = false;
-      this.lv_complete.Location = new System.Drawing.Point(6, 6);
-      this.lv_complete.Name = "lv_complete";
-      this.lv_complete.Size = new System.Drawing.Size(756, 323);
-      this.lv_complete.TabIndex = 0;
-      this.lv_complete.UseCompatibleStateImageBehavior = false;
-      this.lv_complete.View = System.Windows.Forms.View.Details;
-      // 
-      // button2
-      // 
-      this.button2.Location = new System.Drawing.Point(12, 405);
-      this.button2.Name = "button2";
-      this.button2.Size = new System.Drawing.Size(130, 48);
-      this.button2.TabIndex = 3;
-      this.button2.Text = "품목별 통계";
-      this.button2.UseVisualStyleBackColor = true;
-      // 
-      // button3
-      // 
-      this.button3.Location = new System.Drawing.Point(148, 405);
-      this.button3.Name = "button3";
-      this.button3.Size = new System.Drawing.Size(130, 48);
-      this.button3.TabIndex = 4;
-      this.button3.Text = "지역별 통계";
-      this.button3.UseVisualStyleBackColor = true;
-      // 
-      // button4
-      // 
-      this.button4.Location = new System.Drawing.Point(284, 405);
-      this.button4.Name = "button4";
-      this.button4.Size = new System.Drawing.Size(130, 48);
-      this.button4.TabIndex = 5;
-      this.button4.Text = "배송기사 통계";
-      this.button4.UseVisualStyleBackColor = true;
       // 
       // ch_tracking_id
       // 
@@ -207,7 +142,38 @@ namespace PenguinExpress.employee
       // ch_status
       // 
       this.ch_status.Text = "배송상태";
-      this.ch_status.Width = 80;
+      this.ch_status.Width = 90;
+      // 
+      // tabPage2
+      // 
+      this.tabPage2.Controls.Add(this.lv_complete);
+      this.tabPage2.Location = new System.Drawing.Point(4, 25);
+      this.tabPage2.Name = "tabPage2";
+      this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+      this.tabPage2.Size = new System.Drawing.Size(902, 335);
+      this.tabPage2.TabIndex = 1;
+      this.tabPage2.Text = "배송 완료 리스트";
+      this.tabPage2.UseVisualStyleBackColor = true;
+      // 
+      // lv_complete
+      // 
+      this.lv_complete.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.ch_cp_tracking_id,
+            this.ch_cp_s_id,
+            this.ch_cp_s_phone,
+            this.ch_cp_b_phone,
+            this.ch_cp_worker_name,
+            this.ch_cp_rv_time,
+            this.ch_cp_time});
+      this.lv_complete.FullRowSelect = true;
+      this.lv_complete.GridLines = true;
+      this.lv_complete.HideSelection = false;
+      this.lv_complete.Location = new System.Drawing.Point(6, 6);
+      this.lv_complete.Name = "lv_complete";
+      this.lv_complete.Size = new System.Drawing.Size(890, 323);
+      this.lv_complete.TabIndex = 0;
+      this.lv_complete.UseCompatibleStateImageBehavior = false;
+      this.lv_complete.View = System.Windows.Forms.View.Details;
       // 
       // ch_cp_tracking_id
       // 
@@ -244,11 +210,52 @@ namespace PenguinExpress.employee
       this.ch_cp_time.Text = "배송완료시간";
       this.ch_cp_time.Width = 140;
       // 
+      // button1
+      // 
+      this.button1.Location = new System.Drawing.Point(824, 12);
+      this.button1.Name = "button1";
+      this.button1.Size = new System.Drawing.Size(88, 34);
+      this.button1.TabIndex = 2;
+      this.button1.Text = "새로고침";
+      this.button1.UseVisualStyleBackColor = true;
+      // 
+      // button2
+      // 
+      this.button2.Location = new System.Drawing.Point(12, 405);
+      this.button2.Name = "button2";
+      this.button2.Size = new System.Drawing.Size(130, 48);
+      this.button2.TabIndex = 3;
+      this.button2.Text = "품목별 통계";
+      this.button2.UseVisualStyleBackColor = true;
+      // 
+      // button3
+      // 
+      this.button3.Location = new System.Drawing.Point(148, 405);
+      this.button3.Name = "button3";
+      this.button3.Size = new System.Drawing.Size(130, 48);
+      this.button3.TabIndex = 4;
+      this.button3.Text = "지역별 통계";
+      this.button3.UseVisualStyleBackColor = true;
+      // 
+      // button4
+      // 
+      this.button4.Location = new System.Drawing.Point(284, 405);
+      this.button4.Name = "button4";
+      this.button4.Size = new System.Drawing.Size(130, 48);
+      this.button4.TabIndex = 5;
+      this.button4.Text = "배송기사 통계";
+      this.button4.UseVisualStyleBackColor = true;
+      // 
+      // ch_e_id
+      // 
+      this.ch_e_id.Text = "배송 기사";
+      this.ch_e_id.Width = 80;
+      // 
       // Admin
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(800, 465);
+      this.ClientSize = new System.Drawing.Size(934, 465);
       this.Controls.Add(this.button4);
       this.Controls.Add(this.button3);
       this.Controls.Add(this.button2);
@@ -290,5 +297,6 @@ namespace PenguinExpress.employee
     private System.Windows.Forms.ColumnHeader ch_cp_worker_name;
     private System.Windows.Forms.ColumnHeader ch_cp_rv_time;
     private System.Windows.Forms.ColumnHeader ch_cp_time;
+    private System.Windows.Forms.ColumnHeader ch_e_id;
   }
 }
