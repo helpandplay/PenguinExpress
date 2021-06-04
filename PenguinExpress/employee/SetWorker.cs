@@ -28,8 +28,10 @@ namespace PenguinExpress.employee
     }
     Dictionary<string, string> data;
     List<workerInfo> workerList;
-    public SetWorker(Dictionary<string, string> data)
+    Admin admin;
+    public SetWorker(Dictionary<string, string> data, Admin admin)
     {
+      this.admin = admin;
       this.data = data;
       InitializeComponent();
     }
@@ -100,10 +102,22 @@ namespace PenguinExpress.employee
         }
       }
       workerInfo worker = new workerInfo(workerList[idx].id, workerList[idx].name, workerList[idx].userid);
-      setDelivery(worker);
+      bool isSuccess = setDelivery(worker);
+      if (isSuccess)
+      {
+        // 배정 대기중 -> 배송중으로 바꾸고 dv_id 부여
+        bool result = admin.updateWorker(workerList[idx].id, data["trackingId"]);
+        if (!result) MessageBox.Show("배정 업데이트에 실패했습니다.", "warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        else this.Close();
+      }
+      else
+      {
+        MessageBox.Show("배정에 실패했습니다.", "warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+      }
     }
-    private void setDelivery(workerInfo worker)
+    private bool setDelivery(workerInfo worker)
     {
+      bool isSuccess = false;
       string dv_id = worker.id;
       string trackingId = data["trackingId"];
       string name = worker.name;
@@ -116,11 +130,18 @@ namespace PenguinExpress.employee
       MyDatabase.cmd.CommandText = sql;
       try
       {
-        MyDatabase.cmd.ExecuteNonQuery();
+        int result = MyDatabase.cmd.ExecuteNonQuery();
+        if (result != -1) return true;
       }catch(Exception error)
       {
         Debug.WriteLine(error.Message);
       }
+      return false;
+    }
+
+    private void btn_cancel_Click(object sender, EventArgs e)
+    {
+      this.Close();
     }
   }
 }

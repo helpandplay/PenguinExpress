@@ -164,7 +164,27 @@ namespace PenguinExpress.employee
       {
         reader.Close();
       }
-      new SetWorker(rowData).ShowDialog();
+      new SetWorker(rowData, this).ShowDialog();
+      getDeliveryList();
+    }
+    public bool updateWorker(string id, string trackingId)
+    {
+      string sql = string.Format(
+        "UPDATE {0} " +
+        "SET e_id = {1}, rv_status = 2 " +
+        "WHERE tracking_id = '{2}';"
+        , MyDatabase.reservationListTbl, id, trackingId);
+
+      MyDatabase.cmd.CommandText = sql;
+      try
+      {
+        int result = MyDatabase.cmd.ExecuteNonQuery();
+        if (result == 1) return true;
+      }catch(Exception error)
+      {
+        Debug.WriteLine(error.Message);
+      }
+      return false;
     }
     /*
 private string getRegionName(string code)
