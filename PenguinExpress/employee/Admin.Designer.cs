@@ -52,8 +52,7 @@ namespace PenguinExpress.employee
       this.ch_cp_time = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
       this.button1 = new System.Windows.Forms.Button();
       this.btn_getItemGraph = new System.Windows.Forms.Button();
-      this.button3 = new System.Windows.Forms.Button();
-      this.button4 = new System.Windows.Forms.Button();
+      this.btn_getRegionGraph = new System.Windows.Forms.Button();
       this.btn_logout = new System.Windows.Forms.Button();
       this.listTab.SuspendLayout();
       this.tabPage1.SuspendLayout();
@@ -235,23 +234,15 @@ namespace PenguinExpress.employee
       this.btn_getItemGraph.UseVisualStyleBackColor = true;
       this.btn_getItemGraph.Click += new System.EventHandler(this.btn_getItemGraph_Click);
       // 
-      // button3
+      // btn_getRegionGraph
       // 
-      this.button3.Location = new System.Drawing.Point(148, 405);
-      this.button3.Name = "button3";
-      this.button3.Size = new System.Drawing.Size(130, 48);
-      this.button3.TabIndex = 4;
-      this.button3.Text = "지역별 통계";
-      this.button3.UseVisualStyleBackColor = true;
-      // 
-      // button4
-      // 
-      this.button4.Location = new System.Drawing.Point(284, 405);
-      this.button4.Name = "button4";
-      this.button4.Size = new System.Drawing.Size(130, 48);
-      this.button4.TabIndex = 5;
-      this.button4.Text = "배송기사 통계";
-      this.button4.UseVisualStyleBackColor = true;
+      this.btn_getRegionGraph.Location = new System.Drawing.Point(148, 405);
+      this.btn_getRegionGraph.Name = "btn_getRegionGraph";
+      this.btn_getRegionGraph.Size = new System.Drawing.Size(130, 48);
+      this.btn_getRegionGraph.TabIndex = 4;
+      this.btn_getRegionGraph.Text = "지역별 통계";
+      this.btn_getRegionGraph.UseVisualStyleBackColor = true;
+      this.btn_getRegionGraph.Click += new System.EventHandler(this.btn_getRegionGraph_Click);
       // 
       // btn_logout
       // 
@@ -269,8 +260,7 @@ namespace PenguinExpress.employee
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(934, 726);
       this.Controls.Add(this.btn_logout);
-      this.Controls.Add(this.button4);
-      this.Controls.Add(this.button3);
+      this.Controls.Add(this.btn_getRegionGraph);
       this.Controls.Add(this.btn_getItemGraph);
       this.Controls.Add(this.button1);
       this.Controls.Add(this.listTab);
@@ -293,8 +283,7 @@ namespace PenguinExpress.employee
     private System.Windows.Forms.ListView lv_complete;
     private System.Windows.Forms.Button button1;
     private System.Windows.Forms.Button btn_getItemGraph;
-    private System.Windows.Forms.Button button3;
-    private System.Windows.Forms.Button button4;
+    private System.Windows.Forms.Button btn_getRegionGraph;
     private System.Windows.Forms.ColumnHeader ch_tracking_id;
     private System.Windows.Forms.ColumnHeader ch_seller_id;
     private System.Windows.Forms.ColumnHeader ch_p_name;

@@ -29,9 +29,11 @@ namespace PenguinExpress.employee
       chart.Series[0].ChartType = SeriesChartType.Doughnut;
       foreach(KeyValuePair<int, int> item in data)
       {
+        int percent = item.Value * 100 / total;
         string itemName = stus.getItemName(item.Key);
-        chart.Series[0].Points.AddXY(string.Format("{0} {1}%", itemName, item.Value*100/total ), item.Value);
+        chart.Series[0].Points.AddXY(string.Format("{0} {1}%", itemName, percent), item.Value);
       }
+
     }
   }
 }

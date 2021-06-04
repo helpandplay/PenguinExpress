@@ -56,7 +56,7 @@ namespace PenguinExpress.employee
           string rvTime = reader["rv_time"].ToString();
           string cpTime = reader["cp_time"].ToString();
 
-          string[] row = new string[] 
+          string[] row = new string[]
           { trackingId, sellerId, sellerPhone, buyerPhone, delieverId, rvTime, cpTime };
           ListViewItem lvi = new ListViewItem(row);
           lv_complete.Items.Add(lvi);
@@ -80,7 +80,7 @@ namespace PenguinExpress.employee
         , MyDatabase.reservationListTbl, MyDatabase.sellerTbl);
       MyDatabase.cmd.CommandText = sql;
       MySqlDataReader reader = MyDatabase.cmd.ExecuteReader();
-      
+
       try
       {
         lv_delivery.Items.Clear();
@@ -97,16 +97,17 @@ namespace PenguinExpress.employee
           string prodName = reader["p_name"].ToString();
           string prodQty = reader["p_qty"].ToString();
           string prodCode = reader["p_code"].ToString();
-          
+
           string rvTime = reader["rv_time"].ToString();
           string eId = reader["e_id"].ToString();
-          
+
 
           string[] row = new string[] { trackingId, sellerId, prodName, prodQty, prodCode, regionCode, rvTime, eId, rvStatus };
           ListViewItem lvi = new ListViewItem(row);
           lv_delivery.Items.Add(lvi);
         }
-      }catch(Exception error)
+      }
+      catch (Exception error)
       {
         Debug.WriteLine(error.Message);
       }
@@ -158,9 +159,9 @@ namespace PenguinExpress.employee
         rowData.Add("trackingId", trackingId);
         rowData.Add("regionCode", reader["b_region_code"].ToString());
         rowData.Add("buyerAddr", reader["b_addr"].ToString());
-        
+
       }
-      catch(Exception error)
+      catch (Exception error)
       {
         Debug.WriteLine(error.Message);
       }
@@ -184,7 +185,8 @@ namespace PenguinExpress.employee
       {
         int result = MyDatabase.cmd.ExecuteNonQuery();
         if (result == 1) return true;
-      }catch(Exception error)
+      }
+      catch (Exception error)
       {
         Debug.WriteLine(error.Message);
       }
@@ -199,9 +201,9 @@ namespace PenguinExpress.employee
 
     private void btn_getItemGraph_Click(object sender, EventArgs e)
     {
-      Dictionary<int, int> data =  getItemGraphData();
+      Dictionary<int, int> data = getItemGraphData();
       int total = getItemTotal();
-      if(total == -1)
+      if (total == -1)
       {
         MessageBox.Show("총 개수 불러오는 오류 발생");
         return;
@@ -221,7 +223,8 @@ namespace PenguinExpress.employee
       {
         object result = MyDatabase.cmd.ExecuteScalar();
         total = int.Parse(result.ToString());
-      }catch(Exception error)
+      }
+      catch (Exception error)
       {
         Debug.WriteLine(error.StackTrace);
         Debug.WriteLine(error.Message);
@@ -230,12 +233,11 @@ namespace PenguinExpress.employee
     }
     private Dictionary<int, int> getItemGraphData()
     {
-      Dictionary<int, int> data = new Dictionary<int, int>(); 
+      Dictionary<int, int> data = new Dictionary<int, int>();
       string sql = string.Format(
         "SELECT p_code, COUNT(*) AS 'cnt' " +
         "FROM {0} " +
-        "GROUP BY p_code " +
-        "HAVING cnt > 1;",
+        "GROUP BY p_code;",
         MyDatabase.completeListTbl
         );
       MyDatabase.cmd.CommandText = sql;
@@ -244,9 +246,14 @@ namespace PenguinExpress.employee
       {
         while (reader.Read())
         {
+          foreach (var item in reader)
+          {
+            Debug.WriteLine(item);
+          }
           data.Add(int.Parse(reader["p_code"].ToString()), int.Parse(reader["cnt"].ToString()));
         }
-      }catch(Exception error)
+      }
+      catch (Exception error)
       {
         Debug.WriteLine(error.StackTrace);
         Debug.WriteLine(error.Message);
@@ -257,24 +264,47 @@ namespace PenguinExpress.employee
       }
       return data;
     }
-    /*
-private string getRegionName(string code)
-{
-* 강원도
-경기도
-경상남도
-경상북도
-광주광역시
-대구광역시
-대전광역시
-부산광역시
-서울특별시
-인천광역시
-전라남도
-전라북도
-충청남도
-충청북도
-}
-*/
+
+    private void btn_getRegionGraph_Click(object sender, EventArgs e)
+    {
+      //code, count
+      Dictionary<int, int> data = getRegionGraphData();
+      int total = getItemTotal();
+      if (total == -1)
+      {
+        MessageBox.Show("총 개수 불러오는 오류 발생");
+        return;
+      }
+      new ShowGraph(data, total).ShowDialog();
+    }
+    private Dictionary<int, int> getRegionGraphData()
+    {
+      Dictionary<int, int> data = new Dictionary<int, int>();
+      string sql = string.Format(
+        "SELECT b_region_code, COUNT(*) AS 'cnt' " +
+        "FROM {0} " +
+        "GROUP BY b_region_code;",
+        MyDatabase.completeListTbl
+        );
+      MyDatabase.cmd.CommandText = sql;
+      MySqlDataReader reader = MyDatabase.cmd.ExecuteReader();
+      try
+      {
+        while (reader.Read())
+        {
+          data.Add(int.Parse(reader["b_region_code"].ToString()), int.Parse(reader["cnt"].ToString()));
+        }
+      }
+      catch (Exception error)
+      {
+        Debug.WriteLine(error.StackTrace);
+        Debug.WriteLine(error.Message);
+      }
+      finally
+      {
+        reader.Close();
+      }
+      return data;
+    }
   }
 }
