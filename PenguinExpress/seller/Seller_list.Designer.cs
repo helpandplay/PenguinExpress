@@ -68,7 +68,7 @@ namespace PenguinExpress.seller
       this.lv_reg.HideSelection = false;
       this.lv_reg.Location = new System.Drawing.Point(12, 30);
       this.lv_reg.Name = "lv_reg";
-      this.lv_reg.Size = new System.Drawing.Size(776, 254);
+      this.lv_reg.Size = new System.Drawing.Size(842, 254);
       this.lv_reg.TabIndex = 0;
       this.lv_reg.UseCompatibleStateImageBehavior = false;
       this.lv_reg.View = System.Windows.Forms.View.Details;
@@ -102,13 +102,13 @@ namespace PenguinExpress.seller
       // 
       this.ch_b_addr.Tag = "false";
       this.ch_b_addr.Text = "주소";
-      this.ch_b_addr.Width = 100;
+      this.ch_b_addr.Width = 200;
       // 
       // ch_rv_time
       // 
       this.ch_rv_time.Tag = "false";
       this.ch_rv_time.Text = "예약된 시간";
-      this.ch_rv_time.Width = 120;
+      this.ch_rv_time.Width = 150;
       // 
       // ch_status
       // 
@@ -147,7 +147,7 @@ namespace PenguinExpress.seller
       // 
       // btn_reg_refresh
       // 
-      this.btn_reg_refresh.Location = new System.Drawing.Point(697, 1);
+      this.btn_reg_refresh.Location = new System.Drawing.Point(762, 1);
       this.btn_reg_refresh.Name = "btn_reg_refresh";
       this.btn_reg_refresh.Size = new System.Drawing.Size(91, 23);
       this.btn_reg_refresh.TabIndex = 4;
@@ -169,7 +169,7 @@ namespace PenguinExpress.seller
       this.lv_cp.HideSelection = false;
       this.lv_cp.Location = new System.Drawing.Point(12, 382);
       this.lv_cp.Name = "lv_cp";
-      this.lv_cp.Size = new System.Drawing.Size(776, 320);
+      this.lv_cp.Size = new System.Drawing.Size(842, 320);
       this.lv_cp.TabIndex = 5;
       this.lv_cp.UseCompatibleStateImageBehavior = false;
       this.lv_cp.View = System.Windows.Forms.View.Details;
@@ -212,7 +212,7 @@ namespace PenguinExpress.seller
       // 
       // btn_cp_refresh
       // 
-      this.btn_cp_refresh.Location = new System.Drawing.Point(697, 353);
+      this.btn_cp_refresh.Location = new System.Drawing.Point(762, 353);
       this.btn_cp_refresh.Name = "btn_cp_refresh";
       this.btn_cp_refresh.Size = new System.Drawing.Size(91, 23);
       this.btn_cp_refresh.TabIndex = 6;
@@ -231,7 +231,7 @@ namespace PenguinExpress.seller
       // 
       // btn_logout
       // 
-      this.btn_logout.Location = new System.Drawing.Point(697, 290);
+      this.btn_logout.Location = new System.Drawing.Point(762, 290);
       this.btn_logout.Name = "btn_logout";
       this.btn_logout.Size = new System.Drawing.Size(91, 23);
       this.btn_logout.TabIndex = 8;
@@ -243,7 +243,7 @@ namespace PenguinExpress.seller
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(800, 685);
+      this.ClientSize = new System.Drawing.Size(865, 685);
       this.Controls.Add(this.btn_logout);
       this.Controls.Add(this.label2);
       this.Controls.Add(this.btn_cp_refresh);
@@ -254,7 +254,7 @@ namespace PenguinExpress.seller
       this.Controls.Add(this.btn_add_rv);
       this.Controls.Add(this.lv_reg);
       this.Name = "Seller_list";
-      this.Text = "List";
+      this.Text = " ";
       this.Load += new System.EventHandler(this.List_Load);
       this.ResumeLayout(false);
       this.PerformLayout();

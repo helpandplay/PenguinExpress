@@ -125,8 +125,8 @@ namespace PenguinExpress.employee
       string buyerAddr = data["buyerAddr"];
 
       string sql = string.Format(
-        "INSERT INTO {0} VALUES (NULL, {1}, {2}, '{3}', {4}, '{5}');"
-        , MyDatabase.deliverList, dv_id, trackingId, name, regionCode, buyerAddr);
+        "UPDATE {0} SET e_id = {1} WHERE tracking_id = {2};"
+        , MyDatabase.reservationListTbl, dv_id, trackingId);
       MyDatabase.cmd.CommandText = sql;
       try
       {

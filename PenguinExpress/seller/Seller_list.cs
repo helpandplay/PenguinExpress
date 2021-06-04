@@ -212,8 +212,18 @@ namespace PenguinExpress.seller
 
     private void btn_logout_Click(object sender, EventArgs e)
     {
+      SetVisibleCore(false);
       this.Close();
-      new Login().Show();
+      new Login().ShowDialog();
+    }
+    protected override void SetVisibleCore(bool value)
+    {
+      if (!this.IsHandleCreated)
+      {
+        this.CreateHandle();
+        value = false;
+      }
+      base.SetVisibleCore(value);
     }
   }
 }

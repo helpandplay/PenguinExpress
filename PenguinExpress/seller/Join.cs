@@ -24,6 +24,16 @@ namespace PenguinExpress.seller
     private void button1_Click(object sender, EventArgs e)
     {
       string userid = tb_id.Text;
+      if(userid == "")
+      {
+        MessageBox.Show("아이디를 입력해주세요.");
+        return;
+      }
+      if(userid.Length < 2 || userid.Length > 12)
+      {
+        MessageBox.Show("2~12자리만 사용할 수 있습니다.");
+        return;
+      }
       string sql = string.Format(
         "SELECT id " +
         "FROM {0} " +
