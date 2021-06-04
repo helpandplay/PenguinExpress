@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using PenguinExpress.config;
 using MySql.Data.MySqlClient;
+using PenguinExpress.main;
 
 namespace PenguinExpress.employee
 {
@@ -186,6 +187,12 @@ namespace PenguinExpress.employee
         Debug.WriteLine(error.Message);
       }
       return false;
+    }
+
+    private void btn_logout_Click(object sender, EventArgs e)
+    {
+      this.Close();
+      new Login().Show();
     }
     /*
 private string getRegionName(string code)

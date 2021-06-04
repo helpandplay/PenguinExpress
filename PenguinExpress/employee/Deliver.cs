@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using PenguinExpress.config;
 using MySql.Data.MySqlClient;
 using System.Diagnostics;
+using PenguinExpress.main;
 
 namespace PenguinExpress.employee
 {
@@ -217,6 +218,12 @@ namespace PenguinExpress.employee
         Debug.WriteLine(error.Message);
       }
       return isSuccess;
+    }
+
+    private void btn_logout_Click(object sender, EventArgs e)
+    {
+      this.Close();
+      new Login().Show();
     }
   }
 }

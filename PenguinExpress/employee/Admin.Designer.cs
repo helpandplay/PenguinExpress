@@ -39,6 +39,7 @@ namespace PenguinExpress.employee
       this.ch_p_code = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
       this.ch_region_code = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
       this.ch_rv_time = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+      this.ch_e_id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
       this.ch_status = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
       this.tabPage2 = new System.Windows.Forms.TabPage();
       this.lv_complete = new System.Windows.Forms.ListView();
@@ -53,7 +54,7 @@ namespace PenguinExpress.employee
       this.button2 = new System.Windows.Forms.Button();
       this.button3 = new System.Windows.Forms.Button();
       this.button4 = new System.Windows.Forms.Button();
-      this.ch_e_id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+      this.btn_logout = new System.Windows.Forms.Button();
       this.listTab.SuspendLayout();
       this.tabPage1.SuspendLayout();
       this.tabPage2.SuspendLayout();
@@ -138,6 +139,11 @@ namespace PenguinExpress.employee
       // 
       this.ch_rv_time.Text = "예약시간";
       this.ch_rv_time.Width = 150;
+      // 
+      // ch_e_id
+      // 
+      this.ch_e_id.Text = "배송 기사";
+      this.ch_e_id.Width = 80;
       // 
       // ch_status
       // 
@@ -246,16 +252,22 @@ namespace PenguinExpress.employee
       this.button4.Text = "배송기사 통계";
       this.button4.UseVisualStyleBackColor = true;
       // 
-      // ch_e_id
+      // btn_logout
       // 
-      this.ch_e_id.Text = "배송 기사";
-      this.ch_e_id.Width = 80;
+      this.btn_logout.Location = new System.Drawing.Point(830, 412);
+      this.btn_logout.Name = "btn_logout";
+      this.btn_logout.Size = new System.Drawing.Size(88, 34);
+      this.btn_logout.TabIndex = 6;
+      this.btn_logout.Text = "로그아웃";
+      this.btn_logout.UseVisualStyleBackColor = true;
+      this.btn_logout.Click += new System.EventHandler(this.btn_logout_Click);
       // 
       // Admin
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(934, 465);
+      this.Controls.Add(this.btn_logout);
       this.Controls.Add(this.button4);
       this.Controls.Add(this.button3);
       this.Controls.Add(this.button2);
@@ -298,5 +310,6 @@ namespace PenguinExpress.employee
     private System.Windows.Forms.ColumnHeader ch_cp_rv_time;
     private System.Windows.Forms.ColumnHeader ch_cp_time;
     private System.Windows.Forms.ColumnHeader ch_e_id;
+    private System.Windows.Forms.Button btn_logout;
   }
 }

@@ -51,6 +51,7 @@ namespace PenguinExpress.seller
       this.ch_cp_status = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
       this.btn_cp_refresh = new System.Windows.Forms.Button();
       this.label2 = new System.Windows.Forms.Label();
+      this.btn_logout = new System.Windows.Forms.Button();
       this.SuspendLayout();
       // 
       // lv_reg
@@ -237,11 +238,22 @@ namespace PenguinExpress.seller
       this.label2.TabIndex = 7;
       this.label2.Text = "완료 리스트";
       // 
+      // btn_logout
+      // 
+      this.btn_logout.Location = new System.Drawing.Point(697, 290);
+      this.btn_logout.Name = "btn_logout";
+      this.btn_logout.Size = new System.Drawing.Size(91, 23);
+      this.btn_logout.TabIndex = 8;
+      this.btn_logout.Text = "로그아웃";
+      this.btn_logout.UseVisualStyleBackColor = true;
+      this.btn_logout.Click += new System.EventHandler(this.btn_logout_Click);
+      // 
       // Seller_list
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(800, 685);
+      this.Controls.Add(this.btn_logout);
       this.Controls.Add(this.label2);
       this.Controls.Add(this.btn_cp_refresh);
       this.Controls.Add(this.lv_cp);
@@ -282,5 +294,6 @@ namespace PenguinExpress.seller
     private System.Windows.Forms.ColumnHeader ch_cp_status;
     private System.Windows.Forms.ColumnHeader ch_tracking_id;
     private System.Windows.Forms.ColumnHeader ch_cp_tracking_id;
+    private System.Windows.Forms.Button btn_logout;
   }
 }

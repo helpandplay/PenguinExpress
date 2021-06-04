@@ -29,8 +29,7 @@ namespace PenguinExpress
 
     private void Main_Load(object sender, EventArgs e)
     {
-      //start();
-      new Deliver("50004").ShowDialog();
+      start();
       this.Close();
     }
     protected override void SetVisibleCore(bool value)

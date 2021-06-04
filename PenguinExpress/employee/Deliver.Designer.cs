@@ -42,6 +42,7 @@ namespace PenguinExpress.employee
       this.label1 = new System.Windows.Forms.Label();
       this.btn_completeDelivery = new System.Windows.Forms.Button();
       this.button2 = new System.Windows.Forms.Button();
+      this.btn_logout = new System.Windows.Forms.Button();
       this.panel1.SuspendLayout();
       this.SuspendLayout();
       // 
@@ -154,11 +155,22 @@ namespace PenguinExpress.employee
       this.button2.Text = "예상 급여";
       this.button2.UseVisualStyleBackColor = true;
       // 
+      // btn_logout
+      // 
+      this.btn_logout.Location = new System.Drawing.Point(697, 382);
+      this.btn_logout.Name = "btn_logout";
+      this.btn_logout.Size = new System.Drawing.Size(91, 23);
+      this.btn_logout.TabIndex = 4;
+      this.btn_logout.Text = "로그아웃";
+      this.btn_logout.UseVisualStyleBackColor = true;
+      this.btn_logout.Click += new System.EventHandler(this.btn_logout_Click);
+      // 
       // Deliver
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(800, 450);
+      this.Controls.Add(this.btn_logout);
       this.Controls.Add(this.button2);
       this.Controls.Add(this.btn_completeDelivery);
       this.Controls.Add(this.panel1);
@@ -186,5 +198,6 @@ namespace PenguinExpress.employee
     private System.Windows.Forms.Label label1;
     private System.Windows.Forms.Button btn_completeDelivery;
     private System.Windows.Forms.Button button2;
+    private System.Windows.Forms.Button btn_logout;
   }
 }

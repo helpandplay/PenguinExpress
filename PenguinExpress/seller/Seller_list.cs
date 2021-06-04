@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using MySql.Data.MySqlClient;
 using PenguinExpress.config;
+using PenguinExpress.main;
 
 namespace PenguinExpress.seller
 {
@@ -210,6 +211,12 @@ namespace PenguinExpress.seller
       if (seller == null) return;
       new AddProduct(seller).ShowDialog();
       getAllRegList();
+    }
+
+    private void btn_logout_Click(object sender, EventArgs e)
+    {
+      this.Close();
+      new Login().Show();
     }
   }
 }
