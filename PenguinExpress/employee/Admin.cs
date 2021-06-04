@@ -17,9 +17,11 @@ namespace PenguinExpress.employee
   public partial class Admin : Form
   {
     string id;
+    Status stus;
     public Admin(string id)
     {
       this.id = id;
+      stus = new Status();
       InitializeComponent();
     }
 
@@ -197,7 +199,63 @@ namespace PenguinExpress.employee
 
     private void btn_getItemGraph_Click(object sender, EventArgs e)
     {
-
+      Dictionary<int, int> data =  getItemGraphData();
+      int total = getItemTotal();
+      if(total == -1)
+      {
+        MessageBox.Show("총 개수 불러오는 오류 발생");
+        return;
+      }
+      new ShowGraph(data, total).ShowDialog();
+    }
+    private int getItemTotal()
+    {
+      int total = -1;
+      string sql = string.Format(
+        "SELECT COUNT(id) " +
+        "FROM {0}; ",
+        MyDatabase.completeListTbl
+        );
+      MyDatabase.cmd.CommandText = sql;
+      try
+      {
+        object result = MyDatabase.cmd.ExecuteScalar();
+        total = int.Parse(result.ToString());
+      }catch(Exception error)
+      {
+        Debug.WriteLine(error.StackTrace);
+        Debug.WriteLine(error.Message);
+      }
+      return total;
+    }
+    private Dictionary<int, int> getItemGraphData()
+    {
+      Dictionary<int, int> data = new Dictionary<int, int>(); 
+      string sql = string.Format(
+        "SELECT p_code, COUNT(*) AS 'cnt' " +
+        "FROM {0} " +
+        "GROUP BY p_code " +
+        "HAVING cnt > 1;",
+        MyDatabase.completeListTbl
+        );
+      MyDatabase.cmd.CommandText = sql;
+      MySqlDataReader reader = MyDatabase.cmd.ExecuteReader();
+      try
+      {
+        while (reader.Read())
+        {
+          data.Add(int.Parse(reader["p_code"].ToString()), int.Parse(reader["cnt"].ToString()));
+        }
+      }catch(Exception error)
+      {
+        Debug.WriteLine(error.StackTrace);
+        Debug.WriteLine(error.Message);
+      }
+      finally
+      {
+        reader.Close();
+      }
+      return data;
     }
     /*
 private string getRegionName(string code)
