@@ -43,6 +43,8 @@ namespace PenguinExpress.employee
       this.btn_completeDelivery = new System.Windows.Forms.Button();
       this.button2 = new System.Windows.Forms.Button();
       this.btn_logout = new System.Windows.Forms.Button();
+      this.lb_count = new System.Windows.Forms.Label();
+      this.lb_salary = new System.Windows.Forms.Label();
       this.panel1.SuspendLayout();
       this.SuspendLayout();
       // 
@@ -154,6 +156,7 @@ namespace PenguinExpress.employee
       this.button2.TabIndex = 2;
       this.button2.Text = "예상 급여";
       this.button2.UseVisualStyleBackColor = true;
+      this.button2.Click += new System.EventHandler(this.button2_Click);
       // 
       // btn_logout
       // 
@@ -165,11 +168,29 @@ namespace PenguinExpress.employee
       this.btn_logout.UseVisualStyleBackColor = true;
       this.btn_logout.Click += new System.EventHandler(this.btn_logout_Click);
       // 
+      // lb_count
+      // 
+      this.lb_count.AutoSize = true;
+      this.lb_count.Location = new System.Drawing.Point(226, 390);
+      this.lb_count.Name = "lb_count";
+      this.lb_count.Size = new System.Drawing.Size(0, 15);
+      this.lb_count.TabIndex = 5;
+      // 
+      // lb_salary
+      // 
+      this.lb_salary.AutoSize = true;
+      this.lb_salary.Location = new System.Drawing.Point(226, 405);
+      this.lb_salary.Name = "lb_salary";
+      this.lb_salary.Size = new System.Drawing.Size(0, 15);
+      this.lb_salary.TabIndex = 6;
+      // 
       // Deliver
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(800, 450);
+      this.Controls.Add(this.lb_salary);
+      this.Controls.Add(this.lb_count);
       this.Controls.Add(this.btn_logout);
       this.Controls.Add(this.button2);
       this.Controls.Add(this.btn_completeDelivery);
@@ -180,6 +201,7 @@ namespace PenguinExpress.employee
       this.panel1.ResumeLayout(false);
       this.panel1.PerformLayout();
       this.ResumeLayout(false);
+      this.PerformLayout();
 
     }
 
@@ -199,5 +221,7 @@ namespace PenguinExpress.employee
     private System.Windows.Forms.Button btn_completeDelivery;
     private System.Windows.Forms.Button button2;
     private System.Windows.Forms.Button btn_logout;
+    private System.Windows.Forms.Label lb_count;
+    private System.Windows.Forms.Label lb_salary;
   }
 }

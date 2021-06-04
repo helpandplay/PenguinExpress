@@ -80,6 +80,7 @@ namespace PenguinExpress.employee
       string trackingId = lv.SelectedItems[0].SubItems[0].Text;
 
       completeDelivery(trackingId);
+      updateCount();
     }
 
     private void btn_completeDelivery_Click(object sender, EventArgs e)
@@ -88,8 +89,67 @@ namespace PenguinExpress.employee
       string trackingId = lv_delivery_list.SelectedItems[0].SubItems[0].Text;
 
       completeDelivery(trackingId);
+      updateCount();
     }
+    private void updateCount()
+    {
+      int count = getDelieveryCount();
+      if (count == -1)
+      {
+        Debug.WriteLine("배송 횟수 가져오는 데 실패");
+        return;
+      }
+      bool result = updateDeliveryCount(count + 1);
+      if (!result)
+      {
+        Debug.WriteLine("배송 횟수 업데이트 하는 데 실패");
+        return;
+      }
 
+    }
+    private bool updateDeliveryCount(int count)
+    {
+      bool isSuccess = false;
+      string sql = string.Format(
+        "UPDATE {0} " +
+        "SET cp_count = {1} " +
+        "WHERE id = {2};"
+        , MyDatabase.employeeTbl, count, id);
+
+      try
+      {
+        MyDatabase.cmd.CommandText = sql;
+        int result = MyDatabase.cmd.ExecuteNonQuery();
+        if (result != -1) isSuccess = true;
+      }
+      catch (Exception error)
+      {
+        Debug.WriteLine(error.StackTrace);
+        Debug.WriteLine(error.Message);
+      }
+      return isSuccess;
+    }
+    private int getDelieveryCount()
+    {
+      int count = -1;
+      string sql = string.Format(
+        "SELECT cp_count " +
+        "FROM {0} " +
+        "WHERE id = {1};"
+        , MyDatabase.employeeTbl, id);
+
+      try
+      {
+        MyDatabase.cmd.CommandText = sql;
+        object result = MyDatabase.cmd.ExecuteScalar();
+        count = (int)result;
+      }catch(Exception error)
+      {
+        Debug.WriteLine(error.StackTrace);
+        Debug.WriteLine(error.Message);
+      }
+      return count;
+    }
     private void completeDelivery(string trackingId)
     {
       //rv 테이블의 rv_status => 3
@@ -224,6 +284,15 @@ namespace PenguinExpress.employee
     {
       this.Close();
       new Login().Show();
+    }
+
+    private void button2_Click(object sender, EventArgs e)
+    {
+      int count = getDelieveryCount();
+
+      lb_count.Text = "배송 건수 : " + count;
+      int salary = 1000000 + count * 10000;
+      lb_salary.Text = String.Format("급여 : {0:#,0}", salary);
     }
   }
 }
