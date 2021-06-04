@@ -30,7 +30,7 @@ namespace PenguinExpress
     private void Main_Load(object sender, EventArgs e)
     {
       //start();
-      new Admin("50000").ShowDialog();
+      new Deliver("50004").ShowDialog();
       this.Close();
     }
     protected override void SetVisibleCore(bool value)

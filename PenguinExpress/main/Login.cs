@@ -75,7 +75,7 @@ namespace PenguinExpress.main
       }
       else
       {
-        new Deliever(id.ToString()).ShowDialog();
+        new Deliver(id.ToString()).ShowDialog();
       }
       this.Close();
     }
