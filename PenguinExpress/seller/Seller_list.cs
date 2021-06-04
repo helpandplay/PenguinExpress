@@ -34,10 +34,10 @@ namespace PenguinExpress.seller
     private void getAllCompleteList()
     {
       string sql = string.Format(
-        "SELECT tracking_id, p_name, p_qty, b_phone, b_addr, rv_status, cp_time " +
-        "FROM {0} rv, {1} cd " +
-        "WHERE rv.s_id={2} AND rv.tracking_id = cd.rv_tracking_id;"
-        , MyDatabase.reservationListTbl, MyDatabase.completeListTbl, userid);
+        "SELECT tracking_id, p_name, p_qty, b_phone, b_addr, cp_time " +
+        "FROM {0} " +
+        "WHERE s_id={1};"
+        , MyDatabase.completeListTbl, userid);
       MyDatabase.cmd.CommandText = sql;
 
       MySqlDataReader reader = MyDatabase.cmd.ExecuteReader();

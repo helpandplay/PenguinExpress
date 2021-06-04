@@ -63,8 +63,9 @@ namespace PenguinExpress.main
     private void onSellerLogin(int id)
     {
       SetVisibleCore(false);
-      new Seller_list(id).Show();
       this.Close();
+      new Seller_list(id).ShowDialog();
+      
     }
     private void onEmployeeLogin(int id, bool isAdmin)
     {

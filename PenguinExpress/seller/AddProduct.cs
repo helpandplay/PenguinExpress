@@ -66,7 +66,7 @@ namespace PenguinExpress.seller
 
       string sql = string.Format(
         "INSERT INTO {0} VALUES(" +
-        "NULL, {1}, '{2}', '{3}', '{4}', {5}, {6},'{7}','{8}',{9},NOW(),1);"
+        "NULL, {1}, NULL, '{2}', '{3}', '{4}', {5}, {6},'{7}','{8}',{9},NOW(),1);"
         , MyDatabase.reservationListTbl, sId, sAddr, sPhone, pName, pQty, pCode, bAddr, bPhone, regionCode);
       MyDatabase.cmd.CommandText = sql;
 
@@ -76,6 +76,7 @@ namespace PenguinExpress.seller
       }catch(Exception error)
       {
         Debug.WriteLine(error.Message);
+        Debug.WriteLine(error.StackTrace);
       }
       finally
       {
