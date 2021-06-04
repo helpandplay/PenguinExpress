@@ -54,9 +54,6 @@ namespace PenguinExpress.seller
           lvi.SubItems.Add(reader["b_addr"].ToString());
           lvi.SubItems.Add(reader["cp_time"].ToString());
 
-          string status = stus.getReservationCode((int)reader["rv_status"]);
-          lvi.SubItems.Add(status);
-
           lv_cp.Items.Add(lvi);
         }
       }

@@ -48,7 +48,6 @@ namespace PenguinExpress.seller
       this.ch_cp_b_phone = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
       this.ch_cp_b_addr = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
       this.ch_cp_time = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-      this.ch_cp_status = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
       this.btn_cp_refresh = new System.Windows.Forms.Button();
       this.label2 = new System.Windows.Forms.Label();
       this.btn_logout = new System.Windows.Forms.Button();
@@ -164,8 +163,7 @@ namespace PenguinExpress.seller
             this.ch_cp_prod_qty,
             this.ch_cp_b_phone,
             this.ch_cp_b_addr,
-            this.ch_cp_time,
-            this.ch_cp_status});
+            this.ch_cp_time});
       this.lv_cp.FullRowSelect = true;
       this.lv_cp.GridLines = true;
       this.lv_cp.HideSelection = false;
@@ -187,37 +185,30 @@ namespace PenguinExpress.seller
       // 
       this.ch_cp_prod_name.Tag = "false";
       this.ch_cp_prod_name.Text = "이름";
-      this.ch_cp_prod_name.Width = 150;
+      this.ch_cp_prod_name.Width = 140;
       // 
       // ch_cp_prod_qty
       // 
       this.ch_cp_prod_qty.Tag = "false";
       this.ch_cp_prod_qty.Text = "수량";
-      this.ch_cp_prod_qty.Width = 50;
       // 
       // ch_cp_b_phone
       // 
       this.ch_cp_b_phone.Tag = "false";
       this.ch_cp_b_phone.Text = "연락처";
-      this.ch_cp_b_phone.Width = 90;
+      this.ch_cp_b_phone.Width = 120;
       // 
       // ch_cp_b_addr
       // 
       this.ch_cp_b_addr.Tag = "false";
       this.ch_cp_b_addr.Text = "주소";
-      this.ch_cp_b_addr.Width = 100;
+      this.ch_cp_b_addr.Width = 200;
       // 
       // ch_cp_time
       // 
       this.ch_cp_time.Tag = "false";
       this.ch_cp_time.Text = "도착 시간";
-      this.ch_cp_time.Width = 130;
-      // 
-      // ch_cp_status
-      // 
-      this.ch_cp_status.Tag = "false";
-      this.ch_cp_status.Text = "상태";
-      this.ch_cp_status.Width = 80;
+      this.ch_cp_time.Width = 150;
       // 
       // btn_cp_refresh
       // 
@@ -291,7 +282,6 @@ namespace PenguinExpress.seller
     private System.Windows.Forms.Button btn_cp_refresh;
     private System.Windows.Forms.Label label2;
     private System.Windows.Forms.ColumnHeader ch_cp_time;
-    private System.Windows.Forms.ColumnHeader ch_cp_status;
     private System.Windows.Forms.ColumnHeader ch_tracking_id;
     private System.Windows.Forms.ColumnHeader ch_cp_tracking_id;
     private System.Windows.Forms.Button btn_logout;
