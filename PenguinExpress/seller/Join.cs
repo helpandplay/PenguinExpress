@@ -20,7 +20,25 @@ namespace PenguinExpress.seller
     {
       InitializeComponent();
     }
+    private void setColor()
+    {
+      this.BackColor = ColorTranslator.FromHtml(Env.baseColor);
+      this.ForeColor = ColorTranslator.FromHtml(Env.textColor);
+      this.Font = Env.font;
 
+      //btn
+      btn_cancel.ForeColor = ColorTranslator.FromHtml(Env.textBrightColor);
+      btn_onJoin.ForeColor = ColorTranslator.FromHtml(Env.textBrightColor);
+      button1.ForeColor = ColorTranslator.FromHtml(Env.textBrightColor);
+
+      btn_onJoin.BackColor = ColorTranslator.FromHtml(Env.contentStrongColor);
+      btn_cancel.BackColor = ColorTranslator.FromHtml(Env.contentStrongColor);
+      button1.BackColor = ColorTranslator.FromHtml(Env.contentStrongColor);
+
+      btn_cancel.Font = Env.boldFont;
+      btn_onJoin.Font = Env.boldFont;
+      button1.Font = Env.boldFont;
+    }
     private void button1_Click(object sender, EventArgs e)
     {
       string userid = tb_id.Text;
@@ -117,6 +135,9 @@ namespace PenguinExpress.seller
       e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
     }
 
-
+    private void Join_Load(object sender, EventArgs e)
+    {
+      setColor();
+    }
   }
 }
