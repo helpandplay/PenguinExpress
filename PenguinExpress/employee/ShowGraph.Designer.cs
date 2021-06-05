@@ -33,7 +33,6 @@ namespace PenguinExpress.employee
       System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
       System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
       this.chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
-      this.lb_max = new System.Windows.Forms.Label();
       ((System.ComponentModel.ISupportInitialize)(this.chart)).BeginInit();
       this.SuspendLayout();
       // 
@@ -53,34 +52,22 @@ namespace PenguinExpress.employee
       this.chart.TabIndex = 0;
       this.chart.Text = "chart1";
       // 
-      // lb_max
-      // 
-      this.lb_max.AutoSize = true;
-      this.lb_max.Location = new System.Drawing.Point(421, 232);
-      this.lb_max.Name = "lb_max";
-      this.lb_max.Size = new System.Drawing.Size(45, 15);
-      this.lb_max.TabIndex = 1;
-      this.lb_max.Text = "label1";
-      // 
       // ShowGraph
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(560, 450);
-      this.Controls.Add(this.lb_max);
       this.Controls.Add(this.chart);
       this.Name = "ShowGraph";
       this.Text = "ShowGraph";
       this.Load += new System.EventHandler(this.ShowGraph_Load);
       ((System.ComponentModel.ISupportInitialize)(this.chart)).EndInit();
       this.ResumeLayout(false);
-      this.PerformLayout();
 
     }
 
     #endregion
 
     private System.Windows.Forms.DataVisualization.Charting.Chart chart;
-    private System.Windows.Forms.Label lb_max;
   }
 }

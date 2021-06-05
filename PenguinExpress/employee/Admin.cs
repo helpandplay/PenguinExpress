@@ -246,10 +246,6 @@ namespace PenguinExpress.employee
       {
         while (reader.Read())
         {
-          foreach (var item in reader)
-          {
-            Debug.WriteLine(item);
-          }
           data.Add(int.Parse(reader["p_code"].ToString()), int.Parse(reader["cnt"].ToString()));
         }
       }
