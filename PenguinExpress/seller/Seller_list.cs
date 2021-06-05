@@ -24,9 +24,35 @@ namespace PenguinExpress.seller
       this.userid = userid;
       stus = new Status();
     }
+    private void setColor()
+    {
+      this.BackColor = ColorTranslator.FromHtml(Env.baseColor);
+      this.ForeColor = ColorTranslator.FromHtml(Env.textColor);
+      this.Font = Env.font;
 
+      btn_add_rv.FlatStyle = FlatStyle.Flat;
+      btn_cp_refresh.FlatStyle = FlatStyle.Flat;
+      btn_reg_refresh.FlatStyle = FlatStyle.Flat;
+      btn_rv_cancel.FlatStyle = FlatStyle.Flat;
+
+      btn_cp_refresh.BackColor = ColorTranslator.FromHtml(Env.contentStrongColor);
+      btn_add_rv.BackColor = ColorTranslator.FromHtml(Env.contentStrongColor);
+      btn_reg_refresh.BackColor = ColorTranslator.FromHtml(Env.contentStrongColor);
+      btn_rv_cancel.BackColor = ColorTranslator.FromHtml(Env.contentStrongColor);
+
+      btn_cp_refresh.ForeColor = ColorTranslator.FromHtml(Env.textColor);
+      btn_add_rv.ForeColor = ColorTranslator.FromHtml(Env.textColor);
+      btn_reg_refresh.ForeColor = ColorTranslator.FromHtml(Env.textColor);
+      btn_rv_cancel.ForeColor = ColorTranslator.FromHtml(Env.textColor);
+
+      btn_cp_refresh.Font = Env.boldFont;
+      btn_add_rv.Font = Env.boldFont;
+      btn_reg_refresh.Font = Env.boldFont;
+      btn_rv_cancel.Font = Env.boldFont;
+    }
     private void List_Load(object sender, EventArgs e)
     {
+      setColor();
       getAllRegList();
       getAllCompleteList();
     }

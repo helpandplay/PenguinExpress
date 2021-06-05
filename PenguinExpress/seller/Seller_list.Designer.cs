@@ -68,7 +68,7 @@ namespace PenguinExpress.seller
       this.lv_reg.HideSelection = false;
       this.lv_reg.Location = new System.Drawing.Point(12, 30);
       this.lv_reg.Name = "lv_reg";
-      this.lv_reg.Size = new System.Drawing.Size(842, 254);
+      this.lv_reg.Size = new System.Drawing.Size(842, 190);
       this.lv_reg.TabIndex = 0;
       this.lv_reg.UseCompatibleStateImageBehavior = false;
       this.lv_reg.View = System.Windows.Forms.View.Details;
@@ -78,13 +78,13 @@ namespace PenguinExpress.seller
       // 
       this.ch_tracking_id.Tag = "false";
       this.ch_tracking_id.Text = "운송장번호";
-      this.ch_tracking_id.Width = 100;
+      this.ch_tracking_id.Width = 90;
       // 
       // ch_prod_name
       // 
       this.ch_prod_name.Tag = "false";
       this.ch_prod_name.Text = "이름";
-      this.ch_prod_name.Width = 150;
+      this.ch_prod_name.Width = 120;
       // 
       // ch_prod_qty
       // 
@@ -108,7 +108,7 @@ namespace PenguinExpress.seller
       // 
       this.ch_rv_time.Tag = "false";
       this.ch_rv_time.Text = "예약된 시간";
-      this.ch_rv_time.Width = 150;
+      this.ch_rv_time.Width = 200;
       // 
       // ch_status
       // 
@@ -118,9 +118,9 @@ namespace PenguinExpress.seller
       // 
       // btn_add_rv
       // 
-      this.btn_add_rv.Location = new System.Drawing.Point(12, 290);
+      this.btn_add_rv.Location = new System.Drawing.Point(12, 227);
       this.btn_add_rv.Name = "btn_add_rv";
-      this.btn_add_rv.Size = new System.Drawing.Size(112, 57);
+      this.btn_add_rv.Size = new System.Drawing.Size(112, 32);
       this.btn_add_rv.TabIndex = 1;
       this.btn_add_rv.Text = "택배 예약";
       this.btn_add_rv.UseVisualStyleBackColor = true;
@@ -128,9 +128,9 @@ namespace PenguinExpress.seller
       // 
       // btn_rv_cancel
       // 
-      this.btn_rv_cancel.Location = new System.Drawing.Point(130, 290);
+      this.btn_rv_cancel.Location = new System.Drawing.Point(130, 227);
       this.btn_rv_cancel.Name = "btn_rv_cancel";
-      this.btn_rv_cancel.Size = new System.Drawing.Size(112, 57);
+      this.btn_rv_cancel.Size = new System.Drawing.Size(112, 32);
       this.btn_rv_cancel.TabIndex = 2;
       this.btn_rv_cancel.Text = "예약 취소";
       this.btn_rv_cancel.UseVisualStyleBackColor = true;
@@ -167,9 +167,9 @@ namespace PenguinExpress.seller
       this.lv_cp.FullRowSelect = true;
       this.lv_cp.GridLines = true;
       this.lv_cp.HideSelection = false;
-      this.lv_cp.Location = new System.Drawing.Point(12, 382);
+      this.lv_cp.Location = new System.Drawing.Point(12, 290);
       this.lv_cp.Name = "lv_cp";
-      this.lv_cp.Size = new System.Drawing.Size(842, 320);
+      this.lv_cp.Size = new System.Drawing.Size(842, 234);
       this.lv_cp.TabIndex = 5;
       this.lv_cp.UseCompatibleStateImageBehavior = false;
       this.lv_cp.View = System.Windows.Forms.View.Details;
@@ -179,13 +179,13 @@ namespace PenguinExpress.seller
       // 
       this.ch_cp_tracking_id.Tag = "false";
       this.ch_cp_tracking_id.Text = "운송장번호";
-      this.ch_cp_tracking_id.Width = 100;
+      this.ch_cp_tracking_id.Width = 90;
       // 
       // ch_cp_prod_name
       // 
       this.ch_cp_prod_name.Tag = "false";
       this.ch_cp_prod_name.Text = "이름";
-      this.ch_cp_prod_name.Width = 140;
+      this.ch_cp_prod_name.Width = 120;
       // 
       // ch_cp_prod_qty
       // 
@@ -208,11 +208,11 @@ namespace PenguinExpress.seller
       // 
       this.ch_cp_time.Tag = "false";
       this.ch_cp_time.Text = "도착 시간";
-      this.ch_cp_time.Width = 150;
+      this.ch_cp_time.Width = 200;
       // 
       // btn_cp_refresh
       // 
-      this.btn_cp_refresh.Location = new System.Drawing.Point(762, 353);
+      this.btn_cp_refresh.Location = new System.Drawing.Point(763, 256);
       this.btn_cp_refresh.Name = "btn_cp_refresh";
       this.btn_cp_refresh.Size = new System.Drawing.Size(91, 23);
       this.btn_cp_refresh.TabIndex = 6;
@@ -223,7 +223,7 @@ namespace PenguinExpress.seller
       // label2
       // 
       this.label2.AutoSize = true;
-      this.label2.Location = new System.Drawing.Point(12, 364);
+      this.label2.Location = new System.Drawing.Point(12, 272);
       this.label2.Name = "label2";
       this.label2.Size = new System.Drawing.Size(87, 15);
       this.label2.TabIndex = 7;
@@ -231,7 +231,7 @@ namespace PenguinExpress.seller
       // 
       // btn_logout
       // 
-      this.btn_logout.Location = new System.Drawing.Point(762, 290);
+      this.btn_logout.Location = new System.Drawing.Point(762, 227);
       this.btn_logout.Name = "btn_logout";
       this.btn_logout.Size = new System.Drawing.Size(91, 23);
       this.btn_logout.TabIndex = 8;
@@ -243,7 +243,7 @@ namespace PenguinExpress.seller
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(865, 685);
+      this.ClientSize = new System.Drawing.Size(865, 537);
       this.Controls.Add(this.btn_logout);
       this.Controls.Add(this.label2);
       this.Controls.Add(this.btn_cp_refresh);
