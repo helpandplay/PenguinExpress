@@ -31,13 +31,13 @@ namespace PenguinExpress.main
     {
       this.tab_login = new System.Windows.Forms.TabControl();
       this.tab_page1 = new System.Windows.Forms.TabPage();
-      this.tab_page2 = new System.Windows.Forms.TabPage();
-      this.label1 = new System.Windows.Forms.Label();
-      this.tb_id = new System.Windows.Forms.TextBox();
+      this.btn_join = new System.Windows.Forms.Button();
+      this.btn_login = new System.Windows.Forms.Button();
       this.tb_pwd = new System.Windows.Forms.TextBox();
       this.label2 = new System.Windows.Forms.Label();
-      this.btn_login = new System.Windows.Forms.Button();
-      this.btn_join = new System.Windows.Forms.Button();
+      this.tb_id = new System.Windows.Forms.TextBox();
+      this.label1 = new System.Windows.Forms.Label();
+      this.tab_page2 = new System.Windows.Forms.TabPage();
       this.btn_e_login = new System.Windows.Forms.Button();
       this.tb_e_pwd = new System.Windows.Forms.TextBox();
       this.label3 = new System.Windows.Forms.Label();
@@ -60,6 +60,7 @@ namespace PenguinExpress.main
       // 
       // tab_page1
       // 
+      this.tab_page1.BackColor = System.Drawing.Color.Transparent;
       this.tab_page1.Controls.Add(this.btn_join);
       this.tab_page1.Controls.Add(this.btn_login);
       this.tab_page1.Controls.Add(this.tb_pwd);
@@ -72,39 +73,27 @@ namespace PenguinExpress.main
       this.tab_page1.Size = new System.Drawing.Size(335, 263);
       this.tab_page1.TabIndex = 0;
       this.tab_page1.Text = "일반 로그인";
-      this.tab_page1.UseVisualStyleBackColor = true;
       // 
-      // tab_page2
+      // btn_join
       // 
-      this.tab_page2.Controls.Add(this.btn_e_login);
-      this.tab_page2.Controls.Add(this.tb_e_pwd);
-      this.tab_page2.Controls.Add(this.label3);
-      this.tab_page2.Controls.Add(this.tb_e_id);
-      this.tab_page2.Controls.Add(this.label4);
-      this.tab_page2.Location = new System.Drawing.Point(4, 25);
-      this.tab_page2.Name = "tab_page2";
-      this.tab_page2.Padding = new System.Windows.Forms.Padding(3);
-      this.tab_page2.Size = new System.Drawing.Size(335, 263);
-      this.tab_page2.TabIndex = 1;
-      this.tab_page2.Text = "직원 로그인";
-      this.tab_page2.UseVisualStyleBackColor = true;
+      this.btn_join.Location = new System.Drawing.Point(166, 175);
+      this.btn_join.Name = "btn_join";
+      this.btn_join.Size = new System.Drawing.Size(135, 44);
+      this.btn_join.TabIndex = 5;
+      this.btn_join.Text = "회원가입";
+      this.btn_join.UseVisualStyleBackColor = true;
+      this.btn_join.Click += new System.EventHandler(this.btn_join_Click);
       // 
-      // label1
+      // btn_login
       // 
-      this.label1.AutoSize = true;
-      this.label1.Location = new System.Drawing.Point(33, 46);
-      this.label1.Name = "label1";
-      this.label1.Size = new System.Drawing.Size(52, 15);
-      this.label1.TabIndex = 0;
-      this.label1.Text = "아이디";
-      // 
-      // tb_id
-      // 
-      this.tb_id.Location = new System.Drawing.Point(127, 43);
-      this.tb_id.MaxLength = 12;
-      this.tb_id.Name = "tb_id";
-      this.tb_id.Size = new System.Drawing.Size(174, 25);
-      this.tb_id.TabIndex = 1;
+      this.btn_login.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+      this.btn_login.Location = new System.Drawing.Point(36, 175);
+      this.btn_login.Name = "btn_login";
+      this.btn_login.Size = new System.Drawing.Size(124, 44);
+      this.btn_login.TabIndex = 4;
+      this.btn_login.Text = "로그인";
+      this.btn_login.UseVisualStyleBackColor = true;
+      this.btn_login.Click += new System.EventHandler(this.btn_login_Click);
       // 
       // tb_pwd
       // 
@@ -124,25 +113,37 @@ namespace PenguinExpress.main
       this.label2.TabIndex = 2;
       this.label2.Text = "비밀번호";
       // 
-      // btn_login
+      // tb_id
       // 
-      this.btn_login.Location = new System.Drawing.Point(36, 175);
-      this.btn_login.Name = "btn_login";
-      this.btn_login.Size = new System.Drawing.Size(124, 44);
-      this.btn_login.TabIndex = 4;
-      this.btn_login.Text = "로그인";
-      this.btn_login.UseVisualStyleBackColor = true;
-      this.btn_login.Click += new System.EventHandler(this.btn_login_Click);
+      this.tb_id.Location = new System.Drawing.Point(127, 43);
+      this.tb_id.MaxLength = 12;
+      this.tb_id.Name = "tb_id";
+      this.tb_id.Size = new System.Drawing.Size(174, 25);
+      this.tb_id.TabIndex = 1;
       // 
-      // btn_join
+      // label1
       // 
-      this.btn_join.Location = new System.Drawing.Point(166, 175);
-      this.btn_join.Name = "btn_join";
-      this.btn_join.Size = new System.Drawing.Size(135, 44);
-      this.btn_join.TabIndex = 5;
-      this.btn_join.Text = "회원가입";
-      this.btn_join.UseVisualStyleBackColor = true;
-      this.btn_join.Click += new System.EventHandler(this.btn_join_Click);
+      this.label1.AutoSize = true;
+      this.label1.Location = new System.Drawing.Point(33, 46);
+      this.label1.Name = "label1";
+      this.label1.Size = new System.Drawing.Size(52, 15);
+      this.label1.TabIndex = 0;
+      this.label1.Text = "아이디";
+      // 
+      // tab_page2
+      // 
+      this.tab_page2.Controls.Add(this.btn_e_login);
+      this.tab_page2.Controls.Add(this.tb_e_pwd);
+      this.tab_page2.Controls.Add(this.label3);
+      this.tab_page2.Controls.Add(this.tb_e_id);
+      this.tab_page2.Controls.Add(this.label4);
+      this.tab_page2.Location = new System.Drawing.Point(4, 25);
+      this.tab_page2.Name = "tab_page2";
+      this.tab_page2.Padding = new System.Windows.Forms.Padding(3);
+      this.tab_page2.Size = new System.Drawing.Size(335, 263);
+      this.tab_page2.TabIndex = 1;
+      this.tab_page2.Text = "직원 로그인";
+      this.tab_page2.UseVisualStyleBackColor = true;
       // 
       // btn_e_login
       // 
@@ -197,6 +198,7 @@ namespace PenguinExpress.main
       this.Controls.Add(this.tab_login);
       this.Name = "Login";
       this.Text = "Login";
+      this.Load += new System.EventHandler(this.Login_Load);
       this.tab_login.ResumeLayout(false);
       this.tab_page1.ResumeLayout(false);
       this.tab_page1.PerformLayout();

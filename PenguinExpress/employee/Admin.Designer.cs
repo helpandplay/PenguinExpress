@@ -66,7 +66,7 @@ namespace PenguinExpress.employee
       this.listTab.Location = new System.Drawing.Point(12, 35);
       this.listTab.Name = "listTab";
       this.listTab.SelectedIndex = 0;
-      this.listTab.Size = new System.Drawing.Size(910, 364);
+      this.listTab.Size = new System.Drawing.Size(1044, 364);
       this.listTab.TabIndex = 0;
       this.listTab.Selected += new System.Windows.Forms.TabControlEventHandler(this.listTab_Selected);
       // 
@@ -76,7 +76,7 @@ namespace PenguinExpress.employee
       this.tabPage1.Location = new System.Drawing.Point(4, 25);
       this.tabPage1.Name = "tabPage1";
       this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-      this.tabPage1.Size = new System.Drawing.Size(902, 335);
+      this.tabPage1.Size = new System.Drawing.Size(1036, 335);
       this.tabPage1.TabIndex = 0;
       this.tabPage1.Text = "배송 현황";
       this.tabPage1.UseVisualStyleBackColor = true;
@@ -98,7 +98,7 @@ namespace PenguinExpress.employee
       this.lv_delivery.HideSelection = false;
       this.lv_delivery.Location = new System.Drawing.Point(6, 6);
       this.lv_delivery.Name = "lv_delivery";
-      this.lv_delivery.Size = new System.Drawing.Size(890, 323);
+      this.lv_delivery.Size = new System.Drawing.Size(1024, 323);
       this.lv_delivery.TabIndex = 0;
       this.lv_delivery.UseCompatibleStateImageBehavior = false;
       this.lv_delivery.View = System.Windows.Forms.View.Details;
@@ -137,7 +137,7 @@ namespace PenguinExpress.employee
       // ch_rv_time
       // 
       this.ch_rv_time.Text = "예약시간";
-      this.ch_rv_time.Width = 150;
+      this.ch_rv_time.Width = 200;
       // 
       // ch_e_id
       // 
@@ -147,7 +147,7 @@ namespace PenguinExpress.employee
       // ch_status
       // 
       this.ch_status.Text = "배송상태";
-      this.ch_status.Width = 90;
+      this.ch_status.Width = 120;
       // 
       // tabPage2
       // 
@@ -155,7 +155,7 @@ namespace PenguinExpress.employee
       this.tabPage2.Location = new System.Drawing.Point(4, 25);
       this.tabPage2.Name = "tabPage2";
       this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-      this.tabPage2.Size = new System.Drawing.Size(902, 335);
+      this.tabPage2.Size = new System.Drawing.Size(1036, 335);
       this.tabPage2.TabIndex = 1;
       this.tabPage2.Text = "배송 완료 리스트";
       this.tabPage2.UseVisualStyleBackColor = true;
@@ -175,7 +175,7 @@ namespace PenguinExpress.employee
       this.lv_complete.HideSelection = false;
       this.lv_complete.Location = new System.Drawing.Point(6, 6);
       this.lv_complete.Name = "lv_complete";
-      this.lv_complete.Size = new System.Drawing.Size(890, 323);
+      this.lv_complete.Size = new System.Drawing.Size(1024, 323);
       this.lv_complete.TabIndex = 0;
       this.lv_complete.UseCompatibleStateImageBehavior = false;
       this.lv_complete.View = System.Windows.Forms.View.Details;
@@ -193,12 +193,12 @@ namespace PenguinExpress.employee
       // ch_cp_s_phone
       // 
       this.ch_cp_s_phone.Text = "판매자연락처";
-      this.ch_cp_s_phone.Width = 105;
+      this.ch_cp_s_phone.Width = 130;
       // 
       // ch_cp_b_phone
       // 
       this.ch_cp_b_phone.Text = "구매자연락처";
-      this.ch_cp_b_phone.Width = 105;
+      this.ch_cp_b_phone.Width = 130;
       // 
       // ch_cp_worker_name
       // 
@@ -208,16 +208,16 @@ namespace PenguinExpress.employee
       // ch_cp_rv_time
       // 
       this.ch_cp_rv_time.Text = "예약 시간";
-      this.ch_cp_rv_time.Width = 140;
+      this.ch_cp_rv_time.Width = 190;
       // 
       // ch_cp_time
       // 
       this.ch_cp_time.Text = "배송완료시간";
-      this.ch_cp_time.Width = 140;
+      this.ch_cp_time.Width = 190;
       // 
       // button1
       // 
-      this.button1.Location = new System.Drawing.Point(824, 12);
+      this.button1.Location = new System.Drawing.Point(964, 12);
       this.button1.Name = "button1";
       this.button1.Size = new System.Drawing.Size(88, 34);
       this.button1.TabIndex = 2;
@@ -246,7 +246,7 @@ namespace PenguinExpress.employee
       // 
       // btn_logout
       // 
-      this.btn_logout.Location = new System.Drawing.Point(830, 412);
+      this.btn_logout.Location = new System.Drawing.Point(964, 412);
       this.btn_logout.Name = "btn_logout";
       this.btn_logout.Size = new System.Drawing.Size(88, 34);
       this.btn_logout.TabIndex = 6;
@@ -258,7 +258,7 @@ namespace PenguinExpress.employee
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(934, 726);
+      this.ClientSize = new System.Drawing.Size(1068, 465);
       this.Controls.Add(this.btn_logout);
       this.Controls.Add(this.btn_getRegionGraph);
       this.Controls.Add(this.btn_getItemGraph);

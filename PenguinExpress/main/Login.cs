@@ -22,7 +22,33 @@ namespace PenguinExpress.main
     {
       InitializeComponent();
     }
+    private void setColor()
+    {
 
+      this.BackColor = ColorTranslator.FromHtml(Env.baseColor);
+      this.ForeColor = ColorTranslator.FromHtml(Env.textColor);
+
+      tab_login.Padding = new Point(0, 0);
+      tab_login.Margin = new Padding(0, 0, 0, 0);
+
+      tab_login.Font = Env.font;
+      tab_page1.ForeColor = ColorTranslator.FromHtml(Env.textBrightColor);
+      tab_page2.ForeColor = ColorTranslator.FromHtml(Env.textBrightColor);
+
+      btn_e_login.Font = Env.boldFont;
+      btn_join.Font = Env.boldFont;
+      btn_login.Font = Env.boldFont;
+      btn_join.FlatStyle = FlatStyle.Flat;
+      btn_login.FlatStyle = FlatStyle.Flat;
+      btn_e_login.FlatStyle = FlatStyle.Flat;
+      btn_e_login.BackColor = ColorTranslator.FromHtml(Env.contentStrongColor);
+      btn_join.BackColor = ColorTranslator.FromHtml(Env.contentStrongColor);
+      btn_login.BackColor = ColorTranslator.FromHtml(Env.contentStrongColor);
+
+      
+      
+
+    }
     private void btn_login_Click(object sender, EventArgs e)
     {
       bool isVaild = checkLoginVaildate(tb_id, tb_pwd);
@@ -168,5 +194,9 @@ namespace PenguinExpress.main
       base.SetVisibleCore(value);
     }
 
+    private void Login_Load(object sender, EventArgs e)
+    {
+      setColor();
+    }
   }
 }

@@ -11,6 +11,7 @@ using System.Diagnostics;
 using PenguinExpress.config;
 using MySql.Data.MySqlClient;
 using PenguinExpress.main;
+using System.Drawing;
 
 namespace PenguinExpress.employee
 {
@@ -24,9 +25,33 @@ namespace PenguinExpress.employee
       stus = new Status();
       InitializeComponent();
     }
+    private void setColor()
+    {
+      this.BackColor = ColorTranslator.FromHtml(Env.baseColor);
+      this.ForeColor = ColorTranslator.FromHtml(Env.textColor);
+      this.Font = Env.font;
 
+      //btn
+      btn_getItemGraph.BackColor = ColorTranslator.FromHtml(Env.contentStrongColor);
+      btn_getRegionGraph.BackColor = ColorTranslator.FromHtml(Env.contentStrongColor);
+      button1.BackColor = ColorTranslator.FromHtml(Env.contentStrongColor);
+
+      btn_getItemGraph.ForeColor = ColorTranslator.FromHtml(Env.textColor);
+      btn_getRegionGraph.ForeColor = ColorTranslator.FromHtml(Env.textColor);
+      button1.ForeColor = ColorTranslator.FromHtml(Env.textColor);
+
+      btn_getItemGraph.FlatStyle = FlatStyle.Flat;
+      btn_getRegionGraph.FlatStyle = FlatStyle.Flat;
+      button1.FlatStyle = FlatStyle.Flat;
+
+      btn_getItemGraph.Font = Env.boldFont;
+      btn_getRegionGraph.Font = Env.boldFont;
+      button1.FlatStyle = FlatStyle.Flat;
+
+    }
     private void Admin_Load(object sender, EventArgs e)
     {
+      setColor();
       getDeliveryList();
     }
 
