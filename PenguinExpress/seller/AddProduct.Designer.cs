@@ -30,33 +30,33 @@ namespace PenguinExpress.seller
     private void InitializeComponent()
     {
       this.panel1 = new System.Windows.Forms.Panel();
-      this.tb_p_name = new System.Windows.Forms.TextBox();
-      this.label1 = new System.Windows.Forms.Label();
+      this.cb_p_choice = new System.Windows.Forms.ComboBox();
+      this.label3 = new System.Windows.Forms.Label();
       this.tb_p_qty = new System.Windows.Forms.TextBox();
       this.label2 = new System.Windows.Forms.Label();
-      this.label3 = new System.Windows.Forms.Label();
-      this.cb_p_choice = new System.Windows.Forms.ComboBox();
+      this.tb_p_name = new System.Windows.Forms.TextBox();
+      this.label1 = new System.Windows.Forms.Label();
       this.panel2 = new System.Windows.Forms.Panel();
+      this.tb_s_addr = new System.Windows.Forms.TextBox();
       this.label4 = new System.Windows.Forms.Label();
       this.tb_s_phone = new System.Windows.Forms.TextBox();
       this.label5 = new System.Windows.Forms.Label();
       this.tb_s_name = new System.Windows.Forms.TextBox();
       this.label6 = new System.Windows.Forms.Label();
       this.panel3 = new System.Windows.Forms.Panel();
+      this.cb_b_addr_captital = new System.Windows.Forms.ComboBox();
+      this.label11 = new System.Windows.Forms.Label();
+      this.label10 = new System.Windows.Forms.Label();
+      this.tb_b_phone3 = new System.Windows.Forms.TextBox();
+      this.tb_b_phone2 = new System.Windows.Forms.TextBox();
+      this.tb_b_addr = new System.Windows.Forms.TextBox();
       this.label7 = new System.Windows.Forms.Label();
       this.tb_b_phone = new System.Windows.Forms.TextBox();
       this.label8 = new System.Windows.Forms.Label();
       this.tb_b_name = new System.Windows.Forms.TextBox();
       this.label9 = new System.Windows.Forms.Label();
-      this.tb_s_addr = new System.Windows.Forms.TextBox();
-      this.tb_b_addr = new System.Windows.Forms.TextBox();
       this.btn_addProduct = new System.Windows.Forms.Button();
       this.btn_cancel = new System.Windows.Forms.Button();
-      this.tb_b_phone2 = new System.Windows.Forms.TextBox();
-      this.tb_b_phone3 = new System.Windows.Forms.TextBox();
-      this.label10 = new System.Windows.Forms.Label();
-      this.label11 = new System.Windows.Forms.Label();
-      this.cb_b_addr_captital = new System.Windows.Forms.ComboBox();
       this.panel1.SuspendLayout();
       this.panel2.SuspendLayout();
       this.panel3.SuspendLayout();
@@ -75,22 +75,30 @@ namespace PenguinExpress.seller
       this.panel1.Size = new System.Drawing.Size(302, 99);
       this.panel1.TabIndex = 0;
       // 
-      // tb_p_name
+      // cb_p_choice
       // 
-      this.tb_p_name.Location = new System.Drawing.Point(105, 7);
-      this.tb_p_name.MaxLength = 100;
-      this.tb_p_name.Name = "tb_p_name";
-      this.tb_p_name.Size = new System.Drawing.Size(182, 25);
-      this.tb_p_name.TabIndex = 3;
+      this.cb_p_choice.FormattingEnabled = true;
+      this.cb_p_choice.Items.AddRange(new object[] {
+            "의류",
+            "전자제품류",
+            "식품류",
+            "식기류",
+            "가구류",
+            "의약품",
+            "기타"});
+      this.cb_p_choice.Location = new System.Drawing.Point(105, 69);
+      this.cb_p_choice.Name = "cb_p_choice";
+      this.cb_p_choice.Size = new System.Drawing.Size(182, 23);
+      this.cb_p_choice.TabIndex = 7;
       // 
-      // label1
+      // label3
       // 
-      this.label1.AutoSize = true;
-      this.label1.Location = new System.Drawing.Point(12, 10);
-      this.label1.Name = "label1";
-      this.label1.Size = new System.Drawing.Size(67, 15);
-      this.label1.TabIndex = 2;
-      this.label1.Text = "상품이름";
+      this.label3.AutoSize = true;
+      this.label3.Location = new System.Drawing.Point(12, 72);
+      this.label3.Name = "label3";
+      this.label3.Size = new System.Drawing.Size(37, 15);
+      this.label3.TabIndex = 6;
+      this.label3.Text = "품목";
       // 
       // tb_p_qty
       // 
@@ -109,30 +117,22 @@ namespace PenguinExpress.seller
       this.label2.TabIndex = 4;
       this.label2.Text = "수량";
       // 
-      // label3
+      // tb_p_name
       // 
-      this.label3.AutoSize = true;
-      this.label3.Location = new System.Drawing.Point(12, 72);
-      this.label3.Name = "label3";
-      this.label3.Size = new System.Drawing.Size(37, 15);
-      this.label3.TabIndex = 6;
-      this.label3.Text = "품목";
+      this.tb_p_name.Location = new System.Drawing.Point(105, 7);
+      this.tb_p_name.MaxLength = 100;
+      this.tb_p_name.Name = "tb_p_name";
+      this.tb_p_name.Size = new System.Drawing.Size(182, 25);
+      this.tb_p_name.TabIndex = 3;
       // 
-      // cb_p_choice
+      // label1
       // 
-      this.cb_p_choice.FormattingEnabled = true;
-      this.cb_p_choice.Items.AddRange(new object[] {
-            "의류",
-            "전자제품류",
-            "식품류",
-            "식기류",
-            "가구류",
-            "의약품",
-            "기타"});
-      this.cb_p_choice.Location = new System.Drawing.Point(105, 69);
-      this.cb_p_choice.Name = "cb_p_choice";
-      this.cb_p_choice.Size = new System.Drawing.Size(182, 23);
-      this.cb_p_choice.TabIndex = 7;
+      this.label1.AutoSize = true;
+      this.label1.Location = new System.Drawing.Point(12, 10);
+      this.label1.Name = "label1";
+      this.label1.Size = new System.Drawing.Size(67, 15);
+      this.label1.TabIndex = 2;
+      this.label1.Text = "상품이름";
       // 
       // panel2
       // 
@@ -146,6 +146,15 @@ namespace PenguinExpress.seller
       this.panel2.Name = "panel2";
       this.panel2.Size = new System.Drawing.Size(302, 99);
       this.panel2.TabIndex = 8;
+      // 
+      // tb_s_addr
+      // 
+      this.tb_s_addr.Enabled = false;
+      this.tb_s_addr.Location = new System.Drawing.Point(105, 69);
+      this.tb_s_addr.Name = "tb_s_addr";
+      this.tb_s_addr.ReadOnly = true;
+      this.tb_s_addr.Size = new System.Drawing.Size(182, 25);
+      this.tb_s_addr.TabIndex = 7;
       // 
       // label4
       // 
@@ -211,6 +220,72 @@ namespace PenguinExpress.seller
       this.panel3.Size = new System.Drawing.Size(302, 137);
       this.panel3.TabIndex = 8;
       // 
+      // cb_b_addr_captital
+      // 
+      this.cb_b_addr_captital.FormattingEnabled = true;
+      this.cb_b_addr_captital.Items.AddRange(new object[] {
+            "서울특별시",
+            "경기도",
+            "인천광역시",
+            "충청북도",
+            "충청남도",
+            "대전광역시",
+            "강원도",
+            "전라북도",
+            "전라남도",
+            "광주광역시",
+            "경상북도",
+            "경상남도",
+            "대구광역시",
+            "부산광역시"});
+      this.cb_b_addr_captital.Location = new System.Drawing.Point(105, 69);
+      this.cb_b_addr_captital.Name = "cb_b_addr_captital";
+      this.cb_b_addr_captital.Size = new System.Drawing.Size(112, 23);
+      this.cb_b_addr_captital.TabIndex = 8;
+      // 
+      // label11
+      // 
+      this.label11.AutoSize = true;
+      this.label11.Location = new System.Drawing.Point(223, 41);
+      this.label11.Name = "label11";
+      this.label11.Size = new System.Drawing.Size(15, 15);
+      this.label11.TabIndex = 11;
+      this.label11.Text = "-";
+      // 
+      // label10
+      // 
+      this.label10.AutoSize = true;
+      this.label10.Location = new System.Drawing.Point(152, 41);
+      this.label10.Name = "label10";
+      this.label10.Size = new System.Drawing.Size(15, 15);
+      this.label10.TabIndex = 10;
+      this.label10.Text = "-";
+      // 
+      // tb_b_phone3
+      // 
+      this.tb_b_phone3.Location = new System.Drawing.Point(245, 38);
+      this.tb_b_phone3.MaxLength = 4;
+      this.tb_b_phone3.Name = "tb_b_phone3";
+      this.tb_b_phone3.Size = new System.Drawing.Size(42, 25);
+      this.tb_b_phone3.TabIndex = 9;
+      this.tb_b_phone3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_b_phone3_KeyPress);
+      // 
+      // tb_b_phone2
+      // 
+      this.tb_b_phone2.Location = new System.Drawing.Point(175, 38);
+      this.tb_b_phone2.MaxLength = 4;
+      this.tb_b_phone2.Name = "tb_b_phone2";
+      this.tb_b_phone2.Size = new System.Drawing.Size(42, 25);
+      this.tb_b_phone2.TabIndex = 8;
+      this.tb_b_phone2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_b_phone2_KeyPress);
+      // 
+      // tb_b_addr
+      // 
+      this.tb_b_addr.Location = new System.Drawing.Point(105, 102);
+      this.tb_b_addr.Name = "tb_b_addr";
+      this.tb_b_addr.Size = new System.Drawing.Size(182, 25);
+      this.tb_b_addr.TabIndex = 7;
+      // 
       // label7
       // 
       this.label7.AutoSize = true;
@@ -257,22 +332,6 @@ namespace PenguinExpress.seller
       this.label9.TabIndex = 2;
       this.label9.Text = "구매자";
       // 
-      // tb_s_addr
-      // 
-      this.tb_s_addr.Enabled = false;
-      this.tb_s_addr.Location = new System.Drawing.Point(105, 69);
-      this.tb_s_addr.Name = "tb_s_addr";
-      this.tb_s_addr.ReadOnly = true;
-      this.tb_s_addr.Size = new System.Drawing.Size(182, 25);
-      this.tb_s_addr.TabIndex = 7;
-      // 
-      // tb_b_addr
-      // 
-      this.tb_b_addr.Location = new System.Drawing.Point(105, 102);
-      this.tb_b_addr.Name = "tb_b_addr";
-      this.tb_b_addr.Size = new System.Drawing.Size(182, 25);
-      this.tb_b_addr.TabIndex = 7;
-      // 
       // btn_addProduct
       // 
       this.btn_addProduct.Location = new System.Drawing.Point(12, 365);
@@ -293,65 +352,6 @@ namespace PenguinExpress.seller
       this.btn_cancel.UseVisualStyleBackColor = true;
       this.btn_cancel.Click += new System.EventHandler(this.btn_cancel_Click);
       // 
-      // tb_b_phone2
-      // 
-      this.tb_b_phone2.Location = new System.Drawing.Point(175, 38);
-      this.tb_b_phone2.MaxLength = 4;
-      this.tb_b_phone2.Name = "tb_b_phone2";
-      this.tb_b_phone2.Size = new System.Drawing.Size(42, 25);
-      this.tb_b_phone2.TabIndex = 8;
-      this.tb_b_phone2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_b_phone2_KeyPress);
-      // 
-      // tb_b_phone3
-      // 
-      this.tb_b_phone3.Location = new System.Drawing.Point(245, 38);
-      this.tb_b_phone3.MaxLength = 4;
-      this.tb_b_phone3.Name = "tb_b_phone3";
-      this.tb_b_phone3.Size = new System.Drawing.Size(42, 25);
-      this.tb_b_phone3.TabIndex = 9;
-      this.tb_b_phone3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_b_phone3_KeyPress);
-      // 
-      // label10
-      // 
-      this.label10.AutoSize = true;
-      this.label10.Location = new System.Drawing.Point(152, 41);
-      this.label10.Name = "label10";
-      this.label10.Size = new System.Drawing.Size(15, 15);
-      this.label10.TabIndex = 10;
-      this.label10.Text = "-";
-      // 
-      // label11
-      // 
-      this.label11.AutoSize = true;
-      this.label11.Location = new System.Drawing.Point(223, 41);
-      this.label11.Name = "label11";
-      this.label11.Size = new System.Drawing.Size(15, 15);
-      this.label11.TabIndex = 11;
-      this.label11.Text = "-";
-      // 
-      // cb_b_addr_captital
-      // 
-      this.cb_b_addr_captital.FormattingEnabled = true;
-      this.cb_b_addr_captital.Items.AddRange(new object[] {
-            "서울특별시",
-            "경기도",
-            "인천광역시",
-            "충청북도",
-            "충청남도",
-            "대전광역시",
-            "강원도",
-            "전라북도",
-            "전라남도",
-            "광주광역시",
-            "경상북도",
-            "경상남도",
-            "대구광역시",
-            "부산광역시"});
-      this.cb_b_addr_captital.Location = new System.Drawing.Point(105, 69);
-      this.cb_b_addr_captital.Name = "cb_b_addr_captital";
-      this.cb_b_addr_captital.Size = new System.Drawing.Size(112, 23);
-      this.cb_b_addr_captital.TabIndex = 8;
-      // 
       // AddProduct
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -364,6 +364,7 @@ namespace PenguinExpress.seller
       this.Controls.Add(this.panel1);
       this.Name = "AddProduct";
       this.Text = "AddProduct";
+      this.Load += new System.EventHandler(this.AddProduct_Load);
       this.panel1.ResumeLayout(false);
       this.panel1.PerformLayout();
       this.panel2.ResumeLayout(false);
