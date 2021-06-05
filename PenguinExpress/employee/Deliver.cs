@@ -27,7 +27,12 @@ namespace PenguinExpress.employee
       //base
       this.BackColor = ColorTranslator.FromHtml( Env.baseColor);
       this.ForeColor = ColorTranslator.FromHtml( Env.textColor);
+      this.Font = Env.font;
       //btn
+      btn_completeDelivery.Font = Env.boldFont;
+      btn_refresh.Font = Env.boldFont;
+      button2.Font = Env.boldFont;
+
       btn_completeDelivery.FlatStyle = FlatStyle.Flat;
       btn_refresh.FlatStyle = FlatStyle.Flat;
       button2.FlatStyle = FlatStyle.Flat;

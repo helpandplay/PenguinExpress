@@ -40,7 +40,10 @@ namespace PenguinExpress.employee
       //base
       this.BackColor = ColorTranslator.FromHtml(Env.baseColor);
       this.ForeColor = ColorTranslator.FromHtml(Env.textColor);
+      this.Font = Env.font;
       //btn
+      btn_ok.Font = Env.boldFont;
+      btn_cancel.Font = Env.boldFont;
       btn_cancel.FlatStyle = FlatStyle.Flat;
       btn_ok.FlatStyle = FlatStyle.Flat;
 
