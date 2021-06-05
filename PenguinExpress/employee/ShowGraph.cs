@@ -23,9 +23,16 @@ namespace PenguinExpress.employee
       stus = new Status();
       InitializeComponent();
     }
-
+    private void setColor()
+    {
+      //base
+      this.BackColor = ColorTranslator.FromHtml(Env.baseColor);
+      this.ForeColor = ColorTranslator.FromHtml(Env.textColor);
+      this.Font = Env.font;
+    }
     private void ShowGraph_Load(object sender, EventArgs e)
     {
+      setColor();
       chart.Series[0].ChartType = SeriesChartType.Doughnut;
       foreach(KeyValuePair<int, int> item in data)
       {
