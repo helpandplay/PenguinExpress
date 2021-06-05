@@ -22,9 +22,27 @@ namespace PenguinExpress.employee
       this.id = id;
       InitializeComponent();
     }
+    private void setColor()
+    {
+      //base
+      this.BackColor = ColorTranslator.FromHtml( Env.baseColor);
+      this.ForeColor = ColorTranslator.FromHtml( Env.textColor);
+      //btn
+      btn_completeDelivery.FlatStyle = FlatStyle.Flat;
+      btn_refresh.FlatStyle = FlatStyle.Flat;
+      button2.FlatStyle = FlatStyle.Flat;
 
+      btn_completeDelivery.BackColor = ColorTranslator.FromHtml( Env.contentStrongColor);
+      btn_refresh.BackColor = ColorTranslator.FromHtml(Env.contentStrongColor);
+      button2.BackColor = ColorTranslator.FromHtml(Env.contentStrongColor);
+
+      btn_completeDelivery.ForeColor = ColorTranslator.FromHtml(Env.textBrightColor);
+      btn_refresh.ForeColor = ColorTranslator.FromHtml(Env.textBrightColor);
+      button2.ForeColor = ColorTranslator.FromHtml(Env.textBrightColor);
+    }
     private void Deliver_Load(object sender, EventArgs e)
     {
+      setColor();
       //자기 지역번호 가져오기
       lb_dv_id.Text = lb_dv_id.Text + id;
 

@@ -56,13 +56,13 @@ namespace PenguinExpress.employee
       this.panel1.Controls.Add(this.label1);
       this.panel1.Location = new System.Drawing.Point(12, 12);
       this.panel1.Name = "panel1";
-      this.panel1.Size = new System.Drawing.Size(776, 364);
+      this.panel1.Size = new System.Drawing.Size(966, 364);
       this.panel1.TabIndex = 0;
       // 
       // lb_dv_id
       // 
       this.lb_dv_id.AutoSize = true;
-      this.lb_dv_id.Location = new System.Drawing.Point(107, 12);
+      this.lb_dv_id.Location = new System.Drawing.Point(107, 9);
       this.lb_dv_id.Name = "lb_dv_id";
       this.lb_dv_id.Size = new System.Drawing.Size(28, 15);
       this.lb_dv_id.TabIndex = 3;
@@ -70,9 +70,9 @@ namespace PenguinExpress.employee
       // 
       // btn_refresh
       // 
-      this.btn_refresh.Location = new System.Drawing.Point(682, 4);
+      this.btn_refresh.Location = new System.Drawing.Point(862, 0);
       this.btn_refresh.Name = "btn_refresh";
-      this.btn_refresh.Size = new System.Drawing.Size(91, 23);
+      this.btn_refresh.Size = new System.Drawing.Size(101, 30);
       this.btn_refresh.TabIndex = 2;
       this.btn_refresh.Text = "새로고침";
       this.btn_refresh.UseVisualStyleBackColor = true;
@@ -92,7 +92,7 @@ namespace PenguinExpress.employee
       this.lv_delivery_list.HideSelection = false;
       this.lv_delivery_list.Location = new System.Drawing.Point(3, 30);
       this.lv_delivery_list.Name = "lv_delivery_list";
-      this.lv_delivery_list.Size = new System.Drawing.Size(770, 331);
+      this.lv_delivery_list.Size = new System.Drawing.Size(960, 331);
       this.lv_delivery_list.TabIndex = 1;
       this.lv_delivery_list.UseCompatibleStateImageBehavior = false;
       this.lv_delivery_list.View = System.Windows.Forms.View.Details;
@@ -116,23 +116,23 @@ namespace PenguinExpress.employee
       // ch_b_addr
       // 
       this.ch_b_addr.Text = "배송지";
-      this.ch_b_addr.Width = 200;
+      this.ch_b_addr.Width = 230;
       // 
       // ch_b_phone
       // 
       this.ch_b_phone.Text = "구매자번호";
-      this.ch_b_phone.Width = 120;
+      this.ch_b_phone.Width = 190;
       // 
       // ch_s_phone
       // 
       this.ch_s_phone.Text = "판매자번호";
-      this.ch_s_phone.Width = 120;
+      this.ch_s_phone.Width = 190;
       // 
       // label1
       // 
       this.label1.AutoSize = true;
       this.label1.Font = new System.Drawing.Font("굴림", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-      this.label1.Location = new System.Drawing.Point(3, 10);
+      this.label1.Location = new System.Drawing.Point(3, 7);
       this.label1.Name = "label1";
       this.label1.Size = new System.Drawing.Size(98, 17);
       this.label1.TabIndex = 0;
@@ -188,7 +188,7 @@ namespace PenguinExpress.employee
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(800, 450);
+      this.ClientSize = new System.Drawing.Size(990, 450);
       this.Controls.Add(this.lb_salary);
       this.Controls.Add(this.lb_count);
       this.Controls.Add(this.btn_logout);
