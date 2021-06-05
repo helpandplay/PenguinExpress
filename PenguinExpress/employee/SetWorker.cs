@@ -35,9 +35,23 @@ namespace PenguinExpress.employee
       this.data = data;
       InitializeComponent();
     }
+    private void setColor()
+    {
+      //base
+      this.BackColor = ColorTranslator.FromHtml(Env.baseColor);
+      this.ForeColor = ColorTranslator.FromHtml(Env.textColor);
+      //btn
+      btn_cancel.FlatStyle = FlatStyle.Flat;
+      btn_ok.FlatStyle = FlatStyle.Flat;
 
+      btn_cancel.BackColor = ColorTranslator.FromHtml(Env.contentStrongColor);
+      btn_cancel.ForeColor = ColorTranslator.FromHtml(Env.textBrightColor);
+      btn_ok.ForeColor = ColorTranslator.FromHtml(Env.textBrightColor);
+      btn_ok.BackColor = ColorTranslator.FromHtml(Env.contentStrongColor);
+    }
     private void SetWorker_Load(object sender, EventArgs e)
     {
+      setColor();
       lb_trackingId.Text = data["trackingId"];
       lb_region.Text = data["regionCode"];
 
