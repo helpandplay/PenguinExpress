@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="config\Hash.cs" />
     <Compile Include="config\MyDatabase.cs" />
     <Compile Include="employee\Admin.cs">
       <SubType>Form</SubType>

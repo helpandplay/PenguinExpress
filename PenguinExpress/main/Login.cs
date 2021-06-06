@@ -58,7 +58,7 @@ namespace PenguinExpress.main
       string pwd = tb_pwd.Text;
 
       string sql = string.Format(
-        "SELECT id, pwd " +
+        "SELECT id, pwd, salt " +
         "FROM {0} " +
         "WHERE userid = '{1}';"
         ,MyDatabase.sellerTbl, userid);
@@ -129,7 +129,9 @@ namespace PenguinExpress.main
     private int checkExistUser(string sql, string pwd)
     {
       string dbPwd = null;
+      string salt = string.Empty;
       int? id = null;
+
       MyDatabase.cmd.CommandText = sql;
       MySqlDataReader reader = MyDatabase.cmd.ExecuteReader();
 
@@ -143,14 +145,17 @@ namespace PenguinExpress.main
         }
 
         dbPwd = reader["pwd"].ToString();
-        id = int.Parse(reader["id"].ToString());
+        salt = reader["salt"].ToString();
 
-        if (dbPwd != pwd)
+        bool isEqual = SHA256Hash.isEqualPwd(pwd, dbPwd, salt);
+        if (!isEqual)
         {
           MessageBox.Show("존재하지 않는 아이디이거나 비밀번호가 다릅니다.", "info",
             MessageBoxButtons.OK, MessageBoxIcon.Information);
           return -1;
-        };
+        }
+
+        id = int.Parse(reader["id"].ToString());
       }
       catch (Exception error)
       {
