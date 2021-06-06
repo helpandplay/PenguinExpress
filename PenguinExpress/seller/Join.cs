@@ -83,10 +83,13 @@ namespace PenguinExpress.seller
       string phone = tb_phone1.Text + "-" + tb_phone2.Text + "-" + tb_phone3.Text;
       string addr = cb_addr_captital.Text + " " + tb_addr.Text;
 
+      string salt = SHA256Hash.getSalt();
+      string hashedPwd = SHA256Hash.hashing(pwd, salt);
+
       string sql = string.Format(
         "INSERT INTO {0} VALUES( " +
-        "NULL, '{1}', '{2}', '{3}', '{4}', '{5}');"
-        , MyDatabase.sellerTbl, userid, pwd, name, addr, phone);
+        "NULL, '{1}', '{2}', '{3}', '{4}', '{5}', '{6}');"
+        , MyDatabase.sellerTbl, userid, hashedPwd, name, addr, phone, salt);
 
       MyDatabase.cmd.CommandText = sql;
       try
