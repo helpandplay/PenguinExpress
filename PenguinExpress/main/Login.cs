@@ -76,7 +76,7 @@ namespace PenguinExpress.main
       string pwd = tb_e_pwd.Text;
 
       string sql = string.Format(
-        "SELECT id, pwd " +
+        "SELECT id, pwd, salt " +
         "FROM {0} " +
         "WHERE userid = '{1}';"
         , MyDatabase.employeeTbl, userid);
@@ -84,7 +84,8 @@ namespace PenguinExpress.main
       int id = checkExistUser(sql, pwd);
       if (id == -1) return;
       bool isAdmin = checkIsAdmin(id);
-      onEmployeeLogin(id, isAdmin);
+      bool isEmployee = checkIsEmployee(id);
+      onEmployeeLogin(id, isAdmin, isEmployee);
     }
     private void onSellerLogin(int id)
     {
@@ -93,18 +94,48 @@ namespace PenguinExpress.main
       new Seller_list(id).ShowDialog();
       
     }
-    private void onEmployeeLogin(int id, bool isAdmin)
+    private void onEmployeeLogin(int id, bool isAdmin, bool isEmployee)
     {
-      SetVisibleCore(false);
+      
       if (isAdmin)
       {
+        SetVisibleCore(false);
         new Admin(id.ToString()).ShowDialog();
       }
       else
       {
-        new Deliver(id.ToString()).ShowDialog();
+        if (isEmployee) {
+          SetVisibleCore(false);
+          new Deliver(id.ToString()).ShowDialog();
+        } 
+        else
+        {
+          MessageBox.Show("승인이 나지 않았습니다. 관리자에게 문의하세요");
+          return;
+        }
       }
       this.Close();
+    }
+    private bool checkIsEmployee(int id)
+    {
+      bool isEmployee = false;
+      string sql = string.Format(
+        "SELECT isEmployee " +
+        "FROM {0} " +
+        "WHERE id = {1};"
+        , MyDatabase.employeeTbl, id);
+
+      MyDatabase.cmd.CommandText = sql;
+      try
+      {
+        var result = MyDatabase.cmd.ExecuteScalar();
+        isEmployee = (bool)result;
+      }
+      catch (Exception error)
+      {
+        Debug.WriteLine(error.Message);
+      }
+      return isEmployee;
     }
     private bool checkIsAdmin(int id)
     {

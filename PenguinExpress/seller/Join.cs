@@ -39,6 +39,28 @@ namespace PenguinExpress.seller
       btn_onJoin.Font = Env.boldFont;
       button1.Font = Env.boldFont;
     }
+
+    private void checkOverlapId(string sql) {
+      MyDatabase.cmd.CommandText = sql;
+
+      try
+      {
+        object result = MyDatabase.cmd.ExecuteScalar();
+        if (result != null)
+        {
+          MessageBox.Show("이미 존재하는 아이디입니다.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+          isCorrectID = false;
+          return;
+        }
+        MessageBox.Show("사용 가능한 아이디입니다.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        isCorrectID = true;
+      }
+      catch (Exception error)
+      {
+        Debug.WriteLine(error.StackTrace);
+        Debug.WriteLine(error.Message);
+      }
+    }
     private void button1_Click(object sender, EventArgs e)
     {
       string userid = tb_id.Text;
@@ -52,44 +74,52 @@ namespace PenguinExpress.seller
         MessageBox.Show("2~12자리만 사용할 수 있습니다.");
         return;
       }
-      string sql = string.Format(
+      string sql;
+      if (cb_isEmployee.Checked)
+      {
+        sql = string.Format("" +
+          "SELECT id " +
+          "FROM {0} " +
+          "WHERE userid='{1}';",
+          MyDatabase.employeeTbl, userid);
+      }
+      else
+      {
+            sql   = string.Format(
         "SELECT id " +
         "FROM {0} " +
         "WHERE userid='{1}';"
         , MyDatabase.sellerTbl, userid);
-      MyDatabase.cmd.CommandText = sql;
-      try
-      {
-        object result = MyDatabase.cmd.ExecuteScalar();
-        if (result != null)
-        {
-          MessageBox.Show("이미 존재하는 아이디입니다.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-          isCorrectID = false;
-          return;
-        }
-        MessageBox.Show("사용 가능한 아이디입니다.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        isCorrectID = true;
-
-      }catch(Exception error)
-      {
-        Debug.WriteLine(error.Message);
       }
+      checkOverlapId(sql);
     }
-    private void addSeller()
+    private void addUser(bool isEmployee)
     {
       string userid = tb_id.Text;
       string pwd = tb_pw.Text;
       string name = tb_name.Text;
       string phone = tb_phone1.Text + "-" + tb_phone2.Text + "-" + tb_phone3.Text;
       string addr = cb_addr_captital.Text + " " + tb_addr.Text;
+      int regionCode = cb_addr_captital.SelectedIndex;
 
       string salt = SHA256Hash.getSalt();
       string hashedPwd = SHA256Hash.hashing(pwd, salt);
 
-      string sql = string.Format(
+      string sql;
+      if (isEmployee)
+      {
+        sql = string.Format("" +
+          "INSERT INTO {0} VALUES (" +
+          "NULL, '{1}', '{2}', '{3}', '{4}', {5}, 0, false, false, '{6}');"
+          , MyDatabase.employeeTbl, userid, hashedPwd, name, phone, regionCode, salt); ;
+      }
+      else
+      {
+        sql = string.Format(
         "INSERT INTO {0} VALUES( " +
         "NULL, '{1}', '{2}', '{3}', '{4}', '{5}', '{6}');"
         , MyDatabase.sellerTbl, userid, hashedPwd, name, addr, phone, salt);
+      }
 
       MyDatabase.cmd.CommandText = sql;
       try
@@ -97,6 +127,7 @@ namespace PenguinExpress.seller
         MyDatabase.cmd.ExecuteNonQuery();
       }catch(Exception error)
       {
+        Debug.WriteLine(error.StackTrace);
         Debug.WriteLine(error.Message);
       }
       finally
@@ -106,16 +137,17 @@ namespace PenguinExpress.seller
     }
     private void btn_onJoin_Click(object sender, EventArgs e)
     {
-      string result = validateSeller();
+      string result = validateJoin();
+      bool isEmployee = cb_isEmployee.Checked;
       if (result != "OK")
       {
         MessageBox.Show(result, "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
         return;
       }
-      addSeller();
+      addUser(isEmployee);
       this.Close();
     }
-    private string validateSeller()
+    private string validateJoin()
     {
       if (!isCorrectID) return "중복 확인을 해주세요.";
       if (tb_pw.Text != tb_pw_verify.Text) return "비밀번호가 일치하지 않습니다.";
@@ -141,6 +173,10 @@ namespace PenguinExpress.seller
     private void Join_Load(object sender, EventArgs e)
     {
       setColor();
+    }
+    private void cb_isEmployee_CheckedChanged(object sender, EventArgs e)
+    {
+      isCorrectID = false;
     }
   }
 }

@@ -50,11 +50,15 @@ namespace PenguinExpress.seller
       this.label1 = new System.Windows.Forms.Label();
       this.btn_onJoin = new System.Windows.Forms.Button();
       this.btn_cancel = new System.Windows.Forms.Button();
+      this.groupBox1 = new System.Windows.Forms.GroupBox();
+      this.cb_isEmployee = new System.Windows.Forms.CheckBox();
       this.panel1.SuspendLayout();
+      this.groupBox1.SuspendLayout();
       this.SuspendLayout();
       // 
       // panel1
       // 
+      this.panel1.Controls.Add(this.groupBox1);
       this.panel1.Controls.Add(this.label9);
       this.panel1.Controls.Add(this.label8);
       this.panel1.Controls.Add(this.tb_phone3);
@@ -272,6 +276,26 @@ namespace PenguinExpress.seller
       this.btn_cancel.Text = "취소";
       this.btn_cancel.UseVisualStyleBackColor = true;
       // 
+      // groupBox1
+      // 
+      this.groupBox1.Controls.Add(this.cb_isEmployee);
+      this.groupBox1.Location = new System.Drawing.Point(252, 50);
+      this.groupBox1.Name = "groupBox1";
+      this.groupBox1.Size = new System.Drawing.Size(83, 57);
+      this.groupBox1.TabIndex = 19;
+      this.groupBox1.TabStop = false;
+      this.groupBox1.Text = "직원여부";
+      // 
+      // cb_isEmployee
+      // 
+      this.cb_isEmployee.AutoSize = true;
+      this.cb_isEmployee.Location = new System.Drawing.Point(25, 27);
+      this.cb_isEmployee.Name = "cb_isEmployee";
+      this.cb_isEmployee.Size = new System.Drawing.Size(18, 17);
+      this.cb_isEmployee.TabIndex = 0;
+      this.cb_isEmployee.UseVisualStyleBackColor = true;
+      this.cb_isEmployee.CheckedChanged += new System.EventHandler(this.cb_isEmployee_CheckedChanged);
+      // 
       // Join
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -285,6 +309,8 @@ namespace PenguinExpress.seller
       this.Load += new System.EventHandler(this.Join_Load);
       this.panel1.ResumeLayout(false);
       this.panel1.PerformLayout();
+      this.groupBox1.ResumeLayout(false);
+      this.groupBox1.PerformLayout();
       this.ResumeLayout(false);
 
     }
@@ -312,5 +338,7 @@ namespace PenguinExpress.seller
     private System.Windows.Forms.TextBox tb_addr;
     private System.Windows.Forms.Button btn_onJoin;
     private System.Windows.Forms.Button btn_cancel;
+    private System.Windows.Forms.GroupBox groupBox1;
+    private System.Windows.Forms.CheckBox cb_isEmployee;
   }
 }
