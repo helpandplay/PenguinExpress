@@ -76,43 +76,43 @@ namespace PenguinExpress.seller
       // 
       // ch_tracking_id
       // 
-      this.ch_tracking_id.Tag = "false";
+      this.ch_tracking_id.Tag = "tracking_id";
       this.ch_tracking_id.Text = "운송장번호";
       this.ch_tracking_id.Width = 90;
       // 
       // ch_prod_name
       // 
-      this.ch_prod_name.Tag = "false";
+      this.ch_prod_name.Tag = "p_name";
       this.ch_prod_name.Text = "이름";
       this.ch_prod_name.Width = 120;
       // 
       // ch_prod_qty
       // 
-      this.ch_prod_qty.Tag = "false";
+      this.ch_prod_qty.Tag = "p_qty";
       this.ch_prod_qty.Text = "수량";
       this.ch_prod_qty.Width = 50;
       // 
       // ch_b_phone
       // 
-      this.ch_b_phone.Tag = "false";
+      this.ch_b_phone.Tag = "b_phone";
       this.ch_b_phone.Text = "연락처";
       this.ch_b_phone.Width = 90;
       // 
       // ch_b_addr
       // 
-      this.ch_b_addr.Tag = "false";
+      this.ch_b_addr.Tag = "b_addr";
       this.ch_b_addr.Text = "주소";
       this.ch_b_addr.Width = 200;
       // 
       // ch_rv_time
       // 
-      this.ch_rv_time.Tag = "false";
+      this.ch_rv_time.Tag = "rv_time";
       this.ch_rv_time.Text = "예약된 시간";
       this.ch_rv_time.Width = 200;
       // 
       // ch_status
       // 
-      this.ch_status.Tag = "false";
+      this.ch_status.Tag = "rv_status";
       this.ch_status.Text = "상태";
       this.ch_status.Width = 90;
       // 
@@ -177,36 +177,36 @@ namespace PenguinExpress.seller
       // 
       // ch_cp_tracking_id
       // 
-      this.ch_cp_tracking_id.Tag = "false";
+      this.ch_cp_tracking_id.Tag = "tracking_id";
       this.ch_cp_tracking_id.Text = "운송장번호";
       this.ch_cp_tracking_id.Width = 90;
       // 
       // ch_cp_prod_name
       // 
-      this.ch_cp_prod_name.Tag = "false";
+      this.ch_cp_prod_name.Tag = "p_name";
       this.ch_cp_prod_name.Text = "이름";
       this.ch_cp_prod_name.Width = 120;
       // 
       // ch_cp_prod_qty
       // 
-      this.ch_cp_prod_qty.Tag = "false";
+      this.ch_cp_prod_qty.Tag = "p_qty";
       this.ch_cp_prod_qty.Text = "수량";
       // 
       // ch_cp_b_phone
       // 
-      this.ch_cp_b_phone.Tag = "false";
+      this.ch_cp_b_phone.Tag = "b_phone";
       this.ch_cp_b_phone.Text = "연락처";
       this.ch_cp_b_phone.Width = 120;
       // 
       // ch_cp_b_addr
       // 
-      this.ch_cp_b_addr.Tag = "false";
+      this.ch_cp_b_addr.Tag = "b_addr";
       this.ch_cp_b_addr.Text = "주소";
       this.ch_cp_b_addr.Width = 200;
       // 
       // ch_cp_time
       // 
-      this.ch_cp_time.Tag = "false";
+      this.ch_cp_time.Tag = "cp_time";
       this.ch_cp_time.Text = "도착 시간";
       this.ch_cp_time.Width = 200;
       // 

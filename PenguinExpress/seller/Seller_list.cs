@@ -57,13 +57,16 @@ namespace PenguinExpress.seller
       getAllCompleteList();
     }
     //리스트 불러오기
-    private void getAllCompleteList()
+    private void getAllCompleteList(string sql=null)
     {
-      string sql = string.Format(
-        "SELECT tracking_id, p_name, p_qty, b_phone, b_addr, cp_time " +
-        "FROM {0} " +
-        "WHERE s_id={1};"
-        , MyDatabase.completeListTbl, userid);
+      if (sql == null)
+      {
+        sql = string.Format(
+          "SELECT tracking_id, p_name, p_qty, b_phone, b_addr, cp_time " +
+          "FROM {0} " +
+          "WHERE s_id={1};"
+          , MyDatabase.completeListTbl, userid);
+      }
       MyDatabase.cmd.CommandText = sql;
 
       MySqlDataReader reader = MyDatabase.cmd.ExecuteReader();
@@ -93,12 +96,16 @@ namespace PenguinExpress.seller
         Debug.Close();
       }
     }
-    private void getAllRegList()
+    private void getAllRegList(string sql=null)
     {
-      string sql = string.Format(
-        "SELECT tracking_id, p_name, p_qty, b_phone, b_addr, rv_time, rv_status " +
-        "FROM {0} " +
-        "WHERE s_id={1};", MyDatabase.reservationListTbl, userid);
+      if (sql == null)
+      {
+        sql = string.Format(
+          "SELECT tracking_id, p_name, p_qty, b_phone, b_addr, rv_time, rv_status " +
+          "FROM {0} " +
+          "WHERE s_id={1};", MyDatabase.reservationListTbl, userid);
+      }
+      Debug.WriteLine(sql);
       MyDatabase.cmd.CommandText = sql;
 
       MySqlDataReader reader = MyDatabase.cmd.ExecuteReader();
@@ -150,12 +157,28 @@ namespace PenguinExpress.seller
     //정렬
     private void lv_reg_ColumnClick(object sender, ColumnClickEventArgs e)
     {
-      Debug.WriteLine(lv_reg.Columns[e.Column]);
+      string columnName = lv_reg.Columns[e.Column].Tag.ToString();
+      string sql = string.Format(
+        "SELECT tracking_id, p_name, p_qty, b_phone, b_addr, rv_time, rv_status " +
+        "FROM {0} " +
+        "WHERE s_id = {1} " +
+        "ORDER BY {2} DESC;"
+        , MyDatabase.reservationListTbl, userid, columnName);
+
+      getAllRegList(sql);
     }
 
     private void lv_cp_ColumnClick(object sender, ColumnClickEventArgs e)
     {
-      Debug.WriteLine(lv_reg.Columns[e.Column]);
+      string columnName = lv_cp.Columns[e.Column].Tag.ToString();
+      string sql = string.Format(
+        "SELECT tracking_id, p_name, p_qty, b_phone, b_addr, cp_time " +
+        "FROM {0} " +
+        "WHERE s_id = {1} " +
+        "ORDER BY {2} DESC;"
+        , MyDatabase.completeListTbl, userid, columnName);
+
+      getAllCompleteList(sql);
     }
     //예약 취소
     private void btn_rv_cancel_Click(object sender, EventArgs e)
