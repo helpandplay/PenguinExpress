@@ -30,6 +30,8 @@ namespace PenguinExpress.seller
     private void InitializeComponent()
     {
       this.panel1 = new System.Windows.Forms.Panel();
+      this.groupBox1 = new System.Windows.Forms.GroupBox();
+      this.cb_isEmployee = new System.Windows.Forms.CheckBox();
       this.label9 = new System.Windows.Forms.Label();
       this.label8 = new System.Windows.Forms.Label();
       this.tb_phone3 = new System.Windows.Forms.TextBox();
@@ -50,8 +52,6 @@ namespace PenguinExpress.seller
       this.label1 = new System.Windows.Forms.Label();
       this.btn_onJoin = new System.Windows.Forms.Button();
       this.btn_cancel = new System.Windows.Forms.Button();
-      this.groupBox1 = new System.Windows.Forms.GroupBox();
-      this.cb_isEmployee = new System.Windows.Forms.CheckBox();
       this.panel1.SuspendLayout();
       this.groupBox1.SuspendLayout();
       this.SuspendLayout();
@@ -81,6 +81,26 @@ namespace PenguinExpress.seller
       this.panel1.Name = "panel1";
       this.panel1.Size = new System.Drawing.Size(349, 230);
       this.panel1.TabIndex = 0;
+      // 
+      // groupBox1
+      // 
+      this.groupBox1.Controls.Add(this.cb_isEmployee);
+      this.groupBox1.Location = new System.Drawing.Point(252, 50);
+      this.groupBox1.Name = "groupBox1";
+      this.groupBox1.Size = new System.Drawing.Size(83, 57);
+      this.groupBox1.TabIndex = 19;
+      this.groupBox1.TabStop = false;
+      this.groupBox1.Text = "직원여부";
+      // 
+      // cb_isEmployee
+      // 
+      this.cb_isEmployee.AutoSize = true;
+      this.cb_isEmployee.Location = new System.Drawing.Point(25, 27);
+      this.cb_isEmployee.Name = "cb_isEmployee";
+      this.cb_isEmployee.Size = new System.Drawing.Size(18, 17);
+      this.cb_isEmployee.TabIndex = 0;
+      this.cb_isEmployee.UseVisualStyleBackColor = true;
+      this.cb_isEmployee.CheckedChanged += new System.EventHandler(this.cb_isEmployee_CheckedChanged);
       // 
       // label9
       // 
@@ -275,26 +295,7 @@ namespace PenguinExpress.seller
       this.btn_cancel.TabIndex = 2;
       this.btn_cancel.Text = "취소";
       this.btn_cancel.UseVisualStyleBackColor = true;
-      // 
-      // groupBox1
-      // 
-      this.groupBox1.Controls.Add(this.cb_isEmployee);
-      this.groupBox1.Location = new System.Drawing.Point(252, 50);
-      this.groupBox1.Name = "groupBox1";
-      this.groupBox1.Size = new System.Drawing.Size(83, 57);
-      this.groupBox1.TabIndex = 19;
-      this.groupBox1.TabStop = false;
-      this.groupBox1.Text = "직원여부";
-      // 
-      // cb_isEmployee
-      // 
-      this.cb_isEmployee.AutoSize = true;
-      this.cb_isEmployee.Location = new System.Drawing.Point(25, 27);
-      this.cb_isEmployee.Name = "cb_isEmployee";
-      this.cb_isEmployee.Size = new System.Drawing.Size(18, 17);
-      this.cb_isEmployee.TabIndex = 0;
-      this.cb_isEmployee.UseVisualStyleBackColor = true;
-      this.cb_isEmployee.CheckedChanged += new System.EventHandler(this.cb_isEmployee_CheckedChanged);
+      this.btn_cancel.Click += new System.EventHandler(this.btn_cancel_Click);
       // 
       // Join
       // 
