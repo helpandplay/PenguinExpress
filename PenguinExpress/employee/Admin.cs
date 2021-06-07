@@ -179,7 +179,7 @@ namespace PenguinExpress.employee
       {
         if (!reader.Read())
         {
-          throw new Exception("불러온 값이 없습니다.");
+          throw new Exception("더블클릭 : 불러온 값이 없습니다.");
         }
         rowData.Add("trackingId", trackingId);
         rowData.Add("regionCode", reader["b_region_code"].ToString());

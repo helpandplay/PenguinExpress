@@ -80,7 +80,7 @@ namespace PenguinExpress.employee
       {
         if (!reader.Read())
         {
-          throw new Exception("불러온 값이 없습니다.");
+          throw new Exception("불러온 지역이 없습니다.");
         }
         workerInfo info = new workerInfo(
           reader["id"].ToString(),

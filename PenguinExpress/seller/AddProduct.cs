@@ -79,7 +79,7 @@ namespace PenguinExpress.seller
       string bName = tb_b_name.Text;
       string bPhone = string.Format("{0}-{1}-{2}", tb_b_phone.Text, tb_b_phone2.Text, tb_b_phone3.Text);
       string bAddr = string.Format("{0} {1}", cb_b_addr_captital.SelectedItem.ToString(), tb_b_addr.Text);
-      int regionCode = cb_b_addr_captital.SelectedIndex + 1;
+      int regionCode = cb_b_addr_captital.SelectedIndex;
 
       string sql = string.Format(
         "INSERT INTO {0} VALUES(" +
