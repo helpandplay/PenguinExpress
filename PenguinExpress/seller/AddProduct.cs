@@ -67,7 +67,7 @@ namespace PenguinExpress.seller
       int sId = int.Parse(seller["id"]);
       string pName = tb_p_name.Text;
       int pQty = int.Parse(tb_p_qty.Text);
-      int pCode = cb_p_choice.SelectedIndex + 1;
+      int pCode = cb_p_choice.SelectedIndex;
       string sName = tb_s_name.Text;
       string sPhone = tb_s_phone.Text;
       string sAddr = tb_s_addr.Text;
