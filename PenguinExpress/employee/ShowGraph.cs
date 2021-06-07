@@ -20,13 +20,6 @@ namespace PenguinExpress.employee
       stus = new Status();
       InitializeComponent();
     }
-    private void setColor()
-    {
-      //base
-      this.BackColor = ColorTranslator.FromHtml(Env.baseColor);
-      this.ForeColor = ColorTranslator.FromHtml(Env.textColor);
-      this.Font = Env.font;
-    }
     private void showItemGraph()
     {
       chart.Series[0].ChartType = SeriesChartType.Doughnut;
@@ -47,11 +40,6 @@ namespace PenguinExpress.employee
         chart.Series[0].Points.AddXY(string.Format("{0} {1}%", itemName, percent), item.Value);
       }
     }
-    private void ShowGraph_Load(object sender, EventArgs e)
-    {
-      setColor();
-      getGraphType(type);
-    }
     private void getGraphType(string type)
     {
       switch (type)
@@ -65,6 +53,18 @@ namespace PenguinExpress.employee
         default:
           throw new Exception("알수 없는 타입 : " + type);
       }
+    }
+    private void setColor()
+    {
+      //base
+      this.BackColor = ColorTranslator.FromHtml(Env.baseColor);
+      this.ForeColor = ColorTranslator.FromHtml(Env.textColor);
+      this.Font = Env.font;
+    }
+    private void ShowGraph_Load(object sender, EventArgs e)
+    {
+      setColor();
+      getGraphType(type);
     }
   }
 }

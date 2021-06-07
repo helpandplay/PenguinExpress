@@ -13,26 +13,6 @@ namespace PenguinExpress.seller
     {
       InitializeComponent();
     }
-    private void setColor()
-    {
-      this.BackColor = ColorTranslator.FromHtml(Env.baseColor);
-      this.ForeColor = ColorTranslator.FromHtml(Env.textColor);
-      this.Font = Env.font;
-
-      //btn
-      btn_cancel.ForeColor = ColorTranslator.FromHtml(Env.textBrightColor);
-      btn_onJoin.ForeColor = ColorTranslator.FromHtml(Env.textBrightColor);
-      button1.ForeColor = ColorTranslator.FromHtml(Env.textBrightColor);
-
-      btn_onJoin.BackColor = ColorTranslator.FromHtml(Env.contentStrongColor);
-      btn_cancel.BackColor = ColorTranslator.FromHtml(Env.contentStrongColor);
-      button1.BackColor = ColorTranslator.FromHtml(Env.contentStrongColor);
-
-      btn_cancel.Font = Env.boldFont;
-      btn_onJoin.Font = Env.boldFont;
-      button1.Font = Env.boldFont;
-    }
-
     private void checkOverlapId(string sql) {
       MyDatabase.cmd.CommandText = sql;
 
@@ -53,38 +33,6 @@ namespace PenguinExpress.seller
         Debug.WriteLine(error.StackTrace);
         Debug.WriteLine(error.Message);
       }
-    }
-    private void button1_Click(object sender, EventArgs e)
-    {
-      string userid = tb_id.Text;
-      if(userid == "")
-      {
-        MessageBox.Show("아이디를 입력해주세요.");
-        return;
-      }
-      if(userid.Length < 2 || userid.Length > 12)
-      {
-        MessageBox.Show("2~12자리만 사용할 수 있습니다.");
-        return;
-      }
-      string sql;
-      if (cb_isEmployee.Checked)
-      {
-        sql = string.Format("" +
-          "SELECT id " +
-          "FROM {0} " +
-          "WHERE userid='{1}';",
-          MyDatabase.employeeTbl, userid);
-      }
-      else
-      {
-            sql   = string.Format(
-        "SELECT id " +
-        "FROM {0} " +
-        "WHERE userid='{1}';"
-        , MyDatabase.sellerTbl, userid);
-      }
-      checkOverlapId(sql);
     }
     private void addUser(bool isEmployee)
     {
@@ -128,6 +76,42 @@ namespace PenguinExpress.seller
         this.Close();
       }
     }
+    private void button1_Click(object sender, EventArgs e)
+    {
+      string userid = tb_id.Text;
+      if(userid == "")
+      {
+        MessageBox.Show("아이디를 입력해주세요.");
+        return;
+      }
+      if(userid.Length < 2 || userid.Length > 12)
+      {
+        MessageBox.Show("2~12자리만 사용할 수 있습니다.");
+        return;
+      }
+      string sql;
+      if (cb_isEmployee.Checked)
+      {
+        sql = string.Format("" +
+          "SELECT id " +
+          "FROM {0} " +
+          "WHERE userid='{1}';",
+          MyDatabase.employeeTbl, userid);
+      }
+      else
+      {
+            sql   = string.Format(
+        "SELECT id " +
+        "FROM {0} " +
+        "WHERE userid='{1}';"
+        , MyDatabase.sellerTbl, userid);
+      }
+      checkOverlapId(sql);
+    }
+    private void btn_cancel_Click(object sender, EventArgs e)
+    {
+      this.Close();
+    }
     private void btn_onJoin_Click(object sender, EventArgs e)
     {
       string result = validateJoin();
@@ -150,6 +134,10 @@ namespace PenguinExpress.seller
       }
       return "OK";
     }
+    private void cb_isEmployee_CheckedChanged(object sender, EventArgs e)
+    {
+      isCorrectID = false;
+    }
     private void tb_phone2_KeyPress(object sender, KeyPressEventArgs e)
     {
       checkOnlyNumberKeyPress(e);
@@ -162,19 +150,28 @@ namespace PenguinExpress.seller
     {
       e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
     }
+    private void setColor()
+    {
+      this.BackColor = ColorTranslator.FromHtml(Env.baseColor);
+      this.ForeColor = ColorTranslator.FromHtml(Env.textColor);
+      this.Font = Env.font;
 
+      //btn
+      btn_cancel.ForeColor = ColorTranslator.FromHtml(Env.textBrightColor);
+      btn_onJoin.ForeColor = ColorTranslator.FromHtml(Env.textBrightColor);
+      button1.ForeColor = ColorTranslator.FromHtml(Env.textBrightColor);
+
+      btn_onJoin.BackColor = ColorTranslator.FromHtml(Env.contentStrongColor);
+      btn_cancel.BackColor = ColorTranslator.FromHtml(Env.contentStrongColor);
+      button1.BackColor = ColorTranslator.FromHtml(Env.contentStrongColor);
+
+      btn_cancel.Font = Env.boldFont;
+      btn_onJoin.Font = Env.boldFont;
+      button1.Font = Env.boldFont;
+    }
     private void Join_Load(object sender, EventArgs e)
     {
       setColor();
-    }
-    private void cb_isEmployee_CheckedChanged(object sender, EventArgs e)
-    {
-      isCorrectID = false;
-    }
-
-    private void btn_cancel_Click(object sender, EventArgs e)
-    {
-      this.Close();
     }
   }
 }

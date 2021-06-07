@@ -16,30 +16,12 @@ namespace PenguinExpress.seller
       InitializeComponent();
       setSellerInfo();
     }
-    private void setColor()
-    {
-      //base
-      this.BackColor = ColorTranslator.FromHtml(Env.baseColor);
-      this.ForeColor = ColorTranslator.FromHtml(Env.textColor);
-      this.Font = Env.font;
-
-      //btn
-      btn_addProduct.BackColor = ColorTranslator.FromHtml(Env.contentStrongColor);
-      btn_cancel.BackColor = ColorTranslator.FromHtml(Env.contentStrongColor);
-
-      btn_addProduct.ForeColor = ColorTranslator.FromHtml(Env.textBrightColor);
-      btn_cancel.ForeColor = ColorTranslator.FromHtml(Env.textBrightColor);
-
-      btn_cancel.Font = Env.boldFont;
-      btn_addProduct.Font = Env.boldFont;
-    }
     private void setSellerInfo()
     {
       tb_s_name.Text = seller["name"];
       tb_s_phone.Text = seller["phone"];
       tb_s_addr.Text = seller["addr"];
     }
-
     private void btn_cancel_Click(object sender, EventArgs e)
     {
       this.Close();
@@ -112,7 +94,23 @@ namespace PenguinExpress.seller
     {
       e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
     }
+    private void setColor()
+    {
+      //base
+      this.BackColor = ColorTranslator.FromHtml(Env.baseColor);
+      this.ForeColor = ColorTranslator.FromHtml(Env.textColor);
+      this.Font = Env.font;
 
+      //btn
+      btn_addProduct.BackColor = ColorTranslator.FromHtml(Env.contentStrongColor);
+      btn_cancel.BackColor = ColorTranslator.FromHtml(Env.contentStrongColor);
+
+      btn_addProduct.ForeColor = ColorTranslator.FromHtml(Env.textBrightColor);
+      btn_cancel.ForeColor = ColorTranslator.FromHtml(Env.textBrightColor);
+
+      btn_cancel.Font = Env.boldFont;
+      btn_addProduct.Font = Env.boldFont;
+    }
     private void AddProduct_Load(object sender, EventArgs e)
     {
       setColor();

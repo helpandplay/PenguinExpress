@@ -19,41 +19,6 @@ namespace PenguinExpress.employee
       stus = new Status();
       InitializeComponent();
     }
-    private void setColor()
-    {
-      this.BackColor = ColorTranslator.FromHtml(Env.baseColor);
-      this.ForeColor = ColorTranslator.FromHtml(Env.textColor);
-      this.Font = Env.font;
-
-      //btn
-      btn_getItemGraph.BackColor = ColorTranslator.FromHtml(Env.contentStrongColor);
-      btn_getRegionGraph.BackColor = ColorTranslator.FromHtml(Env.contentStrongColor);
-      button1.BackColor = ColorTranslator.FromHtml(Env.contentStrongColor);
-
-      btn_getItemGraph.ForeColor = ColorTranslator.FromHtml(Env.textColor);
-      btn_getRegionGraph.ForeColor = ColorTranslator.FromHtml(Env.textColor);
-      button1.ForeColor = ColorTranslator.FromHtml(Env.textColor);
-
-      btn_getItemGraph.FlatStyle = FlatStyle.Flat;
-      btn_getRegionGraph.FlatStyle = FlatStyle.Flat;
-      button1.FlatStyle = FlatStyle.Flat;
-
-      btn_getItemGraph.Font = Env.boldFont;
-      btn_getRegionGraph.Font = Env.boldFont;
-      button1.FlatStyle = FlatStyle.Flat;
-
-    }
-    private void Admin_Load(object sender, EventArgs e)
-    {
-      setColor();
-      getDeliveryList();
-    }
-
-    private void listTab_Selected(object sender, TabControlEventArgs e)
-    {
-      if (e.TabPageIndex == 0) getDeliveryList();
-      else getCompleteList();
-    }
     private void getCompleteList()
     {
       string sql = string.Format(
@@ -152,7 +117,31 @@ namespace PenguinExpress.employee
           return "Error";
       }
     }
+    public bool updateWorker(string id, string trackingId)
+    {
+      string sql = string.Format(
+        "UPDATE {0} " +
+        "SET e_id = {1}, rv_status = 2 " +
+        "WHERE tracking_id = '{2}';"
+        , MyDatabase.reservationListTbl, id, trackingId);
 
+      MyDatabase.cmd.CommandText = sql;
+      try
+      {
+        int result = MyDatabase.cmd.ExecuteNonQuery();
+        if (result == 1) return true;
+      }
+      catch (Exception error)
+      {
+        Debug.WriteLine(error.Message);
+      }
+      return false;
+    }
+    private void listTab_Selected(object sender, TabControlEventArgs e)
+    {
+      if (e.TabPageIndex == 0) getDeliveryList();
+      else getCompleteList();
+    }
     private void lv_delivery_DoubleClick(object sender, EventArgs e)
     {
       Dictionary<string, string> rowData = new Dictionary<string, string>();
@@ -191,43 +180,10 @@ namespace PenguinExpress.employee
       new SetWorker(rowData, this).ShowDialog();
       getDeliveryList();
     }
-    public bool updateWorker(string id, string trackingId)
-    {
-      string sql = string.Format(
-        "UPDATE {0} " +
-        "SET e_id = {1}, rv_status = 2 " +
-        "WHERE tracking_id = '{2}';"
-        , MyDatabase.reservationListTbl, id, trackingId);
-
-      MyDatabase.cmd.CommandText = sql;
-      try
-      {
-        int result = MyDatabase.cmd.ExecuteNonQuery();
-        if (result == 1) return true;
-      }
-      catch (Exception error)
-      {
-        Debug.WriteLine(error.Message);
-      }
-      return false;
-    }
-
     private void btn_logout_Click(object sender, EventArgs e)
     {
       this.Close();
       new Login().Show();
-    }
-
-    private void btn_getItemGraph_Click(object sender, EventArgs e)
-    {
-      Dictionary<int, int> data = getItemGraphData();
-      int total = getItemTotal();
-      if (total == -1)
-      {
-        MessageBox.Show("총 개수 불러오는 오류 발생");
-        return;
-      }
-      new ShowGraph(data, total, "item").ShowDialog();
     }
     private int getItemTotal()
     {
@@ -249,6 +205,29 @@ namespace PenguinExpress.employee
         Debug.WriteLine(error.Message);
       }
       return total;
+    }
+    private void btn_getItemGraph_Click(object sender, EventArgs e)
+    {
+      Dictionary<int, int> data = getItemGraphData();
+      int total = getItemTotal();
+      if (total == -1)
+      {
+        MessageBox.Show("총 개수 불러오는 오류 발생");
+        return;
+      }
+      new ShowGraph(data, total, "item").ShowDialog();
+    }
+    private void btn_getRegionGraph_Click(object sender, EventArgs e)
+    {
+      //code, count
+      Dictionary<int, int> data = getRegionGraphData();
+      int total = getItemTotal();
+      if (total == -1)
+      {
+        MessageBox.Show("총 개수 불러오는 오류 발생");
+        return;
+      }
+      new ShowGraph(data, total, "region").ShowDialog();
     }
     private Dictionary<int, int> getItemGraphData()
     {
@@ -279,19 +258,6 @@ namespace PenguinExpress.employee
       }
       return data;
     }
-
-    private void btn_getRegionGraph_Click(object sender, EventArgs e)
-    {
-      //code, count
-      Dictionary<int, int> data = getRegionGraphData();
-      int total = getItemTotal();
-      if (total == -1)
-      {
-        MessageBox.Show("총 개수 불러오는 오류 발생");
-        return;
-      }
-      new ShowGraph(data, total, "region").ShowDialog();
-    }
     private Dictionary<int, int> getRegionGraphData()
     {
       Dictionary<int, int> data = new Dictionary<int, int>();
@@ -320,6 +286,35 @@ namespace PenguinExpress.employee
         reader.Close();
       }
       return data;
+    }
+    private void setColor()
+    {
+      this.BackColor = ColorTranslator.FromHtml(Env.baseColor);
+      this.ForeColor = ColorTranslator.FromHtml(Env.textColor);
+      this.Font = Env.font;
+
+      //btn
+      btn_getItemGraph.BackColor = ColorTranslator.FromHtml(Env.contentStrongColor);
+      btn_getRegionGraph.BackColor = ColorTranslator.FromHtml(Env.contentStrongColor);
+      button1.BackColor = ColorTranslator.FromHtml(Env.contentStrongColor);
+
+      btn_getItemGraph.ForeColor = ColorTranslator.FromHtml(Env.textColor);
+      btn_getRegionGraph.ForeColor = ColorTranslator.FromHtml(Env.textColor);
+      button1.ForeColor = ColorTranslator.FromHtml(Env.textColor);
+
+      btn_getItemGraph.FlatStyle = FlatStyle.Flat;
+      btn_getRegionGraph.FlatStyle = FlatStyle.Flat;
+      button1.FlatStyle = FlatStyle.Flat;
+
+      btn_getItemGraph.Font = Env.boldFont;
+      btn_getRegionGraph.Font = Env.boldFont;
+      button1.FlatStyle = FlatStyle.Flat;
+
+    }
+    private void Admin_Load(object sender, EventArgs e)
+    {
+      setColor();
+      getDeliveryList();
     }
   }
 }

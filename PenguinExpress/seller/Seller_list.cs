@@ -19,39 +19,6 @@ namespace PenguinExpress.seller
       this.userid = userid;
       stus = new Status();
     }
-    private void setColor()
-    {
-      this.BackColor = ColorTranslator.FromHtml(Env.baseColor);
-      this.ForeColor = ColorTranslator.FromHtml(Env.textColor);
-      this.Font = Env.font;
-
-      btn_add_rv.FlatStyle = FlatStyle.Flat;
-      btn_cp_refresh.FlatStyle = FlatStyle.Flat;
-      btn_reg_refresh.FlatStyle = FlatStyle.Flat;
-      btn_rv_cancel.FlatStyle = FlatStyle.Flat;
-
-      btn_cp_refresh.BackColor = ColorTranslator.FromHtml(Env.contentStrongColor);
-      btn_add_rv.BackColor = ColorTranslator.FromHtml(Env.contentStrongColor);
-      btn_reg_refresh.BackColor = ColorTranslator.FromHtml(Env.contentStrongColor);
-      btn_rv_cancel.BackColor = ColorTranslator.FromHtml(Env.contentStrongColor);
-
-      btn_cp_refresh.ForeColor = ColorTranslator.FromHtml(Env.textColor);
-      btn_add_rv.ForeColor = ColorTranslator.FromHtml(Env.textColor);
-      btn_reg_refresh.ForeColor = ColorTranslator.FromHtml(Env.textColor);
-      btn_rv_cancel.ForeColor = ColorTranslator.FromHtml(Env.textColor);
-
-      btn_cp_refresh.Font = Env.boldFont;
-      btn_add_rv.Font = Env.boldFont;
-      btn_reg_refresh.Font = Env.boldFont;
-      btn_rv_cancel.Font = Env.boldFont;
-    }
-    private void List_Load(object sender, EventArgs e)
-    {
-      setColor();
-      getAllRegList();
-      getAllCompleteList();
-    }
-    //리스트 불러오기
     private void getAllCompleteList(string sql=null)
     {
       if (sql == null)
@@ -138,18 +105,14 @@ namespace PenguinExpress.seller
         Debug.Close();
       }
     }
-    //새로고침
     private void btn_reg_refresh_Click(object sender, EventArgs e)
     {
       getAllRegList();
     }
-
     private void btn_cp_refresh_Click(object sender, EventArgs e)
     {
       getAllCompleteList();
     }
-
-    //정렬
     private void lv_reg_ColumnClick(object sender, ColumnClickEventArgs e)
     {
       string columnName = lv_reg.Columns[e.Column].Tag.ToString();
@@ -162,7 +125,6 @@ namespace PenguinExpress.seller
 
       getAllRegList(sql);
     }
-
     private void lv_cp_ColumnClick(object sender, ColumnClickEventArgs e)
     {
       string columnName = lv_cp.Columns[e.Column].Tag.ToString();
@@ -175,7 +137,6 @@ namespace PenguinExpress.seller
 
       getAllCompleteList(sql);
     }
-    //예약 취소
     private void btn_rv_cancel_Click(object sender, EventArgs e)
     {
       if (lv_reg.SelectedItems.Count == 0) return;
@@ -211,7 +172,6 @@ namespace PenguinExpress.seller
       }
 
     }
-
     private void btn_add_rv_Click(object sender, EventArgs e)
     {
       string sql = string.Format(
@@ -253,12 +213,37 @@ namespace PenguinExpress.seller
       new AddProduct(seller).ShowDialog();
       getAllRegList();
     }
-
     private void btn_logout_Click(object sender, EventArgs e)
     {
       SetVisibleCore(false);
       this.Close();
       new Login().ShowDialog();
+    }
+    private void setColor()
+    {
+      this.BackColor = ColorTranslator.FromHtml(Env.baseColor);
+      this.ForeColor = ColorTranslator.FromHtml(Env.textColor);
+      this.Font = Env.font;
+
+      btn_add_rv.FlatStyle = FlatStyle.Flat;
+      btn_cp_refresh.FlatStyle = FlatStyle.Flat;
+      btn_reg_refresh.FlatStyle = FlatStyle.Flat;
+      btn_rv_cancel.FlatStyle = FlatStyle.Flat;
+
+      btn_cp_refresh.BackColor = ColorTranslator.FromHtml(Env.contentStrongColor);
+      btn_add_rv.BackColor = ColorTranslator.FromHtml(Env.contentStrongColor);
+      btn_reg_refresh.BackColor = ColorTranslator.FromHtml(Env.contentStrongColor);
+      btn_rv_cancel.BackColor = ColorTranslator.FromHtml(Env.contentStrongColor);
+
+      btn_cp_refresh.ForeColor = ColorTranslator.FromHtml(Env.textColor);
+      btn_add_rv.ForeColor = ColorTranslator.FromHtml(Env.textColor);
+      btn_reg_refresh.ForeColor = ColorTranslator.FromHtml(Env.textColor);
+      btn_rv_cancel.ForeColor = ColorTranslator.FromHtml(Env.textColor);
+
+      btn_cp_refresh.Font = Env.boldFont;
+      btn_add_rv.Font = Env.boldFont;
+      btn_reg_refresh.Font = Env.boldFont;
+      btn_rv_cancel.Font = Env.boldFont;
     }
     protected override void SetVisibleCore(bool value)
     {
@@ -268,6 +253,12 @@ namespace PenguinExpress.seller
         value = false;
       }
       base.SetVisibleCore(value);
+    }
+    private void List_Load(object sender, EventArgs e)
+    {
+      setColor();
+      getAllRegList();
+      getAllCompleteList();
     }
   }
 }

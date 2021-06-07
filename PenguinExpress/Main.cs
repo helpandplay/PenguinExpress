@@ -17,7 +17,6 @@ namespace PenguinExpress
     {
       new Login().ShowDialog();
     }
-
     private void Main_Load(object sender, EventArgs e)
     {
       start();

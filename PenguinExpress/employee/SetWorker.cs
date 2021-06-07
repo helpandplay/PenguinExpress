@@ -30,36 +30,6 @@ namespace PenguinExpress.employee
       this.data = data;
       InitializeComponent();
     }
-    private void setColor()
-    {
-      //base
-      this.BackColor = ColorTranslator.FromHtml(Env.baseColor);
-      this.ForeColor = ColorTranslator.FromHtml(Env.textColor);
-      this.Font = Env.font;
-      //btn
-      btn_ok.Font = Env.boldFont;
-      btn_cancel.Font = Env.boldFont;
-      btn_cancel.FlatStyle = FlatStyle.Flat;
-      btn_ok.FlatStyle = FlatStyle.Flat;
-
-      btn_cancel.BackColor = ColorTranslator.FromHtml(Env.contentStrongColor);
-      btn_cancel.ForeColor = ColorTranslator.FromHtml(Env.textBrightColor);
-      btn_ok.ForeColor = ColorTranslator.FromHtml(Env.textBrightColor);
-      btn_ok.BackColor = ColorTranslator.FromHtml(Env.contentStrongColor);
-    }
-    private void SetWorker_Load(object sender, EventArgs e)
-    {
-      setColor();
-      lb_trackingId.Text = data["trackingId"];
-      lb_region.Text = data["regionCode"];
-
-      workerList = getRegionWorker(data["regionCode"]);
-      foreach(var worker in workerList)
-      {
-        cb_workers.Items.Add(string.Format("{0}:{1}",worker.name, worker.id));
-      }
-
-    }
     private List<workerInfo> getRegionWorker(string region)
     {
       List<workerInfo> workerInfo = new List<workerInfo>();
@@ -94,7 +64,29 @@ namespace PenguinExpress.employee
       }
       return workerInfo;
     }
+    private bool setDelivery(workerInfo worker)
+    {
+      bool isSuccess = false;
+      string dv_id = worker.id;
+      string trackingId = data["trackingId"];
+      string name = worker.name;
+      string regionCode = data["regionCode"];
+      string buyerAddr = data["buyerAddr"];
 
+      string sql = string.Format(
+        "UPDATE {0} SET e_id = {1} WHERE tracking_id = {2};"
+        , MyDatabase.reservationListTbl, dv_id, trackingId);
+      MyDatabase.cmd.CommandText = sql;
+      try
+      {
+        int result = MyDatabase.cmd.ExecuteNonQuery();
+        if (result != -1) return true;
+      }catch(Exception error)
+      {
+        Debug.WriteLine(error.Message);
+      }
+      return false;
+    }
     private void btn_ok_Click(object sender, EventArgs e)
     {
       if (cb_workers.SelectedItem == null)
@@ -127,33 +119,39 @@ namespace PenguinExpress.employee
         MessageBox.Show("배정에 실패했습니다.", "warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
       }
     }
-    private bool setDelivery(workerInfo worker)
-    {
-      bool isSuccess = false;
-      string dv_id = worker.id;
-      string trackingId = data["trackingId"];
-      string name = worker.name;
-      string regionCode = data["regionCode"];
-      string buyerAddr = data["buyerAddr"];
-
-      string sql = string.Format(
-        "UPDATE {0} SET e_id = {1} WHERE tracking_id = {2};"
-        , MyDatabase.reservationListTbl, dv_id, trackingId);
-      MyDatabase.cmd.CommandText = sql;
-      try
-      {
-        int result = MyDatabase.cmd.ExecuteNonQuery();
-        if (result != -1) return true;
-      }catch(Exception error)
-      {
-        Debug.WriteLine(error.Message);
-      }
-      return false;
-    }
-
     private void btn_cancel_Click(object sender, EventArgs e)
     {
       this.Close();
+    }
+    private void SetWorker_Load(object sender, EventArgs e)
+    {
+      setColor();
+      lb_trackingId.Text = data["trackingId"];
+      lb_region.Text = data["regionCode"];
+
+      workerList = getRegionWorker(data["regionCode"]);
+      foreach(var worker in workerList)
+      {
+        cb_workers.Items.Add(string.Format("{0}:{1}",worker.name, worker.id));
+      }
+
+    }
+    private void setColor()
+    {
+      //base
+      this.BackColor = ColorTranslator.FromHtml(Env.baseColor);
+      this.ForeColor = ColorTranslator.FromHtml(Env.textColor);
+      this.Font = Env.font;
+      //btn
+      btn_ok.Font = Env.boldFont;
+      btn_cancel.Font = Env.boldFont;
+      btn_cancel.FlatStyle = FlatStyle.Flat;
+      btn_ok.FlatStyle = FlatStyle.Flat;
+
+      btn_cancel.BackColor = ColorTranslator.FromHtml(Env.contentStrongColor);
+      btn_cancel.ForeColor = ColorTranslator.FromHtml(Env.textBrightColor);
+      btn_ok.ForeColor = ColorTranslator.FromHtml(Env.textBrightColor);
+      btn_ok.BackColor = ColorTranslator.FromHtml(Env.contentStrongColor);
     }
   }
 }
