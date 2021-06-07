@@ -2,6 +2,7 @@
 using MySql.Data.MySqlClient;
 using System.Diagnostics;
 
+
 namespace PenguinExpress.config
 {
   public static class MyDatabase
