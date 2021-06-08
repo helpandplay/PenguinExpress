@@ -29,6 +29,7 @@ namespace PenguinExpress.seller
     /// </summary>
     private void InitializeComponent()
     {
+      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Seller_list));
       this.lv_reg = new System.Windows.Forms.ListView();
       this.ch_tracking_id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
       this.ch_prod_name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -255,6 +256,7 @@ namespace PenguinExpress.seller
       this.Controls.Add(this.btn_rv_cancel);
       this.Controls.Add(this.btn_add_rv);
       this.Controls.Add(this.lv_reg);
+      this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
       this.Name = "Seller_list";
       this.Text = " ";
       this.Load += new System.EventHandler(this.List_Load);

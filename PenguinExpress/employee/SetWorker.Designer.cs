@@ -29,7 +29,9 @@ namespace PenguinExpress.employee
     /// </summary>
     private void InitializeComponent()
     {
+      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SetWorker));
       this.panel1 = new System.Windows.Forms.Panel();
+      this.label4 = new System.Windows.Forms.Label();
       this.cb_workers = new System.Windows.Forms.ComboBox();
       this.label3 = new System.Windows.Forms.Label();
       this.lb_region = new System.Windows.Forms.Label();
@@ -38,7 +40,6 @@ namespace PenguinExpress.employee
       this.label1 = new System.Windows.Forms.Label();
       this.btn_ok = new System.Windows.Forms.Button();
       this.btn_cancel = new System.Windows.Forms.Button();
-      this.label4 = new System.Windows.Forms.Label();
       this.panel1.SuspendLayout();
       this.SuspendLayout();
       // 
@@ -55,6 +56,17 @@ namespace PenguinExpress.employee
       this.panel1.Name = "panel1";
       this.panel1.Size = new System.Drawing.Size(227, 170);
       this.panel1.TabIndex = 0;
+      // 
+      // label4
+      // 
+      this.label4.AutoSize = true;
+      this.label4.Font = new System.Drawing.Font("Impact", 13.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label4.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+      this.label4.Location = new System.Drawing.Point(20, 121);
+      this.label4.Name = "label4";
+      this.label4.Size = new System.Drawing.Size(168, 29);
+      this.label4.TabIndex = 8;
+      this.label4.Text = "PenguinExpress";
       // 
       // cb_workers
       // 
@@ -128,17 +140,6 @@ namespace PenguinExpress.employee
       this.btn_cancel.UseVisualStyleBackColor = true;
       this.btn_cancel.Click += new System.EventHandler(this.btn_cancel_Click);
       // 
-      // label4
-      // 
-      this.label4.AutoSize = true;
-      this.label4.Font = new System.Drawing.Font("Impact", 13.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label4.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-      this.label4.Location = new System.Drawing.Point(20, 121);
-      this.label4.Name = "label4";
-      this.label4.Size = new System.Drawing.Size(168, 29);
-      this.label4.TabIndex = 8;
-      this.label4.Text = "PenguinExpress";
-      // 
       // SetWorker
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -147,6 +148,7 @@ namespace PenguinExpress.employee
       this.Controls.Add(this.btn_cancel);
       this.Controls.Add(this.btn_ok);
       this.Controls.Add(this.panel1);
+      this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
       this.Name = "SetWorker";
       this.Text = "SetWorker";
       this.Load += new System.EventHandler(this.SetWorker_Load);

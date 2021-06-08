@@ -29,6 +29,7 @@ namespace PenguinExpress.employee
     /// </summary>
     private void InitializeComponent()
     {
+      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Admin));
       this.listTab = new System.Windows.Forms.TabControl();
       this.tabPage1 = new System.Windows.Forms.TabPage();
       this.lv_delivery = new System.Windows.Forms.ListView();
@@ -266,6 +267,7 @@ namespace PenguinExpress.employee
       this.Controls.Add(this.btn_getItemGraph);
       this.Controls.Add(this.btn_refresh);
       this.Controls.Add(this.listTab);
+      this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
       this.Name = "Admin";
       this.Text = "Admin";
       this.Load += new System.EventHandler(this.Admin_Load);

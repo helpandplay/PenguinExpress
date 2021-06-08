@@ -29,6 +29,7 @@ namespace PenguinExpress.seller
     /// </summary>
     private void InitializeComponent()
     {
+      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Join));
       this.panel1 = new System.Windows.Forms.Panel();
       this.groupBox1 = new System.Windows.Forms.GroupBox();
       this.cb_isEmployee = new System.Windows.Forms.CheckBox();
@@ -318,6 +319,7 @@ namespace PenguinExpress.seller
       this.Controls.Add(this.btn_cancel);
       this.Controls.Add(this.btn_onJoin);
       this.Controls.Add(this.panel1);
+      this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
       this.Name = "Join";
       this.Text = "Join";
       this.Load += new System.EventHandler(this.Join_Load);

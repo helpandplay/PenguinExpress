@@ -32,6 +32,7 @@ namespace PenguinExpress.employee
       System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
       System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
       System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ShowGraph));
       this.chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
       this.label1 = new System.Windows.Forms.Label();
       ((System.ComponentModel.ISupportInitialize)(this.chart)).BeginInit();
@@ -72,6 +73,7 @@ namespace PenguinExpress.employee
       this.ClientSize = new System.Drawing.Size(560, 450);
       this.Controls.Add(this.label1);
       this.Controls.Add(this.chart);
+      this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
       this.Name = "ShowGraph";
       this.Text = "ShowGraph";
       this.Load += new System.EventHandler(this.ShowGraph_Load);

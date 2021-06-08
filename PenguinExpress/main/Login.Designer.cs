@@ -29,6 +29,7 @@ namespace PenguinExpress.main
     /// </summary>
     private void InitializeComponent()
     {
+      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
       this.tab_login = new System.Windows.Forms.TabControl();
       this.tab_page1 = new System.Windows.Forms.TabPage();
       this.btn_join = new System.Windows.Forms.Button();
@@ -196,6 +197,7 @@ namespace PenguinExpress.main
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(369, 314);
       this.Controls.Add(this.tab_login);
+      this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
       this.Name = "Login";
       this.Text = "Login";
       this.Load += new System.EventHandler(this.Login_Load);

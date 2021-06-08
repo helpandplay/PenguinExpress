@@ -29,6 +29,7 @@ namespace PenguinExpress.seller
     /// </summary>
     private void InitializeComponent()
     {
+      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddProduct));
       this.panel1 = new System.Windows.Forms.Panel();
       this.cb_p_choice = new System.Windows.Forms.ComboBox();
       this.label3 = new System.Windows.Forms.Label();
@@ -362,6 +363,7 @@ namespace PenguinExpress.seller
       this.Controls.Add(this.panel3);
       this.Controls.Add(this.panel2);
       this.Controls.Add(this.panel1);
+      this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
       this.Name = "AddProduct";
       this.Text = "AddProduct";
       this.Load += new System.EventHandler(this.AddProduct_Load);
