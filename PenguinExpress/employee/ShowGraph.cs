@@ -11,8 +11,10 @@ namespace PenguinExpress.employee
     Dictionary<int, int> data;
     Status stus;
     int total;
-    public ShowGraph(Dictionary<int, int>data, int total)
+    string type;
+    public ShowGraph(Dictionary<int, int>data, int total, string type)
     {
+      this.type = type;
       this.data = data;
       this.total = total;
       stus = new Status();
@@ -35,7 +37,7 @@ namespace PenguinExpress.employee
       foreach(KeyValuePair<int, int> item in data)
       {
         int percent = item.Value * 100 / total;
-        string itemName = stus.getItemName(item.Key);
+        string itemName = type == "item" ? stus.getItemName(item.Key) : stus.getRegionName(item.Key);
         chart.Series[0].Points.AddXY(string.Format("{0} {1}%", itemName, percent), item.Value);
       }
 

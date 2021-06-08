@@ -234,7 +234,7 @@ namespace PenguinExpress.employee
         MessageBox.Show("총 개수 불러오는 오류 발생");
         return;
       }
-      new ShowGraph(data, total).ShowDialog();
+      new ShowGraph(data, total, "item").ShowDialog();
     }
     private int getItemTotal()
     {
@@ -297,7 +297,7 @@ namespace PenguinExpress.employee
         MessageBox.Show("총 개수 불러오는 오류 발생");
         return;
       }
-      new ShowGraph(data, total).ShowDialog();
+      new ShowGraph(data, total, "region").ShowDialog();
     }
     private Dictionary<int, int> getRegionGraphData()
     {
