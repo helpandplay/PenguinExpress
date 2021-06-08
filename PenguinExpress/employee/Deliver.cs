@@ -17,6 +17,34 @@ namespace PenguinExpress.employee
       this.id = id;
       InitializeComponent();
     }
+    private void setColor()
+    {
+      //base
+      this.BackColor = ColorTranslator.FromHtml( Env.light);
+      this.ForeColor = ColorTranslator.FromHtml( Env.light);
+      this.Font = Env.font;
+
+      lv_delivery_list.ForeColor = ColorTranslator.FromHtml(Env.dark);
+      lv_delivery_list.BackColor = ColorTranslator.FromHtml(Env.light);
+      lv_delivery_list.BorderStyle = BorderStyle.FixedSingle;
+      lv_delivery_list.Font = Env.font;
+      //btn
+      btn_completeDelivery.Font = Env.boldFont;
+      btn_refresh.Font = Env.boldFont;
+      button2.Font = Env.boldFont;
+
+      btn_completeDelivery.FlatStyle = FlatStyle.Flat;
+      btn_refresh.FlatStyle = FlatStyle.Flat;
+      button2.FlatStyle = FlatStyle.Flat;
+
+      btn_completeDelivery.BackColor = ColorTranslator.FromHtml( Env.info);
+      btn_refresh.BackColor = ColorTranslator.FromHtml(Env.success);
+      button2.BackColor = ColorTranslator.FromHtml(Env.info);
+
+      btn_completeDelivery.ForeColor = ColorTranslator.FromHtml(Env.light);
+      btn_refresh.ForeColor = ColorTranslator.FromHtml(Env.light);
+      button2.ForeColor = ColorTranslator.FromHtml(Env.light);
+    }
     private void getDeliveryList()
     {
       string sql = string.Format(
@@ -275,29 +303,6 @@ namespace PenguinExpress.employee
       lb_count.Text = "배송 건수 : " + count;
       int salary = 1000000 + count * 10000;
       lb_salary.Text = String.Format("급여 : {0:#,0}", salary);
-    }
-    private void setColor()
-    {
-      //base
-      this.BackColor = ColorTranslator.FromHtml( Env.baseColor);
-      this.ForeColor = ColorTranslator.FromHtml( Env.textColor);
-      this.Font = Env.font;
-      //btn
-      btn_completeDelivery.Font = Env.boldFont;
-      btn_refresh.Font = Env.boldFont;
-      button2.Font = Env.boldFont;
-
-      btn_completeDelivery.FlatStyle = FlatStyle.Flat;
-      btn_refresh.FlatStyle = FlatStyle.Flat;
-      button2.FlatStyle = FlatStyle.Flat;
-
-      btn_completeDelivery.BackColor = ColorTranslator.FromHtml( Env.contentStrongColor);
-      btn_refresh.BackColor = ColorTranslator.FromHtml(Env.contentStrongColor);
-      button2.BackColor = ColorTranslator.FromHtml(Env.contentStrongColor);
-
-      btn_completeDelivery.ForeColor = ColorTranslator.FromHtml(Env.textBrightColor);
-      btn_refresh.ForeColor = ColorTranslator.FromHtml(Env.textBrightColor);
-      button2.ForeColor = ColorTranslator.FromHtml(Env.textBrightColor);
     }
     private void Deliver_Load(object sender, EventArgs e)
     {

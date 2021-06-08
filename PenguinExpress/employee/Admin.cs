@@ -19,6 +19,48 @@ namespace PenguinExpress.employee
       stus = new Status();
       InitializeComponent();
     }
+    private void setColor()
+    {
+      this.BackColor = ColorTranslator.FromHtml(Env.light);
+      this.ForeColor = ColorTranslator.FromHtml(Env.light);
+      this.Font = Env.font;
+
+      tabPage1.BackColor = ColorTranslator.FromHtml(Env.primary);
+      tabPage2.BackColor = ColorTranslator.FromHtml(Env.primary);
+
+      lv_complete.BackColor = ColorTranslator.FromHtml(Env.blueGray);
+      lv_delivery.BackColor = ColorTranslator.FromHtml(Env.blueGray);
+      lv_complete.ForeColor = ColorTranslator.FromHtml(Env.dark);
+      lv_delivery.ForeColor = ColorTranslator.FromHtml(Env.dark);
+      //btn
+      btn_getItemGraph.BackColor = ColorTranslator.FromHtml(Env.success);
+      btn_getRegionGraph.BackColor = ColorTranslator.FromHtml(Env.success);
+      btn_refresh.BackColor = ColorTranslator.FromHtml(Env.success);
+
+      btn_getItemGraph.ForeColor = ColorTranslator.FromHtml(Env.light);
+      btn_getRegionGraph.ForeColor = ColorTranslator.FromHtml(Env.light);
+      btn_refresh.ForeColor = ColorTranslator.FromHtml(Env.light);
+
+      btn_getItemGraph.FlatStyle = FlatStyle.Flat;
+      btn_getRegionGraph.FlatStyle = FlatStyle.Flat;
+      btn_refresh.FlatStyle = FlatStyle.Flat;
+
+      btn_getItemGraph.Font = Env.boldFont;
+      btn_getRegionGraph.Font = Env.boldFont;
+      btn_refresh.Font = Env.boldFont;
+
+    }
+    private void Admin_Load(object sender, EventArgs e)
+    {
+      setColor();
+      getDeliveryList();
+    }
+
+    private void listTab_Selected(object sender, TabControlEventArgs e)
+    {
+      if (e.TabPageIndex == 0) getDeliveryList();
+      else getCompleteList();
+    }
     private void getCompleteList()
     {
       string sql = string.Format(
@@ -137,11 +179,6 @@ namespace PenguinExpress.employee
       }
       return false;
     }
-    private void listTab_Selected(object sender, TabControlEventArgs e)
-    {
-      if (e.TabPageIndex == 0) getDeliveryList();
-      else getCompleteList();
-    }
     private void lv_delivery_DoubleClick(object sender, EventArgs e)
     {
       Dictionary<string, string> rowData = new Dictionary<string, string>();
@@ -180,10 +217,17 @@ namespace PenguinExpress.employee
       new SetWorker(rowData, this).ShowDialog();
       getDeliveryList();
     }
-    private void btn_logout_Click(object sender, EventArgs e)
+
+    private void btn_getItemGraph_Click(object sender, EventArgs e)
     {
-      this.Close();
-      new Login().Show();
+      Dictionary<int, int> data = getItemGraphData();
+      int total = getItemTotal();
+      if (total == -1)
+      {
+        MessageBox.Show("총 개수 불러오는 오류 발생");
+        return;
+      }
+      new ShowGraph(data, total, "item").ShowDialog();
     }
     private int getItemTotal()
     {
@@ -205,17 +249,6 @@ namespace PenguinExpress.employee
         Debug.WriteLine(error.Message);
       }
       return total;
-    }
-    private void btn_getItemGraph_Click(object sender, EventArgs e)
-    {
-      Dictionary<int, int> data = getItemGraphData();
-      int total = getItemTotal();
-      if (total == -1)
-      {
-        MessageBox.Show("총 개수 불러오는 오류 발생");
-        return;
-      }
-      new ShowGraph(data, total, "item").ShowDialog();
     }
     private void btn_getRegionGraph_Click(object sender, EventArgs e)
     {
@@ -287,34 +320,10 @@ namespace PenguinExpress.employee
       }
       return data;
     }
-    private void setColor()
+    private void btn_refresh_Click(object sender, EventArgs e)
     {
-      this.BackColor = ColorTranslator.FromHtml(Env.baseColor);
-      this.ForeColor = ColorTranslator.FromHtml(Env.textColor);
-      this.Font = Env.font;
-
-      //btn
-      btn_getItemGraph.BackColor = ColorTranslator.FromHtml(Env.contentStrongColor);
-      btn_getRegionGraph.BackColor = ColorTranslator.FromHtml(Env.contentStrongColor);
-      button1.BackColor = ColorTranslator.FromHtml(Env.contentStrongColor);
-
-      btn_getItemGraph.ForeColor = ColorTranslator.FromHtml(Env.textColor);
-      btn_getRegionGraph.ForeColor = ColorTranslator.FromHtml(Env.textColor);
-      button1.ForeColor = ColorTranslator.FromHtml(Env.textColor);
-
-      btn_getItemGraph.FlatStyle = FlatStyle.Flat;
-      btn_getRegionGraph.FlatStyle = FlatStyle.Flat;
-      button1.FlatStyle = FlatStyle.Flat;
-
-      btn_getItemGraph.Font = Env.boldFont;
-      btn_getRegionGraph.Font = Env.boldFont;
-      button1.FlatStyle = FlatStyle.Flat;
-
-    }
-    private void Admin_Load(object sender, EventArgs e)
-    {
-      setColor();
-      getDeliveryList();
+      if (listTab.SelectedIndex == 0) getDeliveryList();
+      else getCompleteList();
     }
   }
 }

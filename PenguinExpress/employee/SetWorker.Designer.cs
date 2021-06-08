@@ -38,11 +38,13 @@ namespace PenguinExpress.employee
       this.label1 = new System.Windows.Forms.Label();
       this.btn_ok = new System.Windows.Forms.Button();
       this.btn_cancel = new System.Windows.Forms.Button();
+      this.label4 = new System.Windows.Forms.Label();
       this.panel1.SuspendLayout();
       this.SuspendLayout();
       // 
       // panel1
       // 
+      this.panel1.Controls.Add(this.label4);
       this.panel1.Controls.Add(this.cb_workers);
       this.panel1.Controls.Add(this.label3);
       this.panel1.Controls.Add(this.lb_region);
@@ -74,7 +76,7 @@ namespace PenguinExpress.employee
       // lb_region
       // 
       this.lb_region.AutoSize = true;
-      this.lb_region.Location = new System.Drawing.Point(102, 44);
+      this.lb_region.Location = new System.Drawing.Point(102, 46);
       this.lb_region.Name = "lb_region";
       this.lb_region.Size = new System.Drawing.Size(0, 15);
       this.lb_region.TabIndex = 4;
@@ -92,7 +94,7 @@ namespace PenguinExpress.employee
       // 
       this.lb_trackingId.AutoSize = true;
       this.lb_trackingId.Font = new System.Drawing.Font("굴림", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-      this.lb_trackingId.Location = new System.Drawing.Point(102, 10);
+      this.lb_trackingId.Location = new System.Drawing.Point(102, 12);
       this.lb_trackingId.Name = "lb_trackingId";
       this.lb_trackingId.Size = new System.Drawing.Size(0, 17);
       this.lb_trackingId.TabIndex = 2;
@@ -126,6 +128,17 @@ namespace PenguinExpress.employee
       this.btn_cancel.UseVisualStyleBackColor = true;
       this.btn_cancel.Click += new System.EventHandler(this.btn_cancel_Click);
       // 
+      // label4
+      // 
+      this.label4.AutoSize = true;
+      this.label4.Font = new System.Drawing.Font("Impact", 13.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label4.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+      this.label4.Location = new System.Drawing.Point(20, 121);
+      this.label4.Name = "label4";
+      this.label4.Size = new System.Drawing.Size(168, 29);
+      this.label4.TabIndex = 8;
+      this.label4.Text = "PenguinExpress";
+      // 
       // SetWorker
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -154,5 +167,6 @@ namespace PenguinExpress.employee
     private System.Windows.Forms.Label label2;
     private System.Windows.Forms.Button btn_ok;
     private System.Windows.Forms.Button btn_cancel;
+    private System.Windows.Forms.Label label4;
   }
 }

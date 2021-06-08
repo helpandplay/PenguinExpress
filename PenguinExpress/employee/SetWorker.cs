@@ -30,6 +30,23 @@ namespace PenguinExpress.employee
       this.data = data;
       InitializeComponent();
     }
+    private void setColor()
+    {
+      //base
+      this.BackColor = ColorTranslator.FromHtml(Env.light);
+      this.ForeColor = ColorTranslator.FromHtml(Env.dark);
+      this.Font = Env.font;
+      //btn
+      btn_ok.Font = Env.boldFont;
+      btn_cancel.Font = Env.boldFont;
+      btn_cancel.FlatStyle = FlatStyle.Flat;
+      btn_ok.FlatStyle = FlatStyle.Flat;
+
+      btn_cancel.BackColor = ColorTranslator.FromHtml(Env.success);
+      btn_cancel.ForeColor = ColorTranslator.FromHtml(Env.light);
+      btn_ok.ForeColor = ColorTranslator.FromHtml(Env.light);
+      btn_ok.BackColor = ColorTranslator.FromHtml(Env.warning);
+    }
     private List<workerInfo> getRegionWorker(string region)
     {
       List<workerInfo> workerInfo = new List<workerInfo>();
@@ -134,24 +151,6 @@ namespace PenguinExpress.employee
       {
         cb_workers.Items.Add(string.Format("{0}:{1}",worker.name, worker.id));
       }
-
-    }
-    private void setColor()
-    {
-      //base
-      this.BackColor = ColorTranslator.FromHtml(Env.baseColor);
-      this.ForeColor = ColorTranslator.FromHtml(Env.textColor);
-      this.Font = Env.font;
-      //btn
-      btn_ok.Font = Env.boldFont;
-      btn_cancel.Font = Env.boldFont;
-      btn_cancel.FlatStyle = FlatStyle.Flat;
-      btn_ok.FlatStyle = FlatStyle.Flat;
-
-      btn_cancel.BackColor = ColorTranslator.FromHtml(Env.contentStrongColor);
-      btn_cancel.ForeColor = ColorTranslator.FromHtml(Env.textBrightColor);
-      btn_ok.ForeColor = ColorTranslator.FromHtml(Env.textBrightColor);
-      btn_ok.BackColor = ColorTranslator.FromHtml(Env.contentStrongColor);
     }
   }
 }

@@ -22,6 +22,38 @@ namespace PenguinExpress.main
     {
       InitializeComponent();
     }
+    private void setColor()
+    {
+
+      this.BackColor = ColorTranslator.FromHtml(Env.light);
+      this.ForeColor = ColorTranslator.FromHtml(Env.dark);
+
+      tab_login.Padding = new Point(0, 0);
+      tab_login.Margin = new Padding(0, 0, 0, 0);
+
+      tab_login.Font = Env.font;
+      tab_page1.ForeColor = ColorTranslator.FromHtml(Env.dark);
+      tab_page2.ForeColor = ColorTranslator.FromHtml(Env.dark);
+      tab_page1.BackColor = ColorTranslator.FromHtml(Env.light);
+      tab_page2.BackColor = ColorTranslator.FromHtml(Env.light);
+
+      btn_e_login.Font = Env.font;
+      btn_join.Font = Env.font;
+      btn_login.Font = Env.font;
+      btn_join.FlatStyle = FlatStyle.Flat;
+      btn_login.FlatStyle = FlatStyle.Flat;
+      btn_e_login.FlatStyle = FlatStyle.Flat;
+      btn_e_login.BackColor = ColorTranslator.FromHtml(Env.primary);
+      btn_join.BackColor = ColorTranslator.FromHtml(Env.success);
+      btn_login.BackColor = ColorTranslator.FromHtml(Env.primary);
+      btn_e_login.ForeColor = ColorTranslator.FromHtml(Env.light);
+      btn_join.ForeColor = ColorTranslator.FromHtml(Env.light);
+      btn_login.ForeColor = ColorTranslator.FromHtml(Env.light);
+
+      
+      
+
+    }
     private void btn_login_Click(object sender, EventArgs e)
     {
       bool isVaild = checkLoginVaildate(tb_id, tb_pwd);
@@ -192,33 +224,6 @@ namespace PenguinExpress.main
     private void btn_join_Click(object sender, EventArgs e)
     {
       new Join().ShowDialog();
-    }
-    private void setColor()
-    {
-
-      this.BackColor = ColorTranslator.FromHtml(Env.baseColor);
-      this.ForeColor = ColorTranslator.FromHtml(Env.textColor);
-
-      tab_login.Padding = new Point(0, 0);
-      tab_login.Margin = new Padding(0, 0, 0, 0);
-
-      tab_login.Font = Env.font;
-      tab_page1.ForeColor = ColorTranslator.FromHtml(Env.textBrightColor);
-      tab_page2.ForeColor = ColorTranslator.FromHtml(Env.textBrightColor);
-
-      btn_e_login.Font = Env.boldFont;
-      btn_join.Font = Env.boldFont;
-      btn_login.Font = Env.boldFont;
-      btn_join.FlatStyle = FlatStyle.Flat;
-      btn_login.FlatStyle = FlatStyle.Flat;
-      btn_e_login.FlatStyle = FlatStyle.Flat;
-      btn_e_login.BackColor = ColorTranslator.FromHtml(Env.contentStrongColor);
-      btn_join.BackColor = ColorTranslator.FromHtml(Env.contentStrongColor);
-      btn_login.BackColor = ColorTranslator.FromHtml(Env.contentStrongColor);
-
-      
-      
-
     }
     protected override void SetVisibleCore(bool value)
     {

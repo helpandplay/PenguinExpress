@@ -48,31 +48,31 @@ namespace PenguinExpress
       switch (key)
       {
         case 0:
-          return "서울";
+          return "서울특별시";
         case 1:
-          return "경기";
+          return "경기도";
         case 2:
-          return "인천";
+          return "충청북도";
         case 3:
-          return "충북";
+          return "충청남도";
         case 4:
-          return "충남";
+          return "대전광역시";
         case 5:
-          return "대전";
+          return "강원도";
         case 6:
-          return "전북";
+          return "전라북도";
         case 7:
-          return "전남";
+          return "전라남도";
         case 8:
-          return "광주";
+          return "광주광역시";
         case 9:
-          return "경상";
+          return "경상북도";
         case 10:
-          return "경남";
+          return "경상남도";
         case 11:
-          return "대구";
+          return "대구광역시";
         case 12:
-          return "부산";
+          return "부산광역시";
         default:
           throw new Exception("알 수 없는 품목번호입니다. 품목번호 : " + key);
       }

@@ -19,6 +19,46 @@ namespace PenguinExpress.seller
       this.userid = userid;
       stus = new Status();
     }
+    private void setColor()
+    {
+      this.BackColor = ColorTranslator.FromHtml(Env.light);
+      this.ForeColor = ColorTranslator.FromHtml(Env.dark);
+      this.Font = Env.font;
+
+      btn_add_rv.FlatStyle = FlatStyle.Flat;
+      btn_cp_refresh.FlatStyle = FlatStyle.Flat;
+      btn_reg_refresh.FlatStyle = FlatStyle.Flat;
+      btn_rv_cancel.FlatStyle = FlatStyle.Flat;
+
+      btn_cp_refresh.BackColor = ColorTranslator.FromHtml(Env.primary);
+      btn_add_rv.BackColor = ColorTranslator.FromHtml(Env.primary);
+      btn_reg_refresh.BackColor = ColorTranslator.FromHtml(Env.primary);
+      btn_rv_cancel.BackColor = ColorTranslator.FromHtml(Env.warning);
+
+      btn_cp_refresh.ForeColor = ColorTranslator.FromHtml(Env.light);
+      btn_add_rv.ForeColor = ColorTranslator.FromHtml(Env.light);
+      btn_reg_refresh.ForeColor = ColorTranslator.FromHtml(Env.light);
+      btn_rv_cancel.ForeColor = ColorTranslator.FromHtml(Env.light);
+
+      btn_cp_refresh.Font = Env.boldFont;
+      btn_add_rv.Font = Env.boldFont;
+      btn_reg_refresh.Font = Env.boldFont;
+      btn_rv_cancel.Font = Env.boldFont;
+
+      lv_cp.BackColor = ColorTranslator.FromHtml(Env.blueGray);
+      lv_reg.BackColor = ColorTranslator.FromHtml(Env.blueGray);
+      lv_cp.ForeColor = ColorTranslator.FromHtml(Env.dark);
+      lv_reg.ForeColor = ColorTranslator.FromHtml(Env.dark);
+
+      lv_cp.BorderStyle = BorderStyle.FixedSingle;
+      lv_reg.BorderStyle = BorderStyle.FixedSingle;
+
+      label1.BackColor = ColorTranslator.FromHtml(Env.info);
+      label2.BackColor = ColorTranslator.FromHtml(Env.info);
+      label1.ForeColor = ColorTranslator.FromHtml(Env.light);
+      label2.ForeColor = ColorTranslator.FromHtml(Env.light);
+    }
+    //리스트 불러오기
     private void getAllCompleteList(string sql=null)
     {
       if (sql == null)
@@ -218,32 +258,6 @@ namespace PenguinExpress.seller
       SetVisibleCore(false);
       this.Close();
       new Login().ShowDialog();
-    }
-    private void setColor()
-    {
-      this.BackColor = ColorTranslator.FromHtml(Env.baseColor);
-      this.ForeColor = ColorTranslator.FromHtml(Env.textColor);
-      this.Font = Env.font;
-
-      btn_add_rv.FlatStyle = FlatStyle.Flat;
-      btn_cp_refresh.FlatStyle = FlatStyle.Flat;
-      btn_reg_refresh.FlatStyle = FlatStyle.Flat;
-      btn_rv_cancel.FlatStyle = FlatStyle.Flat;
-
-      btn_cp_refresh.BackColor = ColorTranslator.FromHtml(Env.contentStrongColor);
-      btn_add_rv.BackColor = ColorTranslator.FromHtml(Env.contentStrongColor);
-      btn_reg_refresh.BackColor = ColorTranslator.FromHtml(Env.contentStrongColor);
-      btn_rv_cancel.BackColor = ColorTranslator.FromHtml(Env.contentStrongColor);
-
-      btn_cp_refresh.ForeColor = ColorTranslator.FromHtml(Env.textColor);
-      btn_add_rv.ForeColor = ColorTranslator.FromHtml(Env.textColor);
-      btn_reg_refresh.ForeColor = ColorTranslator.FromHtml(Env.textColor);
-      btn_rv_cancel.ForeColor = ColorTranslator.FromHtml(Env.textColor);
-
-      btn_cp_refresh.Font = Env.boldFont;
-      btn_add_rv.Font = Env.boldFont;
-      btn_reg_refresh.Font = Env.boldFont;
-      btn_rv_cancel.Font = Env.boldFont;
     }
     protected override void SetVisibleCore(bool value)
     {

@@ -12,59 +12,35 @@ namespace PenguinExpress.employee
     Status stus;
     string type;
     int total;
-    public ShowGraph(Dictionary<int, int> data, int total, string type)
+    public ShowGraph(Dictionary<int, int>data, int total, string type)
     {
+      this.type = type;
       this.data = data;
       this.total = total;
-      this.type = type;
       stus = new Status();
       InitializeComponent();
-    }
-    private void showItemGraph()
-    {
-      chart.Series[0].ChartType = SeriesChartType.Doughnut;
-      foreach (KeyValuePair<int, int> item in data)
-      {
-        int percent = item.Value * 100 / total;
-        string itemName = stus.getItemName(item.Key);
-        chart.Series[0].Points.AddXY(string.Format("{0} {1}%", itemName, percent), item.Value);
-      }
-    }
-    private void showRegionGraph()
-    {
-      chart.Series[0].ChartType = SeriesChartType.Pie;
-      foreach (KeyValuePair<int, int> item in data)
-      {
-        int percent = item.Value * 100 / total;
-        string itemName = stus.getRegionName(item.Key);
-        chart.Series[0].Points.AddXY(string.Format("{0} {1}%", itemName, percent), item.Value);
-      }
-    }
-    private void getGraphType(string type)
-    {
-      switch (type)
-      {
-        case "item":
-          showItemGraph();
-          return;
-        case "region":
-          showRegionGraph();
-          return;
-        default:
-          throw new Exception("알수 없는 타입 : " + type);
-      }
     }
     private void setColor()
     {
       //base
-      this.BackColor = ColorTranslator.FromHtml(Env.baseColor);
-      this.ForeColor = ColorTranslator.FromHtml(Env.textColor);
+      this.BackColor = ColorTranslator.FromHtml(Env.light);
+      this.ForeColor = ColorTranslator.FromHtml(Env.dark);
       this.Font = Env.font;
+
+      chart.BackColor = ColorTranslator.FromHtml(Env.light);
+      chart.ForeColor = ColorTranslator.FromHtml(Env.dark);
     }
     private void ShowGraph_Load(object sender, EventArgs e)
     {
       setColor();
-      getGraphType(type);
+      chart.Series[0].ChartType = SeriesChartType.Doughnut;
+      foreach(KeyValuePair<int, int> item in data)
+      {
+        int percent = item.Value * 100 / total;
+        string itemName = type == "item" ? stus.getItemName(item.Key) : stus.getRegionName(item.Key);
+        chart.Series[0].Points.AddXY(string.Format("{0} {1}%", itemName, percent), item.Value);
+      }
+
     }
   }
 }
