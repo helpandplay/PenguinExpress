@@ -21,18 +21,25 @@ namespace PenguinExpress.employee
     }
     private void setColor()
     {
-      this.BackColor = ColorTranslator.FromHtml(Env.baseColor);
-      this.ForeColor = ColorTranslator.FromHtml(Env.textColor);
+      this.BackColor = ColorTranslator.FromHtml(Env.light);
+      this.ForeColor = ColorTranslator.FromHtml(Env.light);
       this.Font = Env.font;
 
-      //btn
-      btn_getItemGraph.BackColor = ColorTranslator.FromHtml(Env.contentStrongColor);
-      btn_getRegionGraph.BackColor = ColorTranslator.FromHtml(Env.contentStrongColor);
-      button1.BackColor = ColorTranslator.FromHtml(Env.contentStrongColor);
+      tabPage1.BackColor = ColorTranslator.FromHtml(Env.primary);
+      tabPage2.BackColor = ColorTranslator.FromHtml(Env.primary);
 
-      btn_getItemGraph.ForeColor = ColorTranslator.FromHtml(Env.textColor);
-      btn_getRegionGraph.ForeColor = ColorTranslator.FromHtml(Env.textColor);
-      button1.ForeColor = ColorTranslator.FromHtml(Env.textColor);
+      lv_complete.BackColor = ColorTranslator.FromHtml(Env.blueGray);
+      lv_delivery.BackColor = ColorTranslator.FromHtml(Env.blueGray);
+      lv_complete.ForeColor = ColorTranslator.FromHtml(Env.dark);
+      lv_delivery.ForeColor = ColorTranslator.FromHtml(Env.dark);
+      //btn
+      btn_getItemGraph.BackColor = ColorTranslator.FromHtml(Env.success);
+      btn_getRegionGraph.BackColor = ColorTranslator.FromHtml(Env.success);
+      button1.BackColor = ColorTranslator.FromHtml(Env.success);
+
+      btn_getItemGraph.ForeColor = ColorTranslator.FromHtml(Env.light);
+      btn_getRegionGraph.ForeColor = ColorTranslator.FromHtml(Env.light);
+      button1.ForeColor = ColorTranslator.FromHtml(Env.light);
 
       btn_getItemGraph.FlatStyle = FlatStyle.Flat;
       btn_getRegionGraph.FlatStyle = FlatStyle.Flat;
@@ -40,7 +47,7 @@ namespace PenguinExpress.employee
 
       btn_getItemGraph.Font = Env.boldFont;
       btn_getRegionGraph.Font = Env.boldFont;
-      button1.FlatStyle = FlatStyle.Flat;
+      button1.Font = Env.boldFont;
 
     }
     private void Admin_Load(object sender, EventArgs e)

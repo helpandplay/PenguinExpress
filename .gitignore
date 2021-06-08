@@ -363,3 +363,4 @@ MigrationBackup/
 FodyWeavers.xsd
 
 */Env.cs
+*.hwp

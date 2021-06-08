@@ -42,9 +42,9 @@ namespace PenguinExpress.employee
       this.label1 = new System.Windows.Forms.Label();
       this.btn_completeDelivery = new System.Windows.Forms.Button();
       this.button2 = new System.Windows.Forms.Button();
-      this.btn_logout = new System.Windows.Forms.Button();
       this.lb_count = new System.Windows.Forms.Label();
       this.lb_salary = new System.Windows.Forms.Label();
+      this.label2 = new System.Windows.Forms.Label();
       this.panel1.SuspendLayout();
       this.SuspendLayout();
       // 
@@ -54,7 +54,7 @@ namespace PenguinExpress.employee
       this.panel1.Controls.Add(this.btn_refresh);
       this.panel1.Controls.Add(this.lv_delivery_list);
       this.panel1.Controls.Add(this.label1);
-      this.panel1.Location = new System.Drawing.Point(12, 12);
+      this.panel1.Location = new System.Drawing.Point(12, 35);
       this.panel1.Name = "panel1";
       this.panel1.Size = new System.Drawing.Size(966, 364);
       this.panel1.TabIndex = 0;
@@ -140,9 +140,9 @@ namespace PenguinExpress.employee
       // 
       // btn_completeDelivery
       // 
-      this.btn_completeDelivery.Location = new System.Drawing.Point(12, 382);
+      this.btn_completeDelivery.Location = new System.Drawing.Point(12, 405);
       this.btn_completeDelivery.Name = "btn_completeDelivery";
-      this.btn_completeDelivery.Size = new System.Drawing.Size(101, 56);
+      this.btn_completeDelivery.Size = new System.Drawing.Size(101, 38);
       this.btn_completeDelivery.TabIndex = 1;
       this.btn_completeDelivery.Text = "배송 완료";
       this.btn_completeDelivery.UseVisualStyleBackColor = true;
@@ -150,28 +150,18 @@ namespace PenguinExpress.employee
       // 
       // button2
       // 
-      this.button2.Location = new System.Drawing.Point(119, 382);
+      this.button2.Location = new System.Drawing.Point(119, 405);
       this.button2.Name = "button2";
-      this.button2.Size = new System.Drawing.Size(101, 56);
+      this.button2.Size = new System.Drawing.Size(101, 38);
       this.button2.TabIndex = 2;
       this.button2.Text = "예상 급여";
       this.button2.UseVisualStyleBackColor = true;
       this.button2.Click += new System.EventHandler(this.button2_Click);
       // 
-      // btn_logout
-      // 
-      this.btn_logout.Location = new System.Drawing.Point(697, 382);
-      this.btn_logout.Name = "btn_logout";
-      this.btn_logout.Size = new System.Drawing.Size(91, 23);
-      this.btn_logout.TabIndex = 4;
-      this.btn_logout.Text = "로그아웃";
-      this.btn_logout.UseVisualStyleBackColor = true;
-      this.btn_logout.Click += new System.EventHandler(this.btn_logout_Click);
-      // 
       // lb_count
       // 
       this.lb_count.AutoSize = true;
-      this.lb_count.Location = new System.Drawing.Point(226, 390);
+      this.lb_count.Location = new System.Drawing.Point(226, 413);
       this.lb_count.Name = "lb_count";
       this.lb_count.Size = new System.Drawing.Size(0, 15);
       this.lb_count.TabIndex = 5;
@@ -179,19 +169,30 @@ namespace PenguinExpress.employee
       // lb_salary
       // 
       this.lb_salary.AutoSize = true;
-      this.lb_salary.Location = new System.Drawing.Point(226, 405);
+      this.lb_salary.Location = new System.Drawing.Point(226, 428);
       this.lb_salary.Name = "lb_salary";
       this.lb_salary.Size = new System.Drawing.Size(0, 15);
       this.lb_salary.TabIndex = 6;
+      // 
+      // label2
+      // 
+      this.label2.AutoSize = true;
+      this.label2.Font = new System.Drawing.Font("Impact", 13.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+      this.label2.Location = new System.Drawing.Point(13, 3);
+      this.label2.Name = "label2";
+      this.label2.Size = new System.Drawing.Size(168, 29);
+      this.label2.TabIndex = 7;
+      this.label2.Text = "PenguinExpress";
       // 
       // Deliver
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(990, 450);
+      this.ClientSize = new System.Drawing.Size(990, 452);
+      this.Controls.Add(this.label2);
       this.Controls.Add(this.lb_salary);
       this.Controls.Add(this.lb_count);
-      this.Controls.Add(this.btn_logout);
       this.Controls.Add(this.button2);
       this.Controls.Add(this.btn_completeDelivery);
       this.Controls.Add(this.panel1);
@@ -220,8 +221,8 @@ namespace PenguinExpress.employee
     private System.Windows.Forms.Label label1;
     private System.Windows.Forms.Button btn_completeDelivery;
     private System.Windows.Forms.Button button2;
-    private System.Windows.Forms.Button btn_logout;
     private System.Windows.Forms.Label lb_count;
     private System.Windows.Forms.Label lb_salary;
+    private System.Windows.Forms.Label label2;
   }
 }

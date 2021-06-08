@@ -15,22 +15,27 @@ namespace PenguinExpress.seller
     }
     private void setColor()
     {
-      this.BackColor = ColorTranslator.FromHtml(Env.baseColor);
-      this.ForeColor = ColorTranslator.FromHtml(Env.textColor);
+      this.BackColor = ColorTranslator.FromHtml(Env.light);
+      this.ForeColor = ColorTranslator.FromHtml(Env.dark);
       this.Font = Env.font;
 
       //btn
-      btn_cancel.ForeColor = ColorTranslator.FromHtml(Env.textBrightColor);
-      btn_onJoin.ForeColor = ColorTranslator.FromHtml(Env.textBrightColor);
-      button1.ForeColor = ColorTranslator.FromHtml(Env.textBrightColor);
+      btn_cancel.ForeColor = ColorTranslator.FromHtml(Env.light);
+      btn_onJoin.ForeColor = ColorTranslator.FromHtml(Env.light);
+      button1.ForeColor = ColorTranslator.FromHtml(Env.light);
 
-      btn_onJoin.BackColor = ColorTranslator.FromHtml(Env.contentStrongColor);
-      btn_cancel.BackColor = ColorTranslator.FromHtml(Env.contentStrongColor);
-      button1.BackColor = ColorTranslator.FromHtml(Env.contentStrongColor);
+      btn_onJoin.BackColor = ColorTranslator.FromHtml(Env.success);
+      btn_cancel.BackColor = ColorTranslator.FromHtml(Env.warning);
+      button1.BackColor = ColorTranslator.FromHtml(Env.success);
 
       btn_cancel.Font = Env.boldFont;
       btn_onJoin.Font = Env.boldFont;
       button1.Font = Env.boldFont;
+
+      btn_cancel.FlatStyle = FlatStyle.Flat;
+      btn_onJoin.FlatStyle = FlatStyle.Flat;
+      button1.FlatStyle = FlatStyle.Flat;
+
     }
 
     private void checkOverlapId(string sql) {

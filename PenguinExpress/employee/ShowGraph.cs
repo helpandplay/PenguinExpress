@@ -21,9 +21,12 @@ namespace PenguinExpress.employee
     private void setColor()
     {
       //base
-      this.BackColor = ColorTranslator.FromHtml(Env.baseColor);
-      this.ForeColor = ColorTranslator.FromHtml(Env.textColor);
+      this.BackColor = ColorTranslator.FromHtml(Env.light);
+      this.ForeColor = ColorTranslator.FromHtml(Env.dark);
       this.Font = Env.font;
+
+      chart.BackColor = ColorTranslator.FromHtml(Env.light);
+      chart.ForeColor = ColorTranslator.FromHtml(Env.dark);
     }
     private void ShowGraph_Load(object sender, EventArgs e)
     {

@@ -53,7 +53,7 @@ namespace PenguinExpress.employee
       this.button1 = new System.Windows.Forms.Button();
       this.btn_getItemGraph = new System.Windows.Forms.Button();
       this.btn_getRegionGraph = new System.Windows.Forms.Button();
-      this.btn_logout = new System.Windows.Forms.Button();
+      this.label1 = new System.Windows.Forms.Label();
       this.listTab.SuspendLayout();
       this.tabPage1.SuspendLayout();
       this.tabPage2.SuspendLayout();
@@ -244,22 +244,23 @@ namespace PenguinExpress.employee
       this.btn_getRegionGraph.UseVisualStyleBackColor = true;
       this.btn_getRegionGraph.Click += new System.EventHandler(this.btn_getRegionGraph_Click);
       // 
-      // btn_logout
+      // label1
       // 
-      this.btn_logout.Location = new System.Drawing.Point(964, 412);
-      this.btn_logout.Name = "btn_logout";
-      this.btn_logout.Size = new System.Drawing.Size(88, 34);
-      this.btn_logout.TabIndex = 6;
-      this.btn_logout.Text = "로그아웃";
-      this.btn_logout.UseVisualStyleBackColor = true;
-      this.btn_logout.Click += new System.EventHandler(this.btn_logout_Click);
+      this.label1.AutoSize = true;
+      this.label1.Font = new System.Drawing.Font("Impact", 13.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+      this.label1.Location = new System.Drawing.Point(13, 3);
+      this.label1.Name = "label1";
+      this.label1.Size = new System.Drawing.Size(168, 29);
+      this.label1.TabIndex = 5;
+      this.label1.Text = "PenguinExpress";
       // 
       // Admin
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(1068, 465);
-      this.Controls.Add(this.btn_logout);
+      this.Controls.Add(this.label1);
       this.Controls.Add(this.btn_getRegionGraph);
       this.Controls.Add(this.btn_getItemGraph);
       this.Controls.Add(this.button1);
@@ -271,6 +272,7 @@ namespace PenguinExpress.employee
       this.tabPage1.ResumeLayout(false);
       this.tabPage2.ResumeLayout(false);
       this.ResumeLayout(false);
+      this.PerformLayout();
 
     }
 
@@ -300,6 +302,6 @@ namespace PenguinExpress.employee
     private System.Windows.Forms.ColumnHeader ch_cp_rv_time;
     private System.Windows.Forms.ColumnHeader ch_cp_time;
     private System.Windows.Forms.ColumnHeader ch_e_id;
-    private System.Windows.Forms.Button btn_logout;
+    private System.Windows.Forms.Label label1;
   }
 }

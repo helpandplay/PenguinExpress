@@ -50,7 +50,7 @@ namespace PenguinExpress.seller
       this.ch_cp_time = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
       this.btn_cp_refresh = new System.Windows.Forms.Button();
       this.label2 = new System.Windows.Forms.Label();
-      this.btn_logout = new System.Windows.Forms.Button();
+      this.label3 = new System.Windows.Forms.Label();
       this.SuspendLayout();
       // 
       // lv_reg
@@ -66,7 +66,7 @@ namespace PenguinExpress.seller
       this.lv_reg.FullRowSelect = true;
       this.lv_reg.GridLines = true;
       this.lv_reg.HideSelection = false;
-      this.lv_reg.Location = new System.Drawing.Point(12, 30);
+      this.lv_reg.Location = new System.Drawing.Point(12, 53);
       this.lv_reg.Name = "lv_reg";
       this.lv_reg.Size = new System.Drawing.Size(842, 190);
       this.lv_reg.TabIndex = 0;
@@ -118,7 +118,7 @@ namespace PenguinExpress.seller
       // 
       // btn_add_rv
       // 
-      this.btn_add_rv.Location = new System.Drawing.Point(12, 227);
+      this.btn_add_rv.Location = new System.Drawing.Point(12, 250);
       this.btn_add_rv.Name = "btn_add_rv";
       this.btn_add_rv.Size = new System.Drawing.Size(112, 32);
       this.btn_add_rv.TabIndex = 1;
@@ -128,7 +128,7 @@ namespace PenguinExpress.seller
       // 
       // btn_rv_cancel
       // 
-      this.btn_rv_cancel.Location = new System.Drawing.Point(130, 227);
+      this.btn_rv_cancel.Location = new System.Drawing.Point(130, 250);
       this.btn_rv_cancel.Name = "btn_rv_cancel";
       this.btn_rv_cancel.Size = new System.Drawing.Size(112, 32);
       this.btn_rv_cancel.TabIndex = 2;
@@ -139,7 +139,7 @@ namespace PenguinExpress.seller
       // label1
       // 
       this.label1.AutoSize = true;
-      this.label1.Location = new System.Drawing.Point(9, 9);
+      this.label1.Location = new System.Drawing.Point(9, 32);
       this.label1.Name = "label1";
       this.label1.Size = new System.Drawing.Size(87, 15);
       this.label1.TabIndex = 3;
@@ -147,7 +147,7 @@ namespace PenguinExpress.seller
       // 
       // btn_reg_refresh
       // 
-      this.btn_reg_refresh.Location = new System.Drawing.Point(762, 1);
+      this.btn_reg_refresh.Location = new System.Drawing.Point(762, 24);
       this.btn_reg_refresh.Name = "btn_reg_refresh";
       this.btn_reg_refresh.Size = new System.Drawing.Size(91, 23);
       this.btn_reg_refresh.TabIndex = 4;
@@ -167,7 +167,7 @@ namespace PenguinExpress.seller
       this.lv_cp.FullRowSelect = true;
       this.lv_cp.GridLines = true;
       this.lv_cp.HideSelection = false;
-      this.lv_cp.Location = new System.Drawing.Point(12, 290);
+      this.lv_cp.Location = new System.Drawing.Point(12, 313);
       this.lv_cp.Name = "lv_cp";
       this.lv_cp.Size = new System.Drawing.Size(842, 234);
       this.lv_cp.TabIndex = 5;
@@ -212,7 +212,7 @@ namespace PenguinExpress.seller
       // 
       // btn_cp_refresh
       // 
-      this.btn_cp_refresh.Location = new System.Drawing.Point(763, 256);
+      this.btn_cp_refresh.Location = new System.Drawing.Point(763, 279);
       this.btn_cp_refresh.Name = "btn_cp_refresh";
       this.btn_cp_refresh.Size = new System.Drawing.Size(91, 23);
       this.btn_cp_refresh.TabIndex = 6;
@@ -223,28 +223,30 @@ namespace PenguinExpress.seller
       // label2
       // 
       this.label2.AutoSize = true;
-      this.label2.Location = new System.Drawing.Point(12, 272);
+      this.label2.BackColor = System.Drawing.SystemColors.Control;
+      this.label2.Location = new System.Drawing.Point(12, 295);
       this.label2.Name = "label2";
       this.label2.Size = new System.Drawing.Size(87, 15);
       this.label2.TabIndex = 7;
       this.label2.Text = "완료 리스트";
       // 
-      // btn_logout
+      // label3
       // 
-      this.btn_logout.Location = new System.Drawing.Point(762, 227);
-      this.btn_logout.Name = "btn_logout";
-      this.btn_logout.Size = new System.Drawing.Size(91, 23);
-      this.btn_logout.TabIndex = 8;
-      this.btn_logout.Text = "로그아웃";
-      this.btn_logout.UseVisualStyleBackColor = true;
-      this.btn_logout.Click += new System.EventHandler(this.btn_logout_Click);
+      this.label3.AutoSize = true;
+      this.label3.Font = new System.Drawing.Font("Impact", 13.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+      this.label3.Location = new System.Drawing.Point(7, 3);
+      this.label3.Name = "label3";
+      this.label3.Size = new System.Drawing.Size(168, 29);
+      this.label3.TabIndex = 8;
+      this.label3.Text = "PenguinExpress";
       // 
       // Seller_list
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(865, 537);
-      this.Controls.Add(this.btn_logout);
+      this.ClientSize = new System.Drawing.Size(865, 567);
+      this.Controls.Add(this.label3);
       this.Controls.Add(this.label2);
       this.Controls.Add(this.btn_cp_refresh);
       this.Controls.Add(this.lv_cp);
@@ -284,6 +286,6 @@ namespace PenguinExpress.seller
     private System.Windows.Forms.ColumnHeader ch_cp_time;
     private System.Windows.Forms.ColumnHeader ch_tracking_id;
     private System.Windows.Forms.ColumnHeader ch_cp_tracking_id;
-    private System.Windows.Forms.Button btn_logout;
+    private System.Windows.Forms.Label label3;
   }
 }

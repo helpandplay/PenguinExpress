@@ -52,6 +52,7 @@ namespace PenguinExpress.seller
       this.label1 = new System.Windows.Forms.Label();
       this.btn_onJoin = new System.Windows.Forms.Button();
       this.btn_cancel = new System.Windows.Forms.Button();
+      this.label7 = new System.Windows.Forms.Label();
       this.panel1.SuspendLayout();
       this.groupBox1.SuspendLayout();
       this.SuspendLayout();
@@ -77,7 +78,7 @@ namespace PenguinExpress.seller
       this.panel1.Controls.Add(this.button1);
       this.panel1.Controls.Add(this.tb_id);
       this.panel1.Controls.Add(this.label1);
-      this.panel1.Location = new System.Drawing.Point(12, 12);
+      this.panel1.Location = new System.Drawing.Point(12, 33);
       this.panel1.Name = "panel1";
       this.panel1.Size = new System.Drawing.Size(349, 230);
       this.panel1.TabIndex = 0;
@@ -279,7 +280,7 @@ namespace PenguinExpress.seller
       // 
       // btn_onJoin
       // 
-      this.btn_onJoin.Location = new System.Drawing.Point(80, 248);
+      this.btn_onJoin.Location = new System.Drawing.Point(80, 269);
       this.btn_onJoin.Name = "btn_onJoin";
       this.btn_onJoin.Size = new System.Drawing.Size(105, 55);
       this.btn_onJoin.TabIndex = 1;
@@ -289,7 +290,7 @@ namespace PenguinExpress.seller
       // 
       // btn_cancel
       // 
-      this.btn_cancel.Location = new System.Drawing.Point(191, 248);
+      this.btn_cancel.Location = new System.Drawing.Point(191, 269);
       this.btn_cancel.Name = "btn_cancel";
       this.btn_cancel.Size = new System.Drawing.Size(105, 55);
       this.btn_cancel.TabIndex = 2;
@@ -297,11 +298,23 @@ namespace PenguinExpress.seller
       this.btn_cancel.UseVisualStyleBackColor = true;
       this.btn_cancel.Click += new System.EventHandler(this.btn_cancel_Click);
       // 
+      // label7
+      // 
+      this.label7.AutoSize = true;
+      this.label7.Font = new System.Drawing.Font("Impact", 13.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label7.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+      this.label7.Location = new System.Drawing.Point(7, 1);
+      this.label7.Name = "label7";
+      this.label7.Size = new System.Drawing.Size(168, 29);
+      this.label7.TabIndex = 6;
+      this.label7.Text = "PenguinExpress";
+      // 
       // Join
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(373, 315);
+      this.ClientSize = new System.Drawing.Size(373, 326);
+      this.Controls.Add(this.label7);
       this.Controls.Add(this.btn_cancel);
       this.Controls.Add(this.btn_onJoin);
       this.Controls.Add(this.panel1);
@@ -313,6 +326,7 @@ namespace PenguinExpress.seller
       this.groupBox1.ResumeLayout(false);
       this.groupBox1.PerformLayout();
       this.ResumeLayout(false);
+      this.PerformLayout();
 
     }
 
@@ -341,5 +355,6 @@ namespace PenguinExpress.seller
     private System.Windows.Forms.Button btn_cancel;
     private System.Windows.Forms.GroupBox groupBox1;
     private System.Windows.Forms.CheckBox cb_isEmployee;
+    private System.Windows.Forms.Label label7;
   }
 }
