@@ -44,6 +44,9 @@ namespace PenguinExpress.employee
       btn_completeDelivery.ForeColor = ColorTranslator.FromHtml(Env.light);
       btn_refresh.ForeColor = ColorTranslator.FromHtml(Env.light);
       button2.ForeColor = ColorTranslator.FromHtml(Env.light);
+
+      lb_count.ForeColor = ColorTranslator.FromHtml(Env.dark);
+      lb_salary.ForeColor = ColorTranslator.FromHtml(Env.dark);
     }
     private void getDeliveryList()
     {
@@ -298,11 +301,7 @@ namespace PenguinExpress.employee
     }
     private void button2_Click(object sender, EventArgs e)
     {
-      int count = getDelieveryCount();
 
-      lb_count.Text = "배송 건수 : " + count;
-      int salary = 1000000 + count * 10000;
-      lb_salary.Text = String.Format("급여 : {0:#,0}", salary);
     }
     private void Deliver_Load(object sender, EventArgs e)
     {
@@ -311,6 +310,14 @@ namespace PenguinExpress.employee
       lb_dv_id.Text = lb_dv_id.Text + id;
 
       getDeliveryList();
+    }
+    private void salaryClick(object sender, EventArgs e)
+    {
+      int count = getDelieveryCount();
+      Debug.WriteLine(count);
+      lb_count.Text = "배송 건수 : " + count;
+      int salary = 1000000 + count * 10000;
+      lb_salary.Text = String.Format("급여 : {0:#,0}", salary);
     }
   }
 }
