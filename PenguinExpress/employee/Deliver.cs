@@ -289,6 +289,9 @@ namespace PenguinExpress.employee
     private void btn_completeDelivery_Click(object sender, EventArgs e)
     {
       if (lv_delivery_list.SelectedItems.Count == 0) return;
+      DialogResult result = MessageBox.Show("배송 완료하셨습니까?", "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+      if (result == DialogResult.No) return;
+
       string trackingId = lv_delivery_list.SelectedItems[0].SubItems[0].Text;
 
       completeDelivery(trackingId);
