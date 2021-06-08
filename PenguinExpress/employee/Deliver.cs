@@ -275,6 +275,27 @@ namespace PenguinExpress.employee
     {
       getDeliveryList();
     }
+    private void deleteReservationItem(string trackingId)
+    {
+      string sql = string.Format("" +
+        "DELETE FROM {0} " +
+        "WHERE tracking_id = {1};",
+        MyDatabase.reservationListTbl, trackingId);
+
+      MyDatabase.cmd.CommandText = sql;
+      try
+      {
+        int result = MyDatabase.cmd.ExecuteNonQuery();
+        if (result == -1)
+        {
+          throw new Exception("Delivery : failed reservation list item. trackingId : " + trackingId);
+        }
+      }catch(Exception error)
+      {
+        Debug.WriteLine(error.StackTrace);
+        Debug.WriteLine(error.Message);
+      }
+    }
     private void lv_delivery_list_DoubleClick(object sender, EventArgs e)
     {
       DialogResult result = MessageBox.Show("배송 완료하셨습니까?", "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -285,6 +306,7 @@ namespace PenguinExpress.employee
 
       completeDelivery(trackingId);
       updateCount();
+      deleteReservationItem(trackingId);
     }
     private void btn_completeDelivery_Click(object sender, EventArgs e)
     {
@@ -296,15 +318,12 @@ namespace PenguinExpress.employee
 
       completeDelivery(trackingId);
       updateCount();
+      deleteReservationItem(trackingId);
     }
     private void btn_logout_Click(object sender, EventArgs e)
     {
       this.Close();
       new Login().Show();
-    }
-    private void button2_Click(object sender, EventArgs e)
-    {
-
     }
     private void Deliver_Load(object sender, EventArgs e)
     {
