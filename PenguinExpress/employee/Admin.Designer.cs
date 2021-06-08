@@ -50,7 +50,7 @@ namespace PenguinExpress.employee
       this.ch_cp_worker_name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
       this.ch_cp_rv_time = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
       this.ch_cp_time = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-      this.button1 = new System.Windows.Forms.Button();
+      this.btn_refresh = new System.Windows.Forms.Button();
       this.btn_getItemGraph = new System.Windows.Forms.Button();
       this.btn_getRegionGraph = new System.Windows.Forms.Button();
       this.label1 = new System.Windows.Forms.Label();
@@ -215,14 +215,15 @@ namespace PenguinExpress.employee
       this.ch_cp_time.Text = "배송완료시간";
       this.ch_cp_time.Width = 190;
       // 
-      // button1
+      // btn_refresh
       // 
-      this.button1.Location = new System.Drawing.Point(964, 12);
-      this.button1.Name = "button1";
-      this.button1.Size = new System.Drawing.Size(88, 34);
-      this.button1.TabIndex = 2;
-      this.button1.Text = "새로고침";
-      this.button1.UseVisualStyleBackColor = true;
+      this.btn_refresh.Location = new System.Drawing.Point(964, 12);
+      this.btn_refresh.Name = "btn_refresh";
+      this.btn_refresh.Size = new System.Drawing.Size(88, 34);
+      this.btn_refresh.TabIndex = 2;
+      this.btn_refresh.Text = "새로고침";
+      this.btn_refresh.UseVisualStyleBackColor = true;
+      this.btn_refresh.Click += new System.EventHandler(this.btn_refresh_Click);
       // 
       // btn_getItemGraph
       // 
@@ -263,7 +264,7 @@ namespace PenguinExpress.employee
       this.Controls.Add(this.label1);
       this.Controls.Add(this.btn_getRegionGraph);
       this.Controls.Add(this.btn_getItemGraph);
-      this.Controls.Add(this.button1);
+      this.Controls.Add(this.btn_refresh);
       this.Controls.Add(this.listTab);
       this.Name = "Admin";
       this.Text = "Admin";
@@ -283,7 +284,7 @@ namespace PenguinExpress.employee
     private System.Windows.Forms.ListView lv_delivery;
     private System.Windows.Forms.TabPage tabPage2;
     private System.Windows.Forms.ListView lv_complete;
-    private System.Windows.Forms.Button button1;
+    private System.Windows.Forms.Button btn_refresh;
     private System.Windows.Forms.Button btn_getItemGraph;
     private System.Windows.Forms.Button btn_getRegionGraph;
     private System.Windows.Forms.ColumnHeader ch_tracking_id;

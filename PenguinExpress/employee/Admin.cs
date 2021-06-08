@@ -35,19 +35,19 @@ namespace PenguinExpress.employee
       //btn
       btn_getItemGraph.BackColor = ColorTranslator.FromHtml(Env.success);
       btn_getRegionGraph.BackColor = ColorTranslator.FromHtml(Env.success);
-      button1.BackColor = ColorTranslator.FromHtml(Env.success);
+      btn_refresh.BackColor = ColorTranslator.FromHtml(Env.success);
 
       btn_getItemGraph.ForeColor = ColorTranslator.FromHtml(Env.light);
       btn_getRegionGraph.ForeColor = ColorTranslator.FromHtml(Env.light);
-      button1.ForeColor = ColorTranslator.FromHtml(Env.light);
+      btn_refresh.ForeColor = ColorTranslator.FromHtml(Env.light);
 
       btn_getItemGraph.FlatStyle = FlatStyle.Flat;
       btn_getRegionGraph.FlatStyle = FlatStyle.Flat;
-      button1.FlatStyle = FlatStyle.Flat;
+      btn_refresh.FlatStyle = FlatStyle.Flat;
 
       btn_getItemGraph.Font = Env.boldFont;
       btn_getRegionGraph.Font = Env.boldFont;
-      button1.Font = Env.boldFont;
+      btn_refresh.Font = Env.boldFont;
 
     }
     private void Admin_Load(object sender, EventArgs e)
@@ -219,12 +219,6 @@ namespace PenguinExpress.employee
       return false;
     }
 
-    private void btn_logout_Click(object sender, EventArgs e)
-    {
-      this.Close();
-      new Login().Show();
-    }
-
     private void btn_getItemGraph_Click(object sender, EventArgs e)
     {
       Dictionary<int, int> data = getItemGraphData();
@@ -327,6 +321,12 @@ namespace PenguinExpress.employee
         reader.Close();
       }
       return data;
+    }
+
+    private void btn_refresh_Click(object sender, EventArgs e)
+    {
+      if(listTab.SelectedIndex == 0) getCompleteList();
+      else getDeliveryList();
     }
   }
 }
