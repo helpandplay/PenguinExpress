@@ -188,7 +188,7 @@ namespace PenguinExpress.seller
         return;
       }
       DialogResult result = MessageBox.Show("예약을 취소하시겠어요?", "Info", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-      if (result == DialogResult.Cancel) return;
+      if (result == DialogResult.No) return;
 
       int trackingId = int.Parse(lv_reg.SelectedItems[0].Text);
       try
@@ -252,12 +252,6 @@ namespace PenguinExpress.seller
       if (seller == null) return;
       new AddProduct(seller).ShowDialog();
       getAllRegList();
-    }
-    private void btn_logout_Click(object sender, EventArgs e)
-    {
-      SetVisibleCore(false);
-      this.Close();
-      new Login().ShowDialog();
     }
     protected override void SetVisibleCore(bool value)
     {

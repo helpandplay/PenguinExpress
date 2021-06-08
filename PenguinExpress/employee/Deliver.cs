@@ -320,11 +320,6 @@ namespace PenguinExpress.employee
       updateCount();
       deleteReservationItem(trackingId);
     }
-    private void btn_logout_Click(object sender, EventArgs e)
-    {
-      this.Close();
-      new Login().Show();
-    }
     private void Deliver_Load(object sender, EventArgs e)
     {
       setColor();
