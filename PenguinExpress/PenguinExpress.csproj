@@ -100,10 +100,10 @@
     <Compile Include="seller\AddProduct.Designer.cs">
       <DependentUpon>AddProduct.cs</DependentUpon>
     </Compile>
-    <Compile Include="seller\Join.cs">
+    <Compile Include="main\Join.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="seller\Join.Designer.cs">
+    <Compile Include="main\Join.Designer.cs">
       <DependentUpon>Join.cs</DependentUpon>
     </Compile>
     <Compile Include="seller\Seller_list.cs">
@@ -112,6 +112,7 @@
     <Compile Include="seller\Seller_list.Designer.cs">
       <DependentUpon>Seller_list.cs</DependentUpon>
     </Compile>
+    <Compile Include="service\Auth.cs" />
     <Compile Include="Status.cs" />
     <EmbeddedResource Include="employee\Admin.resx">
       <DependentUpon>Admin.cs</DependentUpon>
@@ -143,7 +144,7 @@
     <EmbeddedResource Include="seller\AddProduct.resx">
       <DependentUpon>AddProduct.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="seller\Join.resx">
+    <EmbeddedResource Include="main\Join.resx">
       <DependentUpon>Join.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="seller\Seller_list.resx">
