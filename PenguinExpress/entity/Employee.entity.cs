@@ -1,8 +1,8 @@
 ﻿namespace PenguinExpress.entity
 {
-  public class Employee
+  public class EmployeeEntity
   {
-    private static Employee instance = null;
+    private static EmployeeEntity instance = null;
 
     public readonly string id = "id";
     public readonly string userid = "userid";
@@ -15,11 +15,11 @@
     public readonly string isEmployee = "isEmployee";
     public readonly string salt = "salt";
 
-    public Employee getEmployee()
+    public static EmployeeEntity getEmployee()
     {
       if(instance == null)
       {
-        instance = new Employee();
+        instance = new EmployeeEntity();
       }
       return instance;
     }

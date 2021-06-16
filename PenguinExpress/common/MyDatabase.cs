@@ -9,6 +9,7 @@ namespace PenguinExpress.config
   {
     public static MySqlCommand cmd;
     public static MySqlConnection connection;
+    public static MySqlDataReader reader;
 
     public static string reservationListTbl = "reservation_list";
     public static string sellerTbl = "seller";
