@@ -10,7 +10,7 @@ namespace PenguinExpress.service
 {
   public class SellerService
   {
-    private SellerEntity entity = SellerEntity.getSellerEntity();
+    private static SellerEntity entity = SellerEntity.getSellerEntity();
 
     public List<Dictionary<string, string>> findAll() { }
     public Dictionary<string, string> findOne(string userid) { }

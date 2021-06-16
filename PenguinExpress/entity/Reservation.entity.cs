@@ -1,8 +1,8 @@
 ﻿namespace PenguinExpress.entity
 {
-  public class Reservation
+  public class ReservationEntity
   {
-    private static Reservation instance = null;
+    private static ReservationEntity instance = null;
 
     public readonly string trackingID = "tracking_id";
     public readonly string sellerID = "s_id";
@@ -18,11 +18,11 @@
     public readonly string rvTime = "rv_time";
     public readonly string rvStatus = "rv_status";
 
-    public Reservation getReservation()
+    public static ReservationEntity getReservationEntity()
     {
       if(instance == null)
       {
-        instance = new Reservation();
+        instance = new ReservationEntity();
       }
       return instance;
     }
