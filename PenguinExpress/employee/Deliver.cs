@@ -20,33 +20,33 @@ namespace PenguinExpress.employee
     private void setColor()
     {
       //base
-      this.BackColor = ColorTranslator.FromHtml( Env.light);
-      this.ForeColor = ColorTranslator.FromHtml( Env.light);
-      this.Font = Env.font;
+      this.BackColor = ColorTranslator.FromHtml( Styles.light);
+      this.ForeColor = ColorTranslator.FromHtml(Styles.light);
+      this.Font = Styles.font;
 
-      lv_delivery_list.ForeColor = ColorTranslator.FromHtml(Env.dark);
-      lv_delivery_list.BackColor = ColorTranslator.FromHtml(Env.light);
+      lv_delivery_list.ForeColor = ColorTranslator.FromHtml(Styles.dark);
+      lv_delivery_list.BackColor = ColorTranslator.FromHtml(Styles.light);
       lv_delivery_list.BorderStyle = BorderStyle.FixedSingle;
-      lv_delivery_list.Font = Env.font;
+      lv_delivery_list.Font = Styles.font;
       //btn
-      btn_completeDelivery.Font = Env.boldFont;
-      btn_refresh.Font = Env.boldFont;
-      button2.Font = Env.boldFont;
+      btn_completeDelivery.Font = Styles.boldFont;
+      btn_refresh.Font = Styles.boldFont;
+      button2.Font = Styles.boldFont;
 
       btn_completeDelivery.FlatStyle = FlatStyle.Flat;
       btn_refresh.FlatStyle = FlatStyle.Flat;
       button2.FlatStyle = FlatStyle.Flat;
 
-      btn_completeDelivery.BackColor = ColorTranslator.FromHtml( Env.info);
-      btn_refresh.BackColor = ColorTranslator.FromHtml(Env.success);
-      button2.BackColor = ColorTranslator.FromHtml(Env.info);
+      btn_completeDelivery.BackColor = ColorTranslator.FromHtml(Styles.info);
+      btn_refresh.BackColor = ColorTranslator.FromHtml(Styles.success);
+      button2.BackColor = ColorTranslator.FromHtml(Styles.info);
 
-      btn_completeDelivery.ForeColor = ColorTranslator.FromHtml(Env.light);
-      btn_refresh.ForeColor = ColorTranslator.FromHtml(Env.light);
-      button2.ForeColor = ColorTranslator.FromHtml(Env.light);
+      btn_completeDelivery.ForeColor = ColorTranslator.FromHtml(Styles.light);
+      btn_refresh.ForeColor = ColorTranslator.FromHtml(Styles.light);
+      button2.ForeColor = ColorTranslator.FromHtml(Styles.light);
 
-      lb_count.ForeColor = ColorTranslator.FromHtml(Env.dark);
-      lb_salary.ForeColor = ColorTranslator.FromHtml(Env.dark);
+      lb_count.ForeColor = ColorTranslator.FromHtml(Styles.dark);
+      lb_salary.ForeColor = ColorTranslator.FromHtml(Styles.dark);
     }
     private void getDeliveryList()
     {

@@ -21,33 +21,33 @@ namespace PenguinExpress.employee
     }
     private void setColor()
     {
-      this.BackColor = ColorTranslator.FromHtml(Env.light);
-      this.ForeColor = ColorTranslator.FromHtml(Env.light);
-      this.Font = Env.font;
+      this.BackColor = ColorTranslator.FromHtml(Styles.light);
+      this.ForeColor = ColorTranslator.FromHtml(Styles.light);
+      this.Font = Styles.font;
 
-      tabPage1.BackColor = ColorTranslator.FromHtml(Env.primary);
-      tabPage2.BackColor = ColorTranslator.FromHtml(Env.primary);
+      tabPage1.BackColor = ColorTranslator.FromHtml(Styles.primary);
+      tabPage2.BackColor = ColorTranslator.FromHtml(Styles.primary);
 
-      lv_complete.BackColor = ColorTranslator.FromHtml(Env.blueGray);
-      lv_delivery.BackColor = ColorTranslator.FromHtml(Env.blueGray);
-      lv_complete.ForeColor = ColorTranslator.FromHtml(Env.dark);
-      lv_delivery.ForeColor = ColorTranslator.FromHtml(Env.dark);
+      lv_complete.BackColor = ColorTranslator.FromHtml(Styles.blueGray);
+      lv_delivery.BackColor = ColorTranslator.FromHtml(Styles.blueGray);
+      lv_complete.ForeColor = ColorTranslator.FromHtml(Styles.dark);
+      lv_delivery.ForeColor = ColorTranslator.FromHtml(Styles.dark);
       //btn
-      btn_getItemGraph.BackColor = ColorTranslator.FromHtml(Env.success);
-      btn_getRegionGraph.BackColor = ColorTranslator.FromHtml(Env.success);
-      btn_refresh.BackColor = ColorTranslator.FromHtml(Env.success);
+      btn_getItemGraph.BackColor = ColorTranslator.FromHtml(Styles.success);
+      btn_getRegionGraph.BackColor = ColorTranslator.FromHtml(Styles.success);
+      btn_refresh.BackColor = ColorTranslator.FromHtml(Styles.success);
 
-      btn_getItemGraph.ForeColor = ColorTranslator.FromHtml(Env.light);
-      btn_getRegionGraph.ForeColor = ColorTranslator.FromHtml(Env.light);
-      btn_refresh.ForeColor = ColorTranslator.FromHtml(Env.light);
+      btn_getItemGraph.ForeColor = ColorTranslator.FromHtml(Styles.light);
+      btn_getRegionGraph.ForeColor = ColorTranslator.FromHtml(Styles.light);
+      btn_refresh.ForeColor = ColorTranslator.FromHtml(Styles.light);
 
       btn_getItemGraph.FlatStyle = FlatStyle.Flat;
       btn_getRegionGraph.FlatStyle = FlatStyle.Flat;
       btn_refresh.FlatStyle = FlatStyle.Flat;
 
-      btn_getItemGraph.Font = Env.boldFont;
-      btn_getRegionGraph.Font = Env.boldFont;
-      btn_refresh.Font = Env.boldFont;
+      btn_getItemGraph.Font = Styles.boldFont;
+      btn_getRegionGraph.Font = Styles.boldFont;
+      btn_refresh.Font = Styles.boldFont;
 
     }
     private void Admin_Load(object sender, EventArgs e)

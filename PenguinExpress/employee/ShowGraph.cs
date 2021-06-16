@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
+using PenguinExpress.config;
 
 namespace PenguinExpress.employee
 {
@@ -23,12 +24,12 @@ namespace PenguinExpress.employee
     private void setColor()
     {
       //base
-      this.BackColor = ColorTranslator.FromHtml(Env.light);
-      this.ForeColor = ColorTranslator.FromHtml(Env.dark);
-      this.Font = Env.font;
+      this.BackColor = ColorTranslator.FromHtml(Styles.light);
+      this.ForeColor = ColorTranslator.FromHtml(Styles.dark);
+      this.Font = Styles.font;
 
-      chart.BackColor = ColorTranslator.FromHtml(Env.light);
-      chart.ForeColor = ColorTranslator.FromHtml(Env.dark);
+      chart.BackColor = ColorTranslator.FromHtml(Styles.light);
+      chart.ForeColor = ColorTranslator.FromHtml(Styles.dark);
     }
     private void ShowGraph_Load(object sender, EventArgs e)
     {

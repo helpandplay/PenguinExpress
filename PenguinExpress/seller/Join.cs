@@ -15,22 +15,22 @@ namespace PenguinExpress.seller
     }
     private void setColor()
     {
-      this.BackColor = ColorTranslator.FromHtml(Env.light);
-      this.ForeColor = ColorTranslator.FromHtml(Env.dark);
-      this.Font = Env.font;
+      this.BackColor = ColorTranslator.FromHtml(Styles.light);
+      this.ForeColor = ColorTranslator.FromHtml(Styles.dark);
+      this.Font = Styles.font;
 
       //btn
-      btn_cancel.ForeColor = ColorTranslator.FromHtml(Env.light);
-      btn_onJoin.ForeColor = ColorTranslator.FromHtml(Env.light);
-      button1.ForeColor = ColorTranslator.FromHtml(Env.light);
+      btn_cancel.ForeColor = ColorTranslator.FromHtml(Styles.light);
+      btn_onJoin.ForeColor = ColorTranslator.FromHtml(Styles.light);
+      button1.ForeColor = ColorTranslator.FromHtml(Styles.light);
 
-      btn_onJoin.BackColor = ColorTranslator.FromHtml(Env.success);
-      btn_cancel.BackColor = ColorTranslator.FromHtml(Env.warning);
-      button1.BackColor = ColorTranslator.FromHtml(Env.success);
+      btn_onJoin.BackColor = ColorTranslator.FromHtml(Styles.success);
+      btn_cancel.BackColor = ColorTranslator.FromHtml(Styles.warning);
+      button1.BackColor = ColorTranslator.FromHtml(Styles.success);
 
-      btn_cancel.Font = Env.boldFont;
-      btn_onJoin.Font = Env.boldFont;
-      button1.Font = Env.boldFont;
+      btn_cancel.Font = Styles.boldFont;
+      btn_onJoin.Font = Styles.boldFont;
+      button1.Font = Styles.boldFont;
 
       btn_cancel.FlatStyle = FlatStyle.Flat;
       btn_onJoin.FlatStyle = FlatStyle.Flat;

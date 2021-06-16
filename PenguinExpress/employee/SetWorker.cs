@@ -33,19 +33,19 @@ namespace PenguinExpress.employee
     private void setColor()
     {
       //base
-      this.BackColor = ColorTranslator.FromHtml(Env.light);
-      this.ForeColor = ColorTranslator.FromHtml(Env.dark);
-      this.Font = Env.font;
+      this.BackColor = ColorTranslator.FromHtml(Styles.light);
+      this.ForeColor = ColorTranslator.FromHtml(Styles.dark);
+      this.Font = Styles.font;
       //btn
-      btn_ok.Font = Env.boldFont;
-      btn_cancel.Font = Env.boldFont;
+      btn_ok.Font = Styles.boldFont;
+      btn_cancel.Font = Styles.boldFont;
       btn_cancel.FlatStyle = FlatStyle.Flat;
       btn_ok.FlatStyle = FlatStyle.Flat;
 
-      btn_cancel.BackColor = ColorTranslator.FromHtml(Env.success);
-      btn_cancel.ForeColor = ColorTranslator.FromHtml(Env.light);
-      btn_ok.ForeColor = ColorTranslator.FromHtml(Env.light);
-      btn_ok.BackColor = ColorTranslator.FromHtml(Env.warning);
+      btn_cancel.BackColor = ColorTranslator.FromHtml(Styles.success);
+      btn_cancel.ForeColor = ColorTranslator.FromHtml(Styles.light);
+      btn_ok.ForeColor = ColorTranslator.FromHtml(Styles.light);
+      btn_ok.BackColor = ColorTranslator.FromHtml(Styles.warning);
     }
     private List<workerInfo> getRegionWorker(string region)
     {

@@ -25,30 +25,30 @@ namespace PenguinExpress.main
     private void setColor()
     {
 
-      this.BackColor = ColorTranslator.FromHtml(Env.light);
-      this.ForeColor = ColorTranslator.FromHtml(Env.dark);
+      this.BackColor = ColorTranslator.FromHtml(Styles.light);
+      this.ForeColor = ColorTranslator.FromHtml(Styles.dark);
 
       tab_login.Padding = new Point(0, 0);
       tab_login.Margin = new Padding(0, 0, 0, 0);
 
-      tab_login.Font = Env.font;
-      tab_page1.ForeColor = ColorTranslator.FromHtml(Env.dark);
-      tab_page2.ForeColor = ColorTranslator.FromHtml(Env.dark);
-      tab_page1.BackColor = ColorTranslator.FromHtml(Env.light);
-      tab_page2.BackColor = ColorTranslator.FromHtml(Env.light);
+      tab_login.Font = Styles.font;
+      tab_page1.ForeColor = ColorTranslator.FromHtml(Styles.dark);
+      tab_page2.ForeColor = ColorTranslator.FromHtml(Styles.dark);
+      tab_page1.BackColor = ColorTranslator.FromHtml(Styles.light);
+      tab_page2.BackColor = ColorTranslator.FromHtml(Styles.light);
 
-      btn_e_login.Font = Env.font;
-      btn_join.Font = Env.font;
-      btn_login.Font = Env.font;
+      btn_e_login.Font = Styles.font;
+      btn_join.Font = Styles.font;
+      btn_login.Font = Styles.font;
       btn_join.FlatStyle = FlatStyle.Flat;
       btn_login.FlatStyle = FlatStyle.Flat;
       btn_e_login.FlatStyle = FlatStyle.Flat;
-      btn_e_login.BackColor = ColorTranslator.FromHtml(Env.primary);
-      btn_join.BackColor = ColorTranslator.FromHtml(Env.success);
-      btn_login.BackColor = ColorTranslator.FromHtml(Env.primary);
-      btn_e_login.ForeColor = ColorTranslator.FromHtml(Env.light);
-      btn_join.ForeColor = ColorTranslator.FromHtml(Env.light);
-      btn_login.ForeColor = ColorTranslator.FromHtml(Env.light);
+      btn_e_login.BackColor = ColorTranslator.FromHtml(Styles.primary);
+      btn_join.BackColor = ColorTranslator.FromHtml(Styles.success);
+      btn_login.BackColor = ColorTranslator.FromHtml(Styles.primary);
+      btn_e_login.ForeColor = ColorTranslator.FromHtml(Styles.light);
+      btn_join.ForeColor = ColorTranslator.FromHtml(Styles.light);
+      btn_login.ForeColor = ColorTranslator.FromHtml(Styles.light);
 
       
       

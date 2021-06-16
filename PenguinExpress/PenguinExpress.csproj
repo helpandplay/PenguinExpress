@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="config\Hash.cs" />
     <Compile Include="config\MyDatabase.cs" />
+    <Compile Include="config\Styles.cs" />
     <Compile Include="employee\Admin.cs">
       <SubType>Form</SubType>
     </Compile>

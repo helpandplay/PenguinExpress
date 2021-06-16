@@ -19,19 +19,19 @@ namespace PenguinExpress.seller
     private void setColor()
     {
       //base
-      this.BackColor = ColorTranslator.FromHtml(Env.light);
-      this.ForeColor = ColorTranslator.FromHtml(Env.dark);
-      this.Font = Env.font;
+      this.BackColor = ColorTranslator.FromHtml(Styles.light);
+      this.ForeColor = ColorTranslator.FromHtml(Styles.dark);
+      this.Font = Styles.font;
 
       //btn
-      btn_addProduct.BackColor = ColorTranslator.FromHtml(Env.success);
-      btn_cancel.BackColor = ColorTranslator.FromHtml(Env.warning);
+      btn_addProduct.BackColor = ColorTranslator.FromHtml(Styles.success);
+      btn_cancel.BackColor = ColorTranslator.FromHtml(Styles.warning);
 
-      btn_addProduct.ForeColor = ColorTranslator.FromHtml(Env.light);
-      btn_cancel.ForeColor = ColorTranslator.FromHtml(Env.light);
+      btn_addProduct.ForeColor = ColorTranslator.FromHtml(Styles.light);
+      btn_cancel.ForeColor = ColorTranslator.FromHtml(Styles.light);
 
-      btn_cancel.Font = Env.boldFont;
-      btn_addProduct.Font = Env.boldFont;
+      btn_cancel.Font = Styles.boldFont;
+      btn_addProduct.Font = Styles.boldFont;
     }
     private void setSellerInfo()
     {
