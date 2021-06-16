@@ -7,6 +7,7 @@
     public readonly string id = "id";
     public readonly string trackingID = "tracking_id";
     public readonly string employeeID = "e_id";
+    public readonly string sellerID = "s_id";
     public readonly string sellerAddr = "s_addr";
     public readonly string sellerPhone = "s_phone";
     public readonly string prodName = "p_name";
