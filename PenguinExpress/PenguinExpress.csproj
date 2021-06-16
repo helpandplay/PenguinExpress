@@ -52,9 +52,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="config\Hash.cs" />
-    <Compile Include="config\MyDatabase.cs" />
-    <Compile Include="config\Styles.cs" />
+    <Compile Include="common\Hash.cs" />
+    <Compile Include="common\MyDatabase.cs" />
+    <Compile Include="common\Styles.cs" />
     <Compile Include="employee\Admin.cs">
       <SubType>Form</SubType>
     </Compile>
