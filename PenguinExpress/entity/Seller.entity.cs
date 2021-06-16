@@ -1,8 +1,8 @@
 ﻿namespace PenguinExpress.entity
 {
-  public class Seller
+  public class SellerEntity
   {
-    private static Seller instance = null;
+    private static SellerEntity instance = null;
 
     public readonly string id = "id";
     public readonly string userid = "userid";
@@ -12,11 +12,11 @@
     public readonly string phone = "phone";
     public readonly string salt = "salt";
 
-    public static Seller getSeller()
+    public static SellerEntity getSellerEntity()
     {
       if(instance == null)
       {
-        instance = new Seller();
+        instance = new SellerEntity();
       }
       return instance;
     }
