@@ -12,12 +12,14 @@ using PenguinExpress.seller;
 using PenguinExpress.employee;
 using MySql.Data.MySqlClient;
 using System.Diagnostics;
+using PenguinExpress.service;
 
 
 namespace PenguinExpress.main
 {
   public partial class Login : Form
   {
+    Auth auth = new Auth();
     public Login()
     {
       InitializeComponent();
@@ -56,40 +58,40 @@ namespace PenguinExpress.main
     }
     private void btn_login_Click(object sender, EventArgs e)
     {
+      const string seller = "Seller";
       bool isVaild = checkLoginVaildate(tb_id, tb_pwd);
       if (!isVaild) return;
 
       string userid = tb_id.Text;
       string pwd = tb_pwd.Text;
 
-      string sql = string.Format(
-        "SELECT id, pwd, salt " +
-        "FROM {0} " +
-        "WHERE userid = '{1}';"
-        ,MyDatabase.sellerTbl, userid);
-
-      int id = checkExistUser(sql, pwd);
-      if (id == -1) return;
+      int id = auth.checkExistUser(userid, pwd, seller);
+      if (id == -1)
+      {
+        MessageBox.Show("존재하지 않는 아이디이거나 비밀번호가 다릅니다.", "info",
+            MessageBoxButtons.OK, MessageBoxIcon.Information);
+        return;
+      }
       onSellerLogin((int)id);
     }
     private void btn_e_login_Click(object sender, EventArgs e)
     {
+      const string employee = "Employee";
       bool isVaild = checkLoginVaildate(tb_e_id, tb_e_pwd);
       if (!isVaild) return;
 
       string userid = tb_e_id.Text;
       string pwd = tb_e_pwd.Text;
 
-      string sql = string.Format(
-        "SELECT id, pwd, salt " +
-        "FROM {0} " +
-        "WHERE userid = '{1}';"
-        , MyDatabase.employeeTbl, userid);
-
-      int id = checkExistUser(sql, pwd);
-      if (id == -1) return;
-      bool isAdmin = checkIsAdmin(id);
-      bool isEmployee = checkIsEmployee(id);
+      int id = auth.checkExistUser(userid, pwd, employee);
+      if (id == -1)
+      {
+        MessageBox.Show("존재하지 않는 아이디이거나 비밀번호가 다릅니다.", "info",
+            MessageBoxButtons.OK, MessageBoxIcon.Information);
+        return;
+      }
+      bool isAdmin = auth.checkIsAdmin(id);
+      bool isEmployee = auth.checkIsEmployee(id);
       onEmployeeLogin(id, isAdmin, isEmployee);
     }
     private void onSellerLogin(int id)
@@ -120,89 +122,6 @@ namespace PenguinExpress.main
         }
       }
       this.Close();
-    }
-    private bool checkIsEmployee(int id)
-    {
-      bool isEmployee = false;
-      string sql = string.Format(
-        "SELECT isEmployee " +
-        "FROM {0} " +
-        "WHERE id = {1};"
-        , MyDatabase.employeeTbl, id);
-
-      MyDatabase.cmd.CommandText = sql;
-      try
-      {
-        var result = MyDatabase.cmd.ExecuteScalar();
-        isEmployee = (bool)result;
-      }
-      catch (Exception error)
-      {
-        Debug.WriteLine(error.Message);
-      }
-      return isEmployee;
-    }
-    private bool checkIsAdmin(int id)
-    {
-      bool isAdmin = false;
-      string sql = string.Format(
-        "SELECT isAdmin " +
-        "FROM {0} " +
-        "WHERE id = {1};"
-        ,MyDatabase.employeeTbl, id);
-
-      MyDatabase.cmd.CommandText = sql;
-      try
-      {
-        var result = MyDatabase.cmd.ExecuteScalar();
-        isAdmin = (bool)result;
-      }catch(Exception error)
-      {
-        Debug.WriteLine(error.Message);
-      }
-      return isAdmin;
-    }
-    private int checkExistUser(string sql, string pwd)
-    {
-      string dbPwd = null;
-      string salt = string.Empty;
-      int? id = null;
-
-      MyDatabase.cmd.CommandText = sql;
-      MySqlDataReader reader = MyDatabase.cmd.ExecuteReader();
-
-      try
-      {
-        if (!reader.Read())
-        {
-          MessageBox.Show("존재하지 않는 아이디이거나 비밀번호가 다릅니다.", "info",
-            MessageBoxButtons.OK, MessageBoxIcon.Information);
-          return -1;
-        }
-
-        dbPwd = reader["pwd"].ToString();
-        salt = reader["salt"].ToString();
-
-        bool isEqual = SHA256Hash.isEqualPwd(pwd, dbPwd, salt);
-        if (!isEqual)
-        {
-          MessageBox.Show("존재하지 않는 아이디이거나 비밀번호가 다릅니다.", "info",
-            MessageBoxButtons.OK, MessageBoxIcon.Information);
-          return -1;
-        }
-
-        id = int.Parse(reader["id"].ToString());
-      }
-      catch (Exception error)
-      {
-        Debug.WriteLine(error.Message);
-      }
-      finally
-      {
-        reader.Close();
-      }
-
-      return (int)id;
     }
     private bool checkLoginVaildate(TextBox id, TextBox pw)
     {

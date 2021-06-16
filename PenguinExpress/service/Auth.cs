@@ -3,10 +3,104 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PenguinExpress.config;
+using MySql.Data.MySqlClient;
+using System.Diagnostics;
 
 namespace PenguinExpress.service
 {
-  class Authcs
+  class Auth
   {
+    public int checkExistUser(string userid, string pwd, string type)
+    {
+      string table;
+      string dbPwd = null;
+      string salt = string.Empty;
+      int? id = null;
+
+      switch (type) {
+        case "Employee":
+          table = MyDatabase.employeeTbl;
+          break;
+        case "Seller":
+          table = MyDatabase.sellerTbl;
+          break;
+        default:
+          throw new Exception("Unknown Login Type");
+      }
+
+      string sql = string.Format(
+      "SELECT id, pwd, salt " +
+      "FROM {0} " +
+      "WHERE userid = '{1}';"
+      , MyDatabase.employeeTbl, userid);
+
+      MyDatabase.cmd.CommandText = sql;
+      MySqlDataReader reader = MyDatabase.cmd.ExecuteReader();
+
+      try
+      {
+        if (!reader.Read()) return -1;
+
+        dbPwd = reader["pwd"].ToString();
+        salt = reader["salt"].ToString();
+
+        bool isEqual = SHA256Hash.isEqualPwd(pwd, dbPwd, salt);
+        if (!isEqual) return -1;
+
+        id = int.Parse(reader["id"].ToString());
+      }
+      catch (Exception error)
+      {
+        Debug.WriteLine(error.Message);
+      }
+      finally
+      {
+        reader.Close();
+      }
+      return (int)id;
+    }
+    public bool checkIsAdmin(int id)
+    {
+      bool isAdmin = false;
+      string sql = string.Format(
+        "SELECT isAdmin " +
+        "FROM {0} " +
+        "WHERE id = {1};"
+        , MyDatabase.employeeTbl, id);
+
+      MyDatabase.cmd.CommandText = sql;
+      try
+      {
+        var result = MyDatabase.cmd.ExecuteScalar();
+        isAdmin = (bool)result;
+      }
+      catch (Exception error)
+      {
+        Debug.WriteLine(error.Message);
+      }
+      return isAdmin;
+    }
+    public bool checkIsEmployee(int id)
+    {
+      bool isEmployee = false;
+      string sql = string.Format(
+        "SELECT isEmployee " +
+        "FROM {0} " +
+        "WHERE id = {1};"
+        , MyDatabase.employeeTbl, id);
+
+      MyDatabase.cmd.CommandText = sql;
+      try
+      {
+        var result = MyDatabase.cmd.ExecuteScalar();
+        isEmployee = (bool)result;
+      }
+      catch (Exception error)
+      {
+        Debug.WriteLine(error.Message);
+      }
+      return isEmployee;
+    }
   }
 }
