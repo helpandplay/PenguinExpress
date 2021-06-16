@@ -3,12 +3,15 @@ using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
+using PenguinExpress.service;
+using System.Collections.Generic;
 
 namespace PenguinExpress.seller
 {
   public partial class Join : Form
   {
     bool isCorrectID = false;
+    Auth auth = new Auth();
     public Join()
     {
       InitializeComponent();
@@ -37,101 +40,28 @@ namespace PenguinExpress.seller
       button1.FlatStyle = FlatStyle.Flat;
 
     }
-
-    private void checkOverlapId(string sql) {
-      MyDatabase.cmd.CommandText = sql;
-
-      try
-      {
-        object result = MyDatabase.cmd.ExecuteScalar();
-        if (result != null)
-        {
-          MessageBox.Show("이미 존재하는 아이디입니다.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-          isCorrectID = false;
-          return;
-        }
-        MessageBox.Show("사용 가능한 아이디입니다.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        isCorrectID = true;
-      }
-      catch (Exception error)
-      {
-        Debug.WriteLine(error.StackTrace);
-        Debug.WriteLine(error.Message);
-      }
-    }
-    private void addUser(bool isEmployee)
+    private Dictionary<string, string> getJoinData(bool isEmployee)
     {
-      string userid = tb_id.Text;
-      string pwd = tb_pw.Text;
-      string name = tb_name.Text;
-      string phone = tb_phone1.Text + "-" + tb_phone2.Text + "-" + tb_phone3.Text;
-      string addr = cb_addr_captital.Text + " " + tb_addr.Text;
-      int regionCode = cb_addr_captital.SelectedIndex;
+      Dictionary<string, string> userData = new Dictionary<string, string>();
 
-      string salt = SHA256Hash.getSalt();
-      string hashedPwd = SHA256Hash.hashing(pwd, salt);
+      userData.Add("userid", tb_id.Text);
+      userData.Add("pwd", tb_pw.Text);
+      userData.Add("name", tb_name.Text);
+      userData.Add("phone", tb_phone1.Text + "-" + tb_phone2.Text + "-" + tb_phone3.Text);
+      userData.Add("addr", cb_addr_captital.Text + " " + tb_addr.Text);
+      userData.Add("regionCode", cb_addr_captital.SelectedIndex.ToString());
 
-      string sql;
-      if (isEmployee)
-      {
-        sql = string.Format("" +
-          "INSERT INTO {0} VALUES (" +
-          "NULL, '{1}', '{2}', '{3}', '{4}', {5}, 0, false, false, '{6}');"
-          , MyDatabase.employeeTbl, userid, hashedPwd, name, phone, regionCode, salt); ;
-      }
-      else
-      {
-        sql = string.Format(
-        "INSERT INTO {0} VALUES( " +
-        "NULL, '{1}', '{2}', '{3}', '{4}', '{5}', '{6}');"
-        , MyDatabase.sellerTbl, userid, hashedPwd, name, addr, phone, salt);
-      }
-
-      MyDatabase.cmd.CommandText = sql;
-      try
-      {
-        MyDatabase.cmd.ExecuteNonQuery();
-      }catch(Exception error)
-      {
-        Debug.WriteLine(error.StackTrace);
-        Debug.WriteLine(error.Message);
-      }
-      finally
-      {
-        this.Close();
-      }
+      return userData;
     }
     private void button1_Click(object sender, EventArgs e)
     {
       string userid = tb_id.Text;
-      if(userid == "")
-      {
-        MessageBox.Show("아이디를 입력해주세요.");
-        return;
-      }
-      if(userid.Length < 2 || userid.Length > 12)
-      {
-        MessageBox.Show("2~12자리만 사용할 수 있습니다.");
-        return;
-      }
-      string sql;
-      if (cb_isEmployee.Checked)
-      {
-        sql = string.Format("" +
-          "SELECT id " +
-          "FROM {0} " +
-          "WHERE userid='{1}';",
-          MyDatabase.employeeTbl, userid);
-      }
+      string result =  auth.checkOverlapId(userid, cb_isEmployee.Checked);
+      if (result != "사용 가능한 아이디입니다.")
+        isCorrectID = false;
       else
-      {
-            sql   = string.Format(
-        "SELECT id " +
-        "FROM {0} " +
-        "WHERE userid='{1}';"
-        , MyDatabase.sellerTbl, userid);
-      }
-      checkOverlapId(sql);
+        isCorrectID = true;
+      MessageBox.Show(result, "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
     }
     private void btn_cancel_Click(object sender, EventArgs e)
     {
@@ -139,14 +69,20 @@ namespace PenguinExpress.seller
     }
     private void btn_onJoin_Click(object sender, EventArgs e)
     {
-      string result = validateJoin();
+      string isVaild = validateJoin();
       bool isEmployee = cb_isEmployee.Checked;
-      if (result != "OK")
+      if (isVaild != "OK")
       {
-        MessageBox.Show(result, "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        MessageBox.Show(isVaild, "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
         return;
       }
-      addUser(isEmployee);
+      Dictionary<string, string> userData = getJoinData(isEmployee);
+      bool result = auth.addUser(userData, isEmployee);
+
+      if (!result){
+        MessageBox.Show("회원가입에 실패했습니다");
+        return;
+      }
       this.Close();
     }
     private string validateJoin()

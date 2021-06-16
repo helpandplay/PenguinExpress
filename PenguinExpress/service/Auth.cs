@@ -11,6 +11,7 @@ namespace PenguinExpress.service
 {
   class Auth
   {
+    //login
     public int checkExistUser(string userid, string pwd, string type)
     {
       string table;
@@ -101,6 +102,71 @@ namespace PenguinExpress.service
         Debug.WriteLine(error.Message);
       }
       return isEmployee;
+    }
+
+    //join
+    public string checkOverlapId(string userid, bool employeeChecked)
+    {
+      string sql;
+      if (userid == "")
+        return "아이디를 입력해주세요.";
+      if (userid.Length < 2 || userid.Length > 12)
+        return "2~12자리만 사용할 수 있습니다.";
+
+      if (employeeChecked)
+      {
+        sql = string.Format("" +
+          "SELECT id " +
+          "FROM {0} " +
+          "WHERE userid='{1}';",
+          MyDatabase.employeeTbl, userid);
+      }
+      else
+      {
+        sql = string.Format(
+        "SELECT id " +
+        "FROM {0} " +
+        "WHERE userid='{1}';"
+      , MyDatabase.sellerTbl, userid);
+      }
+
+      MyDatabase.cmd.CommandText = sql;
+
+      try
+      {
+        object result = MyDatabase.cmd.ExecuteScalar();
+        if (result != null) return "이미 존재하는 아이디입니다.";
+      }
+      catch (Exception error)
+      {
+        Debug.WriteLine(error.StackTrace);
+        Debug.WriteLine(error.Message);
+      }
+      return "사용 가능한 아이디입니다.";
+    }
+    public bool addUser(Dictionary<string, string> userData, bool isEmployee)
+    {
+      string salt = SHA256Hash.getSalt();
+      string hashedPwd = SHA256Hash.hashing(userData["pwd"], salt);
+
+      string table = isEmployee ? MyDatabase.employeeTbl : MyDatabase.sellerTbl;
+      string sql = string.Format(
+      "INSERT INTO {0} VALUES( " +
+      "NULL, '{1}', '{2}', '{3}', '{4}', '{5}', '{6}');"
+      , table, userData["userid"], hashedPwd, userData["name"], userData["phone"], userData["regionCode"], salt);
+
+      MyDatabase.cmd.CommandText = sql;
+      try
+      {
+        MyDatabase.cmd.ExecuteNonQuery();
+      }
+      catch (Exception error)
+      {
+        Debug.WriteLine(error.StackTrace);
+        Debug.WriteLine(error.Message);
+        return false;
+      }
+      return true;
     }
   }
 }
