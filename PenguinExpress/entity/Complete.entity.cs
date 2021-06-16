@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PenguinExpress.entity
+﻿namespace PenguinExpress.entity
 {
   public class CompleteEntity
   {
@@ -28,7 +22,7 @@ namespace PenguinExpress.entity
     {
 
     }
-    public static CompleteEntity getInstance()
+    public static CompleteEntity getComplete()
     {
       if( instance == null)
       {
