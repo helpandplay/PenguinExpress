@@ -79,6 +79,10 @@
     <Compile Include="employee\ShowGraph.Designer.cs">
       <DependentUpon>ShowGraph.cs</DependentUpon>
     </Compile>
+    <Compile Include="entity\Complete.entity.cs" />
+    <Compile Include="entity\Employee.entity.cs" />
+    <Compile Include="entity\Reservation.entity.cs" />
+    <Compile Include="entity\Seller.entity.cs" />
     <Compile Include="Env.cs" />
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
@@ -113,6 +117,10 @@
       <DependentUpon>Seller_list.cs</DependentUpon>
     </Compile>
     <Compile Include="service\Auth.cs" />
+    <Compile Include="service\Complete.service.cs" />
+    <Compile Include="service\Employee.service.cs" />
+    <Compile Include="service\Reservation.service.cs" />
+    <Compile Include="service\Seller.service.cs" />
     <Compile Include="Status.cs" />
     <EmbeddedResource Include="employee\Admin.resx">
       <DependentUpon>Admin.cs</DependentUpon>
