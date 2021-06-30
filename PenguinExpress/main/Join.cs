@@ -56,13 +56,14 @@ namespace PenguinExpress.seller
     private void btn_checkID_Click(object sender, EventArgs e)
     {
       string userid = tb_id.Text;
-      string result = auth.checkOverlapId(userid, cb_isEmployee.Checked);
+      bool isEmployee = cb_isEmployee.Checked;
+      string result = auth.checkOverlapId(userid, isEmployee);
       if (result != "사용 가능한 아이디입니다.")
         isCorrectID = false;
       else
         isCorrectID = true;
       MessageBox.Show(result, "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-    }
+    } //완료
     private void btn_cancel_Click(object sender, EventArgs e)
     {
       this.Close();

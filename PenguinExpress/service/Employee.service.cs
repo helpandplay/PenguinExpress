@@ -54,15 +54,16 @@ namespace PenguinExpress.service
       Dictionary<string, string> result = new Dictionary<string, string>();
       string sql = string.Format(
         "SELECT * " +
-        "FROM {0};"
-        , MyDatabase.employeeTbl);
+        "FROM {0} " +
+        "WHERE {1} = '{2}';"
+        , MyDatabase.employeeTbl, entity.userid, userid);
 
       try
       {
         MyDatabase.cmd.CommandText = sql;
         MyDatabase.reader = MyDatabase.cmd.ExecuteReader();
 
-        if (!MyDatabase.reader.Read()) throw new Exception("Error : Failed Employee findOne");
+        if (!MyDatabase.reader.Read()) return result;
 
         result.Add(entity.id, MyDatabase.reader[entity.id].ToString());
         result.Add(entity.userid, MyDatabase.reader[entity.userid].ToString());
@@ -78,11 +79,13 @@ namespace PenguinExpress.service
       catch(Exception error)
       {
         Debug.WriteLine("Error : Failed Employee findOne");
+        Debug.WriteLine(error.Message);
       }
       finally
       {
         MyDatabase.reader.Close();
       }
+      Debug.WriteLine(result.Count);
       return result;
     }
     public bool addEmployee(Dictionary<string, string> employee) {

@@ -11,6 +11,8 @@ namespace PenguinExpress.service
 {
   class Auth
   {
+    EmployeeService employee = new EmployeeService();
+    SellerService seller = new SellerService();
     //login
     public int checkExistUser(string userid, string pwd, string type)
     {
@@ -112,37 +114,17 @@ namespace PenguinExpress.service
       if (userid.Length < 2 || userid.Length > 12)
         return "2~12자리만 사용할 수 있습니다.";
 
+      Dictionary<string, string> result;
+
       if (employeeChecked)
-      {
-        sql = string.Format("" +
-          "SELECT id " +
-          "FROM {0} " +
-          "WHERE userid='{1}';",
-          MyDatabase.employeeTbl, userid);
-      }
+        result = employee.findOne(userid);
       else
-      {
-        sql = string.Format(
-        "SELECT id " +
-        "FROM {0} " +
-        "WHERE userid='{1}';"
-      , MyDatabase.sellerTbl, userid);
-      }
+        result = seller.findOne(userid);
 
-      MyDatabase.cmd.CommandText = sql;
 
-      try
-      {
-        object result = MyDatabase.cmd.ExecuteScalar();
-        if (result != null) return "이미 존재하는 아이디입니다.";
-      }
-      catch (Exception error)
-      {
-        Debug.WriteLine(error.StackTrace);
-        Debug.WriteLine(error.Message);
-      }
-      return "사용 가능한 아이디입니다.";
-    }
+      if (result.Count == 0) return "사용 가능한 아이디입니다.";
+      return "이미있는 아이디입니다.";
+    } //완료
     public bool addUser(Dictionary<string, string> userData, bool isEmployee)
     {
       string salt = SHA256Hash.getSalt();

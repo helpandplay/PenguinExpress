@@ -63,10 +63,8 @@ namespace PenguinExpress.service
         MyDatabase.cmd.CommandText = sql;
         MyDatabase.reader = MyDatabase.cmd.ExecuteReader();
 
-        if (!MyDatabase.reader.Read())
-        {
-          throw new Exception("Error : Failed Seller FindOne Data Read");
-        }
+        if (!MyDatabase.reader.Read()) return result;
+
         result.Add(entity.id, MyDatabase.reader[entity.id].ToString());
         result.Add(entity.userid, MyDatabase.reader[entity.userid].ToString());
         result.Add(entity.pwd, MyDatabase.reader[entity.pwd].ToString());
@@ -77,13 +75,14 @@ namespace PenguinExpress.service
       }catch(Exception error)
       {
         Debug.WriteLine("Error : Failed Seller FindOne");
+        Debug.WriteLine(error.Message);
       }
       finally
       {
         MyDatabase.reader.Close();
       }
       return result;
-    }
+    } //완료
     public bool addSeller(Dictionary<string, string> seller) {
       bool isSuccess = false;
 
