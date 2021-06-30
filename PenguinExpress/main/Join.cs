@@ -25,19 +25,19 @@ namespace PenguinExpress.seller
       //btn
       btn_cancel.ForeColor = ColorTranslator.FromHtml(Styles.light);
       btn_onJoin.ForeColor = ColorTranslator.FromHtml(Styles.light);
-      button1.ForeColor = ColorTranslator.FromHtml(Styles.light);
+      btn_checkID.ForeColor = ColorTranslator.FromHtml(Styles.light);
 
       btn_onJoin.BackColor = ColorTranslator.FromHtml(Styles.success);
       btn_cancel.BackColor = ColorTranslator.FromHtml(Styles.warning);
-      button1.BackColor = ColorTranslator.FromHtml(Styles.success);
+      btn_checkID.BackColor = ColorTranslator.FromHtml(Styles.success);
 
       btn_cancel.Font = Styles.boldFont;
       btn_onJoin.Font = Styles.boldFont;
-      button1.Font = Styles.boldFont;
+      btn_checkID.Font = Styles.boldFont;
 
       btn_cancel.FlatStyle = FlatStyle.Flat;
       btn_onJoin.FlatStyle = FlatStyle.Flat;
-      button1.FlatStyle = FlatStyle.Flat;
+      btn_checkID.FlatStyle = FlatStyle.Flat;
 
     }
     private Dictionary<string, string> getJoinData(bool isEmployee)
@@ -53,10 +53,10 @@ namespace PenguinExpress.seller
 
       return userData;
     }
-    private void button1_Click(object sender, EventArgs e)
+    private void btn_checkID_Click(object sender, EventArgs e)
     {
       string userid = tb_id.Text;
-      string result =  auth.checkOverlapId(userid, cb_isEmployee.Checked);
+      string result = auth.checkOverlapId(userid, cb_isEmployee.Checked);
       if (result != "사용 가능한 아이디입니다.")
         isCorrectID = false;
       else
@@ -115,5 +115,7 @@ namespace PenguinExpress.seller
     {
       setColor();
     }
+
+
   }
 }
