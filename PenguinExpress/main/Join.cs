@@ -87,7 +87,7 @@ namespace PenguinExpress.seller
         return;
       }
       this.Close();
-    }
+    } //완료
     private string validateJoin()
     {
       if (!isCorrectID) return "중복 확인을 해주세요.";

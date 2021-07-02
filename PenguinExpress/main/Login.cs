@@ -65,14 +65,7 @@ namespace PenguinExpress.main
       string userid = tb_id.Text;
       string pwd = tb_pwd.Text;
 
-      int id = auth.checkExistUser(userid, pwd, seller);
-      if (id == -1)
-      {
-        MessageBox.Show("존재하지 않는 아이디이거나 비밀번호가 다릅니다.", "info",
-            MessageBoxButtons.OK, MessageBoxIcon.Information);
-        return;
-      }
-      onSellerLogin((int)id);
+      onSellerLogin(userid, pwd, seller);
     }
     private void btn_e_login_Click(object sender, EventArgs e)
     {
@@ -83,27 +76,51 @@ namespace PenguinExpress.main
       string userid = tb_e_id.Text;
       string pwd = tb_e_pwd.Text;
 
-      int id = auth.checkExistUser(userid, pwd, employee);
-      if (id == -1)
+      onEmployeeLogin(userid, pwd, employee);
+    }
+    private void onSellerLogin(string userid, string pwd, string type)
+    {
+      Dictionary<string, string> user = auth.checkExistUser(userid, pwd, type);
+      if (user.Count == 0)
       {
         MessageBox.Show("존재하지 않는 아이디이거나 비밀번호가 다릅니다.", "info",
             MessageBoxButtons.OK, MessageBoxIcon.Information);
         return;
       }
-      bool isAdmin = auth.checkIsAdmin(id);
-      bool isEmployee = auth.checkIsEmployee(id);
-      onEmployeeLogin(id, isAdmin, isEmployee);
-    }
-    private void onSellerLogin(int id)
-    {
+      int id = auth.checkPwdVerify(user, pwd);
+      if(id == -1)
+      {
+        MessageBox.Show("존재하지 않는 아이디이거나 비밀번호가 다릅니다.", "info",
+         MessageBoxButtons.OK, MessageBoxIcon.Information);
+        return;
+      }
+
       SetVisibleCore(false);
       this.Close();
       new Seller_list(id).ShowDialog();
       
     }
-    private void onEmployeeLogin(int id, bool isAdmin, bool isEmployee)
+    private void onEmployeeLogin(string userid, string pwd, string type)
     {
-      
+      Dictionary<string, string> user = auth.checkExistUser(userid, pwd, type);
+      if (user.Count == 0)
+      {
+        MessageBox.Show("존재하지 않는 아이디이거나 비밀번호가 다릅니다.", "info",
+            MessageBoxButtons.OK, MessageBoxIcon.Information);
+        return;
+      }
+
+      int id = auth.checkPwdVerify(user, pwd);
+      if (id == -1)
+      {
+        MessageBox.Show("존재하지 않는 아이디이거나 비밀번호가 다릅니다.", "info",
+         MessageBoxButtons.OK, MessageBoxIcon.Information);
+        return;
+      }
+
+      bool isAdmin = bool.Parse(user["isAdmin"].ToString());
+      bool isEmployee = bool.Parse(user["isEmployee"].ToString());
+
       if (isAdmin)
       {
         SetVisibleCore(false);

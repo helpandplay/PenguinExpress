@@ -14,8 +14,19 @@ namespace PenguinExpress.service
     EmployeeService employee = new EmployeeService();
     SellerService seller = new SellerService();
     //login
-    public int checkExistUser(string userid, string pwd, string type)
+    public int checkPwdVerify(Dictionary<string, string> user, string pwd)
     {
+      string dbPwd = user["pwd"];
+      string salt = user["salt"];
+      bool isEqual = SHA256Hash.isEqualPwd(pwd, dbPwd, salt);
+      if (!isEqual) return -1;
+
+      int id = int.Parse(user["id"].ToString());
+      return id;
+    }
+    public Dictionary<string, string> checkExistUser(string userid, string pwd, string type)
+    {
+      Dictionary<string, string> user = null;
       string table;
       string dbPwd = null;
       string salt = string.Empty;
@@ -23,87 +34,21 @@ namespace PenguinExpress.service
 
       switch (type) {
         case "Employee":
-          table = MyDatabase.employeeTbl;
+          user = employee.findOne(userid);
+          //table = MyDatabase.employeeTbl;
           break;
         case "Seller":
-          table = MyDatabase.sellerTbl;
+          user = seller.findOne(userid);
+          //table = MyDatabase.sellerTbl;
           break;
         default:
-          throw new Exception("Unknown Login Type");
+          System.Windows.Forms.MessageBox.Show("Unknown Login Type! : " + type,
+            "Error" ,
+            System.Windows.Forms.MessageBoxButtons.OK,
+            System.Windows.Forms.MessageBoxIcon.Error);
+          break;
       }
-
-      string sql = string.Format(
-      "SELECT id, pwd, salt " +
-      "FROM {0} " +
-      "WHERE userid = '{1}';"
-      , MyDatabase.employeeTbl, userid);
-
-      MyDatabase.cmd.CommandText = sql;
-      MySqlDataReader reader = MyDatabase.cmd.ExecuteReader();
-
-      try
-      {
-        if (!reader.Read()) return -1;
-
-        dbPwd = reader["pwd"].ToString();
-        salt = reader["salt"].ToString();
-
-        bool isEqual = SHA256Hash.isEqualPwd(pwd, dbPwd, salt);
-        if (!isEqual) return -1;
-
-        id = int.Parse(reader["id"].ToString());
-      }
-      catch (Exception error)
-      {
-        Debug.WriteLine(error.Message);
-      }
-      finally
-      {
-        reader.Close();
-      }
-      return (int)id;
-    }
-    public bool checkIsAdmin(int id)
-    {
-      bool isAdmin = false;
-      string sql = string.Format(
-        "SELECT isAdmin " +
-        "FROM {0} " +
-        "WHERE id = {1};"
-        , MyDatabase.employeeTbl, id);
-
-      MyDatabase.cmd.CommandText = sql;
-      try
-      {
-        var result = MyDatabase.cmd.ExecuteScalar();
-        isAdmin = (bool)result;
-      }
-      catch (Exception error)
-      {
-        Debug.WriteLine(error.Message);
-      }
-      return isAdmin;
-    }
-    public bool checkIsEmployee(int id)
-    {
-      bool isEmployee = false;
-      string sql = string.Format(
-        "SELECT isEmployee " +
-        "FROM {0} " +
-        "WHERE id = {1};"
-        , MyDatabase.employeeTbl, id);
-
-      MyDatabase.cmd.CommandText = sql;
-      try
-      {
-        var result = MyDatabase.cmd.ExecuteScalar();
-        isEmployee = (bool)result;
-      }
-      catch (Exception error)
-      {
-        Debug.WriteLine(error.Message);
-      }
-      return isEmployee;
+      return user;
     }
     //join
     public string checkOverlapId(string userid, bool employeeChecked)
@@ -124,7 +69,7 @@ namespace PenguinExpress.service
 
       if (result.Count == 0) return "사용 가능한 아이디입니다.";
       return "이미있는 아이디입니다.";
-    } //완료
+    }
     public bool addUser(Dictionary<string, string> userData, bool isEmployee)
     {
       string salt = SHA256Hash.getSalt();
@@ -137,26 +82,11 @@ namespace PenguinExpress.service
       if (isEmployee)
       {
         isSuceess = employee.addEmployee(userData);
-        /*table = MyDatabase.employeeTbl;
-        sql = string.Format(
-        "INSERT INTO {0} VALUES( " +
-        "NULL, '{1}', '{2}', '{3}', '{4}', '{5}', 0, false, false, '{6}');"
-        , table, userData["userid"], hashedPwd, userData["name"], userData["phone"], userData["regionCode"], salt);*/
-
       }
       else
       {
         isSuceess = seller.addSeller(userData);
       }
-      /*        table = MyDatabase.sellerTbl;
-              sql = string.Format(
-            "INSERT INTO {0} VALUES( " +
-            "NULL, '{1}', '{2}', '{3}', '{4}', '{5}', '{6}');"
-            , table, userData["userid"], hashedPwd, userData["name"], userData["addr"], userData["phone"], salt);*/
-      //}
-      // todo : sql, employee테이블 insert 개수 다름
-      // => "NULL, '{1}', '{2}', '{3}', '{4}', {5}, 0, false, false, '{6}');"
-
       return isSuceess;
     }
   }
