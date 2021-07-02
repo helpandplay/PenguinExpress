@@ -89,13 +89,22 @@ namespace PenguinExpress.service
       return result;
     }
     public bool addEmployee(Dictionary<string, string> employee) {
+      //여기 insert 버그 있음
       bool isSuccess = false;
       string sql = string.Format(
-        "INSERT {0} INTO VALUES (" +
-        "NULL, '{1}', '{2}', '{3}', '{4}', {5}, 0, false, false, '{6}'" +
+        "INSERT INTO {0} VALUES (" +
+        "NULL, '{1}', '{2}', '{3}', '{4}', {5}, 0, false, false, '{6}' " +
         ");"
+        ,
+        MyDatabase.employeeTbl,
+        employee[entity.userid],
+        employee[entity.pwd],
+        employee[entity.name],
+        employee[entity.phone],
+        employee[entity.regionCode],
+        employee[entity.salt]
         );
-
+      Debug.WriteLine(sql);
       try
       {
         MyDatabase.cmd.CommandText = sql;
@@ -104,10 +113,7 @@ namespace PenguinExpress.service
       }catch(Exception error)
       {
         Debug.WriteLine("Error : Failed Employee addEmployee");
-      }
-      finally
-      {
-
+        Debug.WriteLine(error.InnerException);
       }
       return isSuccess;
      

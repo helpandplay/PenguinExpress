@@ -87,7 +87,7 @@ namespace PenguinExpress.service
       bool isSuccess = false;
 
       string sql = string.Format(
-        "INSERT {0} INTO VALUES(" +
+        "INSERT INTO {0} VALUES(" +
         "NULL, '{1}', '{2}', '{3}', '{4}', '{5}', '{6}'" +
         ");"
         , MyDatabase.sellerTbl,
@@ -108,6 +108,7 @@ namespace PenguinExpress.service
       }catch(Exception error)
       {
         Debug.WriteLine("Error : Failed Seller AddSeller");
+        Debug.WriteLine(error.Message);
       }
       return isSuccess;
     }

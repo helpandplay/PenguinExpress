@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using PenguinExpress.service;
 using System.Collections.Generic;
+using PenguinExpress.entity;
 
 namespace PenguinExpress.seller
 {
@@ -12,6 +13,7 @@ namespace PenguinExpress.seller
   {
     bool isCorrectID = false;
     Auth auth = new Auth();
+
     public Join()
     {
       InitializeComponent();
@@ -49,7 +51,7 @@ namespace PenguinExpress.seller
       userData.Add("name", tb_name.Text);
       userData.Add("phone", tb_phone1.Text + "-" + tb_phone2.Text + "-" + tb_phone3.Text);
       userData.Add("addr", cb_addr_captital.Text + " " + tb_addr.Text);
-      userData.Add("regionCode", cb_addr_captital.SelectedIndex.ToString());
+      userData.Add("region_code", cb_addr_captital.SelectedIndex.ToString());
 
       return userData;
     }

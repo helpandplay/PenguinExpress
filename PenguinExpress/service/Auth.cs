@@ -130,39 +130,34 @@ namespace PenguinExpress.service
       string salt = SHA256Hash.getSalt();
       string hashedPwd = SHA256Hash.hashing(userData["pwd"], salt);
 
-      string table;
-      string sql;
+      userData.Add("salt", salt);
+      userData["pwd"] = hashedPwd;//폼에서 가져왔던 origin source에서 hashpwd 변경
+
+      bool isSuceess;
       if (isEmployee)
       {
-        table = MyDatabase.employeeTbl;
+        isSuceess = employee.addEmployee(userData);
+        /*table = MyDatabase.employeeTbl;
         sql = string.Format(
         "INSERT INTO {0} VALUES( " +
         "NULL, '{1}', '{2}', '{3}', '{4}', '{5}', 0, false, false, '{6}');"
-        , table, userData["userid"], hashedPwd, userData["name"], userData["phone"], userData["regionCode"], salt);
-        }
+        , table, userData["userid"], hashedPwd, userData["name"], userData["phone"], userData["regionCode"], salt);*/
+
+      }
       else
       {
-        table = MyDatabase.sellerTbl;
-        sql = string.Format(
-      "INSERT INTO {0} VALUES( " +
-      "NULL, '{1}', '{2}', '{3}', '{4}', '{5}', '{6}');"
-      , table, userData["userid"], hashedPwd, userData["name"], userData["addr"], userData["phone"], salt);
+        isSuceess = seller.addSeller(userData);
       }
+      /*        table = MyDatabase.sellerTbl;
+              sql = string.Format(
+            "INSERT INTO {0} VALUES( " +
+            "NULL, '{1}', '{2}', '{3}', '{4}', '{5}', '{6}');"
+            , table, userData["userid"], hashedPwd, userData["name"], userData["addr"], userData["phone"], salt);*/
+      //}
       // todo : sql, employee테이블 insert 개수 다름
       // => "NULL, '{1}', '{2}', '{3}', '{4}', {5}, 0, false, false, '{6}');"
 
-      MyDatabase.cmd.CommandText = sql;
-      try
-      {
-        MyDatabase.cmd.ExecuteNonQuery();
-      }
-      catch (Exception error)
-      {
-        Debug.WriteLine(error.StackTrace);
-        Debug.WriteLine(error.Message);
-        return false;
-      }
-      return true;
+      return isSuceess;
     }
   }
 }
