@@ -1,16 +1,20 @@
 ﻿using MySql.Data.MySqlClient;
 using PenguinExpress.config;
-using PenguinExpress.main;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
+using PenguinExpress.service;
+using PenguinExpress.entity;
 
 namespace PenguinExpress.employee
 {
   public partial class Admin : Form
   {
+    CompleteService complete = new CompleteService();
+    CompleteEntity completeEntity = CompleteEntity.getComplete();
+
     string id;
     Status stus;
     public Admin(string id)
@@ -63,27 +67,25 @@ namespace PenguinExpress.employee
     }
     private void getCompleteList()
     {
-      string sql = string.Format(
-        "SELECT tracking_id, s_id, s_phone, b_phone, e_id, rv_time, cp_time " +
-        "FROM {0} rv;"
-        , MyDatabase.completeListTbl);
-      MyDatabase.cmd.CommandText = sql;
-      MySqlDataReader reader = MyDatabase.cmd.ExecuteReader();
+      List<Dictionary<string, string>> list = complete.findAll();
+
       try
       {
         lv_complete.Items.Clear();
-        while (reader.Read())
+
+        foreach(Dictionary<string, string> data in list)
         {
-          string trackingId = reader["tracking_id"].ToString();
-          string sellerId = reader["s_id"].ToString();
-          string sellerPhone = reader["s_phone"].ToString();
-          string buyerPhone = reader["b_phone"].ToString();
-          string delieverId = reader["e_id"].ToString();
-          string rvTime = reader["rv_time"].ToString();
-          string cpTime = reader["cp_time"].ToString();
+          string trackingId = data[completeEntity.trackingID].ToString();
+          string sellerId = data[completeEntity.sellerID].ToString();
+          string sellerPhone = data[completeEntity.sellerPhone].ToString();
+          string buyerPhone = data[completeEntity.buyPhone].ToString();
+          string delieverId = data[completeEntity.employeeID].ToString();
+          string rvTime = data[completeEntity.rvTime].ToString();
+          string cpTime = data[completeEntity.cpTime].ToString();
 
           string[] row = new string[]
           { trackingId, sellerId, sellerPhone, buyerPhone, delieverId, rvTime, cpTime };
+
           ListViewItem lvi = new ListViewItem(row);
           lv_complete.Items.Add(lvi);
         }
@@ -91,10 +93,6 @@ namespace PenguinExpress.employee
       catch (Exception error)
       {
         Debug.WriteLine(error.Message);
-      }
-      finally
-      {
-        reader.Close();
       }
     }
     private void getDeliveryList()

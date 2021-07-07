@@ -41,7 +41,6 @@ namespace PenguinExpress.employee
       this.ch_region_code = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
       this.ch_rv_time = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
       this.ch_e_id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-      this.ch_status = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
       this.tabPage2 = new System.Windows.Forms.TabPage();
       this.lv_complete = new System.Windows.Forms.ListView();
       this.ch_cp_tracking_id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -92,8 +91,7 @@ namespace PenguinExpress.employee
             this.ch_p_code,
             this.ch_region_code,
             this.ch_rv_time,
-            this.ch_e_id,
-            this.ch_status});
+            this.ch_e_id});
       this.lv_delivery.FullRowSelect = true;
       this.lv_delivery.GridLines = true;
       this.lv_delivery.HideSelection = false;
@@ -144,11 +142,6 @@ namespace PenguinExpress.employee
       // 
       this.ch_e_id.Text = "배송 기사";
       this.ch_e_id.Width = 80;
-      // 
-      // ch_status
-      // 
-      this.ch_status.Text = "배송상태";
-      this.ch_status.Width = 120;
       // 
       // tabPage2
       // 
@@ -253,7 +246,7 @@ namespace PenguinExpress.employee
       this.label1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
       this.label1.Location = new System.Drawing.Point(13, 3);
       this.label1.Name = "label1";
-      this.label1.Size = new System.Drawing.Size(168, 29);
+      this.label1.Size = new System.Drawing.Size(135, 23);
       this.label1.TabIndex = 5;
       this.label1.Text = "PenguinExpress";
       // 
@@ -296,7 +289,6 @@ namespace PenguinExpress.employee
     private System.Windows.Forms.ColumnHeader ch_p_code;
     private System.Windows.Forms.ColumnHeader ch_region_code;
     private System.Windows.Forms.ColumnHeader ch_rv_time;
-    private System.Windows.Forms.ColumnHeader ch_status;
     private System.Windows.Forms.ColumnHeader ch_cp_tracking_id;
     private System.Windows.Forms.ColumnHeader ch_cp_s_id;
     private System.Windows.Forms.ColumnHeader ch_cp_s_phone;
