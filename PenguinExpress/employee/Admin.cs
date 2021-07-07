@@ -14,6 +14,8 @@ namespace PenguinExpress.employee
   {
     CompleteService complete = new CompleteService();
     CompleteEntity completeEntity = CompleteEntity.getComplete();
+    Reservation reservation = new Reservation();
+    ReservationEntity reservationEntity = ReservationEntity.getReservationEntity();
 
     string id;
     Status stus;
@@ -97,33 +99,27 @@ namespace PenguinExpress.employee
     }
     private void getDeliveryList()
     {
-      string sql = string.Format(
-        "SELECT tracking_id, se.userid, p_name, p_qty, p_code, b_region_code, rv_time, rv.e_id, rv_status " +
-        "FROM {0} rv, {1} se " +
-        "WHERE rv.s_id = se.id;"
-        , MyDatabase.reservationListTbl, MyDatabase.sellerTbl);
-      MyDatabase.cmd.CommandText = sql;
-      MySqlDataReader reader = MyDatabase.cmd.ExecuteReader();
+      List<Dictionary<string, string>> list = reservation.findAll();
 
       try
       {
         lv_delivery.Items.Clear();
-        while (reader.Read())
+
+        foreach (Dictionary<string, string> data in list)
         {
-          string rvStatus = reader["rv_status"].ToString();
+          string rvStatus = data[reservationEntity.rvStatus].ToString();
 
           if (rvStatus == "-1" || rvStatus == "3") continue;
           rvStatus = getDeliveryStatus(rvStatus);
-          string regionCode = reader["b_region_code"].ToString();
-          //regionCode = getRegionName(regionCode);
-          string trackingId = reader["tracking_id"].ToString();
-          string sellerId = reader["userid"].ToString();
-          string prodName = reader["p_name"].ToString();
-          string prodQty = reader["p_qty"].ToString();
-          string prodCode = reader["p_code"].ToString();
+          string regionCode = data[reservationEntity.buyRegionCode].ToString();
+          string trackingId = data[reservationEntity.trackingID].ToString();
+          string sellerId = data[reservationEntity.sellerID].ToString();
+          string prodName = data[reservationEntity.prodName].ToString();
+          string prodQty = data[reservationEntity.prodQty].ToString();
+          string prodCode = data[reservationEntity.prodCode].ToString();
 
-          string rvTime = reader["rv_time"].ToString();
-          string eId = reader["e_id"].ToString();
+          string rvTime = data[reservationEntity.rvTime].ToString();
+          string eId = data[reservationEntity.employeeID].ToString();
 
 
           string[] row = new string[] { trackingId, sellerId, prodName, prodQty, prodCode, regionCode, rvTime, eId, rvStatus };
@@ -134,10 +130,6 @@ namespace PenguinExpress.employee
       catch (Exception error)
       {
         Debug.WriteLine(error.Message);
-      }
-      finally
-      {
-        reader.Close();
       }
     }
     private string getDeliveryStatus(string status)
