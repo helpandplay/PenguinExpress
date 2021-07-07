@@ -85,7 +85,6 @@ namespace PenguinExpress.service
       {
         MyDatabase.reader.Close();
       }
-      Debug.WriteLine(result.Count);
       return result;
     }
     public bool addEmployee(Dictionary<string, string> employee) {
@@ -104,7 +103,6 @@ namespace PenguinExpress.service
         employee[entity.regionCode],
         employee[entity.salt]
         );
-      Debug.WriteLine(sql);
       try
       {
         MyDatabase.cmd.CommandText = sql;

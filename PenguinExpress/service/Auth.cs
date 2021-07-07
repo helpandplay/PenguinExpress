@@ -24,13 +24,9 @@ namespace PenguinExpress.service
       int id = int.Parse(user["id"].ToString());
       return id;
     }
-    public Dictionary<string, string> checkExistUser(string userid, string pwd, string type)
+    public Dictionary<string, string> checkExistUser(string userid, string type)
     {
       Dictionary<string, string> user = null;
-      string table;
-      string dbPwd = null;
-      string salt = string.Empty;
-      int? id = null;
 
       switch (type) {
         case "Employee":

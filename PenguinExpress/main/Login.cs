@@ -80,18 +80,13 @@ namespace PenguinExpress.main
     }
     private void onSellerLogin(string userid, string pwd, string type)
     {
-      Dictionary<string, string> user = auth.checkExistUser(userid, pwd, type);
-      if (user.Count == 0)
+      Dictionary<string, string> user = auth.checkExistUser(userid, type);
+      int id = auth.checkPwdVerify(user, pwd);
+
+      if (user.Count == 0 || id == -1)
       {
         MessageBox.Show("존재하지 않는 아이디이거나 비밀번호가 다릅니다.", "info",
             MessageBoxButtons.OK, MessageBoxIcon.Information);
-        return;
-      }
-      int id = auth.checkPwdVerify(user, pwd);
-      if(id == -1)
-      {
-        MessageBox.Show("존재하지 않는 아이디이거나 비밀번호가 다릅니다.", "info",
-         MessageBoxButtons.OK, MessageBoxIcon.Information);
         return;
       }
 
@@ -102,16 +97,10 @@ namespace PenguinExpress.main
     }
     private void onEmployeeLogin(string userid, string pwd, string type)
     {
-      Dictionary<string, string> user = auth.checkExistUser(userid, pwd, type);
-      if (user.Count == 0)
-      {
-        MessageBox.Show("존재하지 않는 아이디이거나 비밀번호가 다릅니다.", "info",
-            MessageBoxButtons.OK, MessageBoxIcon.Information);
-        return;
-      }
-
+      Dictionary<string, string> user = auth.checkExistUser(userid, type);
       int id = auth.checkPwdVerify(user, pwd);
-      if (id == -1)
+
+      if (user.Count == 0 || id == -1)
       {
         MessageBox.Show("존재하지 않는 아이디이거나 비밀번호가 다릅니다.", "info",
          MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -121,22 +110,21 @@ namespace PenguinExpress.main
       bool isAdmin = bool.Parse(user["isAdmin"].ToString());
       bool isEmployee = bool.Parse(user["isEmployee"].ToString());
 
-      if (isAdmin)
+      if (!isEmployee)
+      {
+        MessageBox.Show("승인이 나지 않았습니다. 관리자에게 문의하세요");
+        return;
+      }
+
+      if (isAdmin && isEmployee)
       {
         SetVisibleCore(false);
         new Admin(id.ToString()).ShowDialog();
       }
-      else
+      if (!isAdmin && isEmployee)
       {
-        if (isEmployee) {
-          SetVisibleCore(false);
-          new Deliver(id.ToString()).ShowDialog();
-        } 
-        else
-        {
-          MessageBox.Show("승인이 나지 않았습니다. 관리자에게 문의하세요");
-          return;
-        }
+        SetVisibleCore(false);
+        new Deliver(id.ToString()).ShowDialog();
       }
       this.Close();
     }
