@@ -5,11 +5,18 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
+using PenguinExpress.entity;
+using PenguinExpress.service;
 
 namespace PenguinExpress.employee
 {
   public partial class SetWorker : Form
   {
+    EmployeeEntity employeeEntity = EmployeeEntity.getEmployee();
+    ReservationEntity reservationEntity = ReservationEntity.getReservationEntity();
+    Reservation reservation = new Reservation();
+
+    EmployeeService employee = new EmployeeService();
     struct workerInfo{
       public string id;
       public string name;
@@ -50,59 +57,40 @@ namespace PenguinExpress.employee
     private List<workerInfo> getRegionWorker(string region)
     {
       List<workerInfo> workerInfo = new List<workerInfo>();
-      string sql = string.Format(
-        "SELECT id, userid, name " +
-        "FROM {0} " +
-        "WHERE region_code = {1};"
-        , MyDatabase.employeeTbl, region);
-      MyDatabase.cmd.CommandText = sql;
-      MySqlDataReader reader = MyDatabase.cmd.ExecuteReader();
+
+      List<Dictionary<string, string>> list = employee.findAll();
+      //여기 왜 반복문이 없지?
+      
+
 
       try
       {
-        if (!reader.Read())
+        foreach (Dictionary<string, string> data in list)
         {
-          throw new Exception("불러온 지역이 없습니다.");
+          if (data[reservationEntity.buyRegionCode].ToString() != region) continue;
+
+          workerInfo info = new workerInfo(
+            data[employeeEntity.id].ToString(),
+            data[employeeEntity.name].ToString(),
+            data[employeeEntity.userid].ToString()
+            );
+          workerInfo.Add(info);
         }
-        workerInfo info = new workerInfo(
-          reader["id"].ToString(),
-          reader["name"].ToString(),
-          reader["userid"].ToString()
-          );
-        workerInfo.Add(info);
       }
       catch (Exception error)
       {
         Debug.WriteLine(error.Message);
       }
-      finally
-      {
-        reader.Close();
-      }
       return workerInfo;
     }
     private bool setDelivery(workerInfo worker)
     {
-      bool isSuccess = false;
+      bool isSuccess;
       string dv_id = worker.id;
-      string trackingId = data["trackingId"];
-      string name = worker.name;
-      string regionCode = data["regionCode"];
-      string buyerAddr = data["buyerAddr"];
+      string trackingId = data[reservationEntity.trackingID];
 
-      string sql = string.Format(
-        "UPDATE {0} SET e_id = {1} WHERE tracking_id = {2};"
-        , MyDatabase.reservationListTbl, dv_id, trackingId);
-      MyDatabase.cmd.CommandText = sql;
-      try
-      {
-        int result = MyDatabase.cmd.ExecuteNonQuery();
-        if (result != -1) return true;
-      }catch(Exception error)
-      {
-        Debug.WriteLine(error.Message);
-      }
-      return false;
+      isSuccess = reservation.updateReservation(trackingId, reservationEntity.employeeID, dv_id);
+      return isSuccess;
     }
     private void btn_ok_Click(object sender, EventArgs e)
     {
@@ -127,7 +115,7 @@ namespace PenguinExpress.employee
       if (isSuccess)
       {
         // 배정 대기중 -> 배송중으로 바꾸고 dv_id 부여
-        bool result = admin.updateWorker(workerList[idx].id, data["trackingId"]);
+        bool result = admin.updateWorker(workerList[idx].id, data[reservationEntity.trackingID]);
         if (!result) MessageBox.Show("배정 업데이트에 실패했습니다.", "warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         else this.Close();
       }
@@ -143,10 +131,10 @@ namespace PenguinExpress.employee
     private void SetWorker_Load(object sender, EventArgs e)
     {
       setColor();
-      lb_trackingId.Text = data["trackingId"];
-      lb_region.Text = data["regionCode"];
+      lb_trackingId.Text = data[reservationEntity.trackingID];
+      lb_region.Text = data[reservationEntity.buyRegionCode];
 
-      workerList = getRegionWorker(data["regionCode"]);
+      workerList = getRegionWorker(data[reservationEntity.buyRegionCode]);
       foreach(var worker in workerList)
       {
         cb_workers.Items.Add(string.Format("{0}:{1}",worker.name, worker.id));

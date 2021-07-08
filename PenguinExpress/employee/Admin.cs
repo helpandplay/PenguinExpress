@@ -151,23 +151,8 @@ namespace PenguinExpress.employee
     }
     public bool updateWorker(string id, string trackingId)
     {
-      string sql = string.Format(
-        "UPDATE {0} " +
-        "SET e_id = {1}, rv_status = 2 " +
-        "WHERE tracking_id = '{2}';"
-        , MyDatabase.reservationListTbl, id, trackingId);
-
-      MyDatabase.cmd.CommandText = sql;
-      try
-      {
-        int result = MyDatabase.cmd.ExecuteNonQuery();
-        if (result == 1) return true;
-      }
-      catch (Exception error)
-      {
-        Debug.WriteLine(error.Message);
-      }
-      return false;
+      bool result = reservation.updateReservation(trackingId, reservationEntity.employeeID, id);
+      return result;
     }
     private void lv_delivery_DoubleClick(object sender, EventArgs e)
     {
@@ -178,32 +163,7 @@ namespace PenguinExpress.employee
       if (status != "배정 대기중") return;
       string trackingId = lvi.SelectedItems[0].SubItems[0].Text;
 
-      string sql = string.Format(
-        "SELECT b_region_code, b_addr " +
-        "FROM {0} " +
-        "WHERE tracking_id = {1};"
-        , MyDatabase.reservationListTbl, trackingId);
-      MyDatabase.cmd.CommandText = sql;
-      MySqlDataReader reader = MyDatabase.cmd.ExecuteReader();
-      try
-      {
-        if (!reader.Read())
-        {
-          throw new Exception("더블클릭 : 불러온 값이 없습니다.");
-        }
-        rowData.Add("trackingId", trackingId);
-        rowData.Add("regionCode", reader["b_region_code"].ToString());
-        rowData.Add("buyerAddr", reader["b_addr"].ToString());
-
-      }
-      catch (Exception error)
-      {
-        Debug.WriteLine(error.Message);
-      }
-      finally
-      {
-        reader.Close();
-      }
+      rowData = reservation.findOne(trackingId);
       new SetWorker(rowData, this).ShowDialog();
       getDeliveryList();
     }
