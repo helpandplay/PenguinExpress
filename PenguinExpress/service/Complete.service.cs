@@ -135,7 +135,39 @@ namespace PenguinExpress.service
       }
       return isSuccess;
     }
+    public Dictionary<int, int> GroupingData(string baseData)
+    {
+      Dictionary<int, int> result = new Dictionary<int, int>();
+      string sql = string.Format(
+        "SELECT {0}, COUNT(*) AS 'cnt' " +
+        "FROM {1} " +
+        "GROUP BY {2};",
+        baseData,
+        MyDatabase.completeListTbl,
+        baseData
+        );
 
+      MyDatabase.cmd.CommandText = sql;
+      MySqlDataReader reader = MyDatabase.cmd.ExecuteReader();
+
+      try
+      {
+        while (reader.Read())
+        {
+          result.Add(int.Parse(reader[baseData].ToString()), int.Parse(reader["cnt"].ToString()));
+        }
+      }
+      catch (Exception error)
+      {
+        Debug.WriteLine(error.StackTrace);
+        Debug.WriteLine(error.Message);
+      }
+      finally
+      {
+        reader.Close();
+      }
+      return result;
+    }
     //delete
     //update
   }

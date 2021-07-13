@@ -181,28 +181,15 @@ namespace PenguinExpress.employee
     }
     private int getItemTotal()
     {
-      int total = -1;
-      string sql = string.Format(
-        "SELECT COUNT(id) " +
-        "FROM {0}; ",
-        MyDatabase.completeListTbl
-        );
-      MyDatabase.cmd.CommandText = sql;
-      try
-      {
-        object result = MyDatabase.cmd.ExecuteScalar();
-        total = int.Parse(result.ToString());
-      }
-      catch (Exception error)
-      {
-        Debug.WriteLine(error.StackTrace);
-        Debug.WriteLine(error.Message);
-      }
+      int total;
+
+      List<Dictionary<string,string>> list = complete.findAll();
+      total = list.Count;
+
       return total;
     }
     private void btn_getRegionGraph_Click(object sender, EventArgs e)
     {
-      //code, count
       Dictionary<int, int> data = getRegionGraphData();
       int total = getItemTotal();
       if (total == -1)
@@ -215,59 +202,15 @@ namespace PenguinExpress.employee
     private Dictionary<int, int> getItemGraphData()
     {
       Dictionary<int, int> data = new Dictionary<int, int>();
-      string sql = string.Format(
-        "SELECT p_code, COUNT(*) AS 'cnt' " +
-        "FROM {0} " +
-        "GROUP BY p_code;",
-        MyDatabase.completeListTbl
-        );
-      MyDatabase.cmd.CommandText = sql;
-      MySqlDataReader reader = MyDatabase.cmd.ExecuteReader();
-      try
-      {
-        while (reader.Read())
-        {
-          data.Add(int.Parse(reader["p_code"].ToString()), int.Parse(reader["cnt"].ToString()));
-        }
-      }
-      catch (Exception error)
-      {
-        Debug.WriteLine(error.StackTrace);
-        Debug.WriteLine(error.Message);
-      }
-      finally
-      {
-        reader.Close();
-      }
+      data = complete.GroupingData(completeEntity.prodCode);
+
       return data;
     }
     private Dictionary<int, int> getRegionGraphData()
     {
       Dictionary<int, int> data = new Dictionary<int, int>();
-      string sql = string.Format(
-        "SELECT b_region_code, COUNT(*) AS 'cnt' " +
-        "FROM {0} " +
-        "GROUP BY b_region_code;",
-        MyDatabase.completeListTbl
-        );
-      MyDatabase.cmd.CommandText = sql;
-      MySqlDataReader reader = MyDatabase.cmd.ExecuteReader();
-      try
-      {
-        while (reader.Read())
-        {
-          data.Add(int.Parse(reader["b_region_code"].ToString()), int.Parse(reader["cnt"].ToString()));
-        }
-      }
-      catch (Exception error)
-      {
-        Debug.WriteLine(error.StackTrace);
-        Debug.WriteLine(error.Message);
-      }
-      finally
-      {
-        reader.Close();
-      }
+      data = complete.GroupingData(completeEntity.buyRegionCode);
+
       return data;
     }
     private void btn_refresh_Click(object sender, EventArgs e)
