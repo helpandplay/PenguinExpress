@@ -18,6 +18,7 @@ namespace PenguinExpress.employee
     ReservationEntity reservationEntity = ReservationEntity.getReservationEntity();
     EmployeeService employee = new EmployeeService();
     Reservation reservation = new Reservation();
+    CompleteService complete = new CompleteService();
     public Deliver(string id)
     {
       this.id = id;
@@ -57,15 +58,6 @@ namespace PenguinExpress.employee
     private void getDeliveryList()
     {
       List<Dictionary<string, string>> list = reservation.findAll();
-
-/*      string sql = string.Format(
-        "SELECT tracking_id, p_name, p_qty, b_addr, b_phone, s_phone " +
-        "FROM {0} " +
-        "WHERE e_id = {1} AND rv_status = 2;"
-        , MyDatabase.reservationListTbl, id);
-      MyDatabase.cmd.CommandText = sql;
-      MySqlDataReader reader = MyDatabase.cmd.ExecuteReader();
-*/
       try
       {
         lv_delivery_list.Items.Clear();
@@ -88,20 +80,6 @@ namespace PenguinExpress.employee
           lvi = new ListViewItem(new string[] { trackingId, pName, pQty, bAddr, bPhone, sPhone });
           lv_delivery_list.Items.Add(lvi);
         }
-/*        while (reader.Read())
-        {
-          ListViewItem lvi;
-
-          string trackingId = reader["tracking_id"].ToString();
-          string pName = reader["p_name"].ToString();
-          string pQty = reader["p_qty"].ToString();
-          string bAddr = reader["b_addr"].ToString();
-          string bPhone = reader["b_phone"].ToString();
-          string sPhone = reader["s_phone"].ToString();
-
-          lvi = new ListViewItem(new string[] { trackingId, pName, pQty, bAddr, bPhone, sPhone });
-          lv_delivery_list.Items.Add(lvi);
-        }*/
       }catch(Exception error)
       {
         Debug.WriteLine(error.Message);
@@ -109,124 +87,35 @@ namespace PenguinExpress.employee
     }
     private int getDelieveryCount()
     {
-      int count = -1;
-      string sql = string.Format(
-        "SELECT cp_count " +
-        "FROM {0} " +
-        "WHERE id = {1};"
-        , MyDatabase.employeeTbl, id);
+      int count;
+      Dictionary<string, string> delivery = employee.findOne(id);
+      count = int.Parse(delivery[employeeEntity.cpCount].ToString());
 
-      try
-      {
-        MyDatabase.cmd.CommandText = sql;
-        object result = MyDatabase.cmd.ExecuteScalar();
-        count = (int)result;
-      }catch(Exception error)
-      {
-        Debug.WriteLine(error.StackTrace);
-        Debug.WriteLine(error.Message);
-      }
       return count;
-    }
-    private Dictionary<string, string> getCompleteDeliveryData(string sql)
-    {
-      Dictionary<string, string> data;
-
-      MyDatabase.cmd.CommandText = sql;
-      MySqlDataReader reader = MyDatabase.cmd.ExecuteReader();
-
-      try
-      {
-        if (!reader.Read())
-        {
-          Debug.WriteLine("읽기 실패");
-          return null;
-        }
-
-        data = new Dictionary<string, string>()
-        {
-          {"trackingId", reader["tracking_id"].ToString() },
-          {"sId", reader["s_id"].ToString() },
-          {"eId", reader["e_id"].ToString() },
-          {"sAddr", reader["s_addr"].ToString() },
-          {"sPhone", reader["s_phone"].ToString() },
-          {"pName", reader["p_name"].ToString() },
-          {"pQty", reader["p_qty"].ToString() },
-          {"pCode", reader["p_code"].ToString() },
-          {"bAddr", reader["b_addr"].ToString() },
-          {"bPhone", reader["b_phone"].ToString() },
-          {"bRegionCode", reader["b_region_code"].ToString() },
-          {"rvTime", reader["rv_time"].ToString().Replace(" 오전","").Replace(" 오후","") },
-          {"rvStatus", reader["rv_status"].ToString() }
-        };
-        return data;
-      }
-      catch(Exception error)
-      {
-        Debug.WriteLine(error.Message);
-      }
-      finally
-      {
-        reader.Close();
-      }
-      return null;
     }
     private void completeDelivery(string trackingId)
     {
-      //rv 테이블의 rv_status => 3
-      //completeList에 insert
-      // reservation table의 rv_status => 3업데이트
-      string sql;
-      
-      sql = string.Format(
-        "UPDATE {0} SET rv_status = 3 " +
-        "WHERE tracking_id = {1};",
-        MyDatabase.reservationListTbl, trackingId
-        );
-      bool result = updateStatus(sql);
+      bool result = reservation.updateReservation(trackingId, reservationEntity.rvStatus, "3");
       if (!result)
       {
         Debug.WriteLine("상태 업데이트 실패");
         return;
       }
-      // reservation table의 값들 가져오기
-      sql = string.Format(
-        "SELECT *" +
-        "FROM {0} " +
-        "WHERE tracking_id = {1};",
-        MyDatabase.reservationListTbl, trackingId
-        );
-      Dictionary<string, string> completeDeliveryData = getCompleteDeliveryData(sql);
-      if(completeDeliveryData == null)
+
+      Dictionary<string, string> completeDeliveryData = reservation.findOne(trackingId);
+      if (completeDeliveryData == null)
       {
         Debug.WriteLine("데이터 가져오기 실패");
         return;
       }
-      //complete list에 데이터 넣기
-      sql = string.Format(
-        "INSERT INTO {0} VALUES(" +
-        "NULL, {1}, {2}, {3}, '{4}', '{5}', '{6}', {7}, {8}, '{9}', '{10}', {11}, '{12}', NOW()" +
-        ");",
-        MyDatabase.completeListTbl,
-        completeDeliveryData["trackingId"],
-        completeDeliveryData["eId"],
-        completeDeliveryData["sId"],
-        completeDeliveryData["sAddr"],
-        completeDeliveryData["sPhone"],
-        completeDeliveryData["pName"],
-        completeDeliveryData["pQty"],
-        completeDeliveryData["pCode"],
-        completeDeliveryData["bAddr"],
-        completeDeliveryData["bPhone"],
-        completeDeliveryData["bRegionCode"],
-        completeDeliveryData["rvTime"]
-        );
-      result = insertCompleteData(sql);
+
+      result = complete.addComplete(completeDeliveryData);
       if (!result)
       {
         Debug.WriteLine("삽입 실패!");
         return;
       }
+
       getDeliveryList();
     }
     private void updateCount()
@@ -237,7 +126,7 @@ namespace PenguinExpress.employee
         Debug.WriteLine("배송 횟수 가져오는 데 실패");
         return;
       }
-      bool result = updateDeliveryCount(count + 1);
+      bool result = employee.updateEmployee(id, employeeEntity.cpCount, (count+1).ToString());
       if (!result)
       {
         Debug.WriteLine("배송 횟수 업데이트 하는 데 실패");
@@ -245,79 +134,17 @@ namespace PenguinExpress.employee
       }
 
     }
-    private bool updateDeliveryCount(int count)
-    {
-      bool isSuccess = false;
-      string sql = string.Format(
-        "UPDATE {0} " +
-        "SET cp_count = {1} " +
-        "WHERE id = {2};"
-        , MyDatabase.employeeTbl, count, id);
-
-      try
-      {
-        MyDatabase.cmd.CommandText = sql;
-        int result = MyDatabase.cmd.ExecuteNonQuery();
-        if (result != -1) isSuccess = true;
-      }
-      catch (Exception error)
-      {
-        Debug.WriteLine(error.StackTrace);
-        Debug.WriteLine(error.Message);
-      }
-      return isSuccess;
-    }
-    private bool updateStatus(string sql)
-    {
-      bool isSuccess = false;
-      MyDatabase.cmd.CommandText = sql;
-      try
-      {
-        int result = MyDatabase.cmd.ExecuteNonQuery();
-        if (result != -1) isSuccess = true;
-      }catch(Exception error)
-      {
-        Debug.WriteLine(error.Message);
-      }
-      return isSuccess;
-    }
-    private bool insertCompleteData(string sql)
-    {
-      bool isSuccess = false;
-      MyDatabase.cmd.CommandText = sql;
-      try
-      {
-        int result = MyDatabase.cmd.ExecuteNonQuery();
-        if (result != -1) isSuccess = true;
-      }catch(Exception error)
-      {
-        Debug.WriteLine(error.Message);
-      }
-      return isSuccess;
-    }
     private void btn_refresh_Click(object sender, EventArgs e)
     {
       getDeliveryList();
     }
     private void deleteReservationItem(string trackingId)
     {
-      string sql = string.Format("" +
-        "DELETE FROM {0} " +
-        "WHERE tracking_id = {1};",
-        MyDatabase.reservationListTbl, trackingId);
-
-      MyDatabase.cmd.CommandText = sql;
-      try
+      bool result = reservation.removeOne(trackingId);
+      if (!result)
       {
-        int result = MyDatabase.cmd.ExecuteNonQuery();
-        if (result == -1)
-        {
-          throw new Exception("Delivery : failed reservation list item. trackingId : " + trackingId);
-        }
-      }catch(Exception error)
-      {
-        Debug.WriteLine(error.StackTrace);
-        Debug.WriteLine(error.Message);
+        Debug.WriteLine("배송 삭제 실패");
+        return;
       }
     }
     private void lv_delivery_list_DoubleClick(object sender, EventArgs e)

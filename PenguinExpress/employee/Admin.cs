@@ -61,7 +61,6 @@ namespace PenguinExpress.employee
       setColor();
       getDeliveryList();
     }
-
     private void listTab_Selected(object sender, TabControlEventArgs e)
     {
       if (e.TabPageIndex == 0) getDeliveryList();
@@ -149,11 +148,6 @@ namespace PenguinExpress.employee
           return "Error";
       }
     }
-    public bool updateWorker(string id, string trackingId)
-    {
-      bool result = reservation.updateReservation(trackingId, reservationEntity.employeeID, id);
-      return result;
-    }
     private void lv_delivery_DoubleClick(object sender, EventArgs e)
     {
       // 기사가 배정이 안된다.
@@ -168,7 +162,6 @@ namespace PenguinExpress.employee
       new SetWorker(rowData, this).ShowDialog();
       getDeliveryList();
     }
-
     private void btn_getItemGraph_Click(object sender, EventArgs e)
     {
       Dictionary<int, int> data = getItemGraphData();
