@@ -156,7 +156,8 @@ namespace PenguinExpress.employee
     }
     private void lv_delivery_DoubleClick(object sender, EventArgs e)
     {
-      Dictionary<string, string> rowData = new Dictionary<string, string>();
+      // 기사가 배정이 안된다.
+      Dictionary<string, string> rowData;
       var lvi = sender as ListView;
       string status = lvi.SelectedItems[0].SubItems[8].Text;
 

@@ -59,15 +59,12 @@ namespace PenguinExpress.employee
       List<workerInfo> workerInfo = new List<workerInfo>();
 
       List<Dictionary<string, string>> list = employee.findAll();
-      //여기 왜 반복문이 없지?
-      
-
 
       try
       {
         foreach (Dictionary<string, string> data in list)
         {
-          if (data[reservationEntity.buyRegionCode].ToString() != region) continue;
+          if (data[employeeEntity.regionCode].ToString() != region) continue;
 
           workerInfo info = new workerInfo(
             data[employeeEntity.id].ToString(),

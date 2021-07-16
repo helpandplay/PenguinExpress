@@ -6,12 +6,18 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
+using PenguinExpress.service;
+using PenguinExpress.entity;
 
 namespace PenguinExpress.employee
 {
   public partial class Deliver : Form
   {
     string id;
+    EmployeeEntity employeeEntity = EmployeeEntity.getEmployee();
+    ReservationEntity reservationEntity = ReservationEntity.getReservationEntity();
+    EmployeeService employee = new EmployeeService();
+    Reservation reservation = new Reservation();
     public Deliver(string id)
     {
       this.id = id;
@@ -50,17 +56,39 @@ namespace PenguinExpress.employee
     }
     private void getDeliveryList()
     {
-      string sql = string.Format(
+      List<Dictionary<string, string>> list = reservation.findAll();
+
+/*      string sql = string.Format(
         "SELECT tracking_id, p_name, p_qty, b_addr, b_phone, s_phone " +
         "FROM {0} " +
         "WHERE e_id = {1} AND rv_status = 2;"
         , MyDatabase.reservationListTbl, id);
       MyDatabase.cmd.CommandText = sql;
       MySqlDataReader reader = MyDatabase.cmd.ExecuteReader();
-      lv_delivery_list.Items.Clear();
+*/
       try
       {
-        while (reader.Read())
+        lv_delivery_list.Items.Clear();
+        foreach (Dictionary<string, string> data in list)
+        {
+          string eID = data[reservationEntity.employeeID].ToString();
+          string rvStatus = data[reservationEntity.rvStatus].ToString();
+
+          if (eID != id || rvStatus != "2") continue;
+
+          ListViewItem lvi;
+
+          string trackingId = data[reservationEntity.trackingID].ToString();
+          string pName = data[reservationEntity.prodName].ToString();
+          string pQty = data[reservationEntity.prodQty].ToString();
+          string bAddr = data[reservationEntity.buyAddr].ToString();
+          string bPhone = data[reservationEntity.buyPhone].ToString();
+          string sPhone = data[reservationEntity.sellerPhone].ToString();
+
+          lvi = new ListViewItem(new string[] { trackingId, pName, pQty, bAddr, bPhone, sPhone });
+          lv_delivery_list.Items.Add(lvi);
+        }
+/*        while (reader.Read())
         {
           ListViewItem lvi;
 
@@ -73,14 +101,10 @@ namespace PenguinExpress.employee
 
           lvi = new ListViewItem(new string[] { trackingId, pName, pQty, bAddr, bPhone, sPhone });
           lv_delivery_list.Items.Add(lvi);
-        }
+        }*/
       }catch(Exception error)
       {
         Debug.WriteLine(error.Message);
-      }
-      finally
-      {
-        reader.Close();
       }
     }
     private int getDelieveryCount()
