@@ -4,15 +4,20 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
+using PenguinExpress.entity;
+using PenguinExpress.service;
 
 namespace PenguinExpress.seller
 {
   public partial class AddProduct : Form
   {
-    Dictionary<string, string> seller;
-    public AddProduct(Dictionary<string, string> seller)
+    readonly SellerEntity sellerEntity = SellerEntity.getSellerEntity();
+    readonly ReservationEntity reservationEntity = ReservationEntity.getReservationEntity();
+    readonly Reservation reservation = new Reservation();
+    Dictionary<string, string> user;
+    public AddProduct(Dictionary<string, string> user)
     {
-      this.seller = seller;
+      this.user = user;
       InitializeComponent();
       setSellerInfo();
     }
@@ -63,7 +68,7 @@ namespace PenguinExpress.seller
         MessageBox.Show("빠진 양식이 있습니다.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
         return;
       }
-      int sId = int.Parse(seller["id"]);
+/*      int sId = int.Parse(user["id"]);
       string pName = tb_p_name.Text;
       int pQty = int.Parse(tb_p_qty.Text);
       int pCode = cb_p_choice.SelectedIndex;
@@ -73,9 +78,26 @@ namespace PenguinExpress.seller
       string bName = tb_b_name.Text;
       string bPhone = string.Format("{0}-{1}-{2}", tb_b_phone.Text, tb_b_phone2.Text, tb_b_phone3.Text);
       string bAddr = string.Format("{0} {1}", cb_b_addr_captital.SelectedItem.ToString(), tb_b_addr.Text);
-      int regionCode = cb_b_addr_captital.SelectedIndex;
+      int regionCode = cb_b_addr_captital.SelectedIndex;*/
 
-      string sql = string.Format(
+      Dictionary<string, string> data = new Dictionary<string, string>();
+
+      data.Add(sellerEntity.id, user["id"]);
+      data.Add(reservationEntity.prodName, tb_p_name.Text);
+      data.Add(reservationEntity.prodQty, tb_p_qty.Text);
+      data.Add(sellerEntity.name, tb_s_name.Text);
+      data.Add(sellerEntity.phone, tb_s_phone.Text);
+      data.Add(reservationEntity.buyPhone, string.Format("{0}-{1}-{2}", tb_b_phone.Text, tb_b_phone2.Text, tb_b_phone3.Text));
+      data.Add(reservationEntity.buyAddr, string.Format("{0} {1}", cb_b_addr_captital.SelectedItem.ToString(), tb_b_addr.Text));
+      data.Add(reservationEntity.buyRegionCode, cb_b_addr_captital.SelectedIndex.ToString());
+
+      result = reservation.addReservation(data);
+      if (!result)
+      {
+        MessageBox.Show("택배 예약에 실패했습니다.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        return;
+      }
+/*      string sql = string.Format(
         "INSERT INTO {0} VALUES(" +
         "NULL, {1}, NULL, '{2}', '{3}', '{4}', {5}, {6},'{7}','{8}',{9},NOW(),1);"
         , MyDatabase.reservationListTbl, sId, sAddr, sPhone, pName, pQty, pCode, bAddr, bPhone, regionCode);
@@ -93,7 +115,7 @@ namespace PenguinExpress.seller
       {
         Debug.Close();
         this.Close();
-      }
+      }*/
     }
     private void tb_p_qty_KeyPress(object sender, KeyPressEventArgs e)
     {

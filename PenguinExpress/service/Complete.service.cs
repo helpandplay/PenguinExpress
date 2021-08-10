@@ -11,14 +11,12 @@ namespace PenguinExpress.service
   {
     private readonly CompleteEntity entity = CompleteEntity.getComplete();
     public CompleteService(){}
-    public List<Dictionary<string, string>> findAll()
+    public List<Dictionary<string, string>> findAll(string orderBy = null)
     {
       List<Dictionary<string, string>> result = new List<Dictionary<string, string>>();
 
-      string sql = string.Format(
-        "SELECT * " +
-        "FROM {0};"
-        , MyDatabase.completeListTbl);
+      string sql = orderBy == null ? string.Format("SELECT * FROM {0};", MyDatabase.completeListTbl) :
+        string.Format("SELECT * FROM {0} ORDER BY {1} DESC;", MyDatabase.completeListTbl, orderBy);
 
       try
       {
@@ -46,6 +44,52 @@ namespace PenguinExpress.service
           result.Add(dataSet);
         }
       }catch(Exception error)
+      {
+        Debug.WriteLine("Complete findAll Error");
+      }
+      finally
+      {
+        MyDatabase.reader.Close();
+      }
+      return result;
+    }
+    public List<Dictionary<string, string>> findAllTarget(string userid, string field)
+    {
+      List<Dictionary<string, string>> result = new List<Dictionary<string, string>>();
+
+      string sql = string.Format(
+        "SELECT * " +
+        "FROM {0}" +
+        "WHERE {1} = {2};"
+        , MyDatabase.completeListTbl, field, userid);
+
+      try
+      {
+        MyDatabase.cmd.CommandText = sql;
+        MyDatabase.reader = MyDatabase.cmd.ExecuteReader();
+
+        while (MyDatabase.reader.Read())
+        {
+          Dictionary<string, string> dataSet = new Dictionary<string, string>();
+          dataSet.Add(entity.id, MyDatabase.reader[entity.id].ToString());
+          dataSet.Add(entity.trackingID, MyDatabase.reader[entity.trackingID].ToString());
+          dataSet.Add(entity.employeeID, MyDatabase.reader[entity.employeeID].ToString());
+          dataSet.Add(entity.sellerID, MyDatabase.reader[entity.sellerID].ToString());
+          dataSet.Add(entity.sellerAddr, MyDatabase.reader[entity.sellerAddr].ToString());
+          dataSet.Add(entity.sellerPhone, MyDatabase.reader[entity.sellerPhone].ToString());
+          dataSet.Add(entity.prodName, MyDatabase.reader[entity.prodName].ToString());
+          dataSet.Add(entity.prodQty, MyDatabase.reader[entity.prodQty].ToString());
+          dataSet.Add(entity.prodCode, MyDatabase.reader[entity.prodCode].ToString());
+          dataSet.Add(entity.buyAddr, MyDatabase.reader[entity.buyAddr].ToString());
+          dataSet.Add(entity.buyPhone, MyDatabase.reader[entity.buyPhone].ToString());
+          dataSet.Add(entity.buyRegionCode, MyDatabase.reader[entity.buyRegionCode].ToString());
+          dataSet.Add(entity.rvTime, MyDatabase.reader[entity.rvTime].ToString());
+          dataSet.Add(entity.cpTime, MyDatabase.reader[entity.cpTime].ToString());
+
+          result.Add(dataSet);
+        }
+      }
+      catch (Exception error)
       {
         Debug.WriteLine("Complete findAll Error");
       }
@@ -168,6 +212,7 @@ namespace PenguinExpress.service
       }
       return result;
     }
+
     //delete
     //update
   }

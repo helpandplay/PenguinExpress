@@ -11,7 +11,7 @@ namespace PenguinExpress.service
     
     private readonly EmployeeEntity entity = EmployeeEntity.getEmployee();
     public EmployeeService() { }
-    public List<Dictionary<string, string>> findAll() {
+    public List<Dictionary<string, string>> findAll(string target = null, string data = null, bool isStringData = false) {
       List<Dictionary<string, string>> result = new List<Dictionary<string, string>>();
       string sql = string.Format(
         "SELECT * " +

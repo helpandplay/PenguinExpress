@@ -100,11 +100,10 @@ namespace PenguinExpress.service
       bool isSuccess = false;
       string sql = string.Format(
         "INSERT {0} INTO VALUES(" +
-        "NULL, {1}, {2}, {3}, '{4}', '{5}', '{6}', {7}, {8}, '{9}', '{10}', {11}, NOW(), {12}" +
+        "NULL, {1}, NULL, '{2}', '{3}', '{4}', {5}, {6}, '{7}', '{8}', {9}, NOW(), 1" +
         ");"
         , MyDatabase.reservationListTbl,
         reservation[entity.sellerID],
-        reservation[entity.employeeID],
         reservation[entity.sellerAddr],
         reservation[entity.sellerPhone],
         reservation[entity.prodName],
@@ -112,9 +111,8 @@ namespace PenguinExpress.service
         reservation[entity.prodCode],
         reservation[entity.buyAddr],
         reservation[entity.buyPhone],
-        reservation[entity.buyRegionCode],
-        reservation[entity.rvTime],
-        reservation[entity.rvStatus]);
+        reservation[entity.buyRegionCode]
+        );
 
       try
       {

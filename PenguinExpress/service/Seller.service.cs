@@ -13,12 +13,15 @@ namespace PenguinExpress.service
   {
     private static SellerEntity entity = SellerEntity.getSellerEntity();
 
-    public List<Dictionary<string, string>> findAll() {
+    public List<Dictionary<string, string>> findAll(string target=null, string data=null, bool isStringData = false) {
       List<Dictionary<string, string>> result = new List<Dictionary<string, string>>();
-      string sql = string.Format(
-        "SELECT * " +
-        "FROM {0};"
-        , MyDatabase.sellerTbl);
+      string sql;
+      if (target == null) sql = string.Format("SELECT * FROM {0};", MyDatabase.sellerTbl);
+      else
+      {
+        if (!isStringData) sql = string.Format("SELECT * FROM {0} WHERE {1} = {2};", MyDatabase.sellerTbl, target, data);
+        else sql = string.Format("SELECT * FROM {0} WHERE {1} = '{2}';", MyDatabase.sellerTbl, target, data);
+      }
 
       try
       {

@@ -6,11 +6,15 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
+using PenguinExpress.service;
+using PenguinExpress.entity;
 
 namespace PenguinExpress.seller
 {
   public partial class Seller_list : Form
   {
+    CompleteService complete = new CompleteService();
+    CompleteEntity completeEntity = CompleteEntity.getComplete();
     int userid;
     Status stus;
     public Seller_list(int userid)
@@ -58,32 +62,52 @@ namespace PenguinExpress.seller
       label1.ForeColor = ColorTranslator.FromHtml(Styles.light);
       label2.ForeColor = ColorTranslator.FromHtml(Styles.light);
     }
-    //리스트 불러오기
-    private void getAllCompleteList(string sql=null)
+    private List<Dictionary<string,string>> getCompleteData()
     {
-      if (sql == null)
+      return complete.findAllTarget(userid.ToString(), completeEntity.sellerID);
+    }
+    private void displayCompleteData(List<Dictionary<string, string>> datas)
+    {
+      lv_reg.Items.Clear();
+      try
       {
-        sql = string.Format(
-          "SELECT tracking_id, p_name, p_qty, b_phone, b_addr, cp_time " +
-          "FROM {0} " +
-          "WHERE s_id={1};"
-          , MyDatabase.completeListTbl, userid);
-      }
-      MyDatabase.cmd.CommandText = sql;
+        foreach(Dictionary<string, string> data in datas)
+        {
+          ListViewItem lvi = new ListViewItem();
+          lvi.Text = data[completeEntity.trackingID].ToString();
+          lvi.SubItems.Add(data[completeEntity.prodName].ToString());
+          lvi.SubItems.Add(data[completeEntity.prodQty].ToString());
+          lvi.SubItems.Add(data[completeEntity.buyPhone].ToString());
+          lvi.SubItems.Add(data[completeEntity.buyAddr].ToString());
+          lvi.SubItems.Add(data[completeEntity.rvTime].ToString());
+          lvi.SubItems.Add(stus.getReservationCode(3));
 
-      MySqlDataReader reader = MyDatabase.cmd.ExecuteReader();
+          lv_reg.Items.Add(lvi);
+        }
+      }
+      catch (Exception error)
+      {
+        Debug.WriteLine(error.Message);
+      }
+    }
+    private void getAllCompleteList(string orderName=null)
+    {
+      List<Dictionary<string, string>> data;
+
+      data = orderName == null ? complete.findAll() : complete.findAll(orderName);
+
       lv_cp.Items.Clear();
       try
       {
-        while (reader.Read())
+        foreach(Dictionary<string, string> column in data)
         {
           ListViewItem lvi = new ListViewItem();
-          lvi.Text = reader["tracking_id"].ToString();
-          lvi.SubItems.Add(reader["p_name"].ToString());
-          lvi.SubItems.Add(reader["p_qty"].ToString());
-          lvi.SubItems.Add(reader["b_phone"].ToString());
-          lvi.SubItems.Add(reader["b_addr"].ToString());
-          lvi.SubItems.Add(reader["cp_time"].ToString());
+          lvi.Text = column["tracking_id"];
+          lvi.SubItems.Add(column["p_name"]);
+          lvi.SubItems.Add(column["p_qty"]);
+          lvi.SubItems.Add(column["b_phone"].);
+          lvi.SubItems.Add(column["b_addr"]);
+          lvi.SubItems.Add(column["cp_time"]);
 
           lv_cp.Items.Add(lvi);
         }
@@ -94,7 +118,6 @@ namespace PenguinExpress.seller
       }
       finally
       {
-        reader.Close();
         Debug.Close();
       }
     }
@@ -152,6 +175,10 @@ namespace PenguinExpress.seller
     private void btn_cp_refresh_Click(object sender, EventArgs e)
     {
       getAllCompleteList();
+      // 데이터 가져오기
+      List<Dictionary<string, string>> data = getCompleteData();
+      // 보여주기
+      displayCompleteData(data);
     }
     private void lv_reg_ColumnClick(object sender, ColumnClickEventArgs e)
     {
@@ -168,14 +195,7 @@ namespace PenguinExpress.seller
     private void lv_cp_ColumnClick(object sender, ColumnClickEventArgs e)
     {
       string columnName = lv_cp.Columns[e.Column].Tag.ToString();
-      string sql = string.Format(
-        "SELECT tracking_id, p_name, p_qty, b_phone, b_addr, cp_time " +
-        "FROM {0} " +
-        "WHERE s_id = {1} " +
-        "ORDER BY {2} DESC;"
-        , MyDatabase.completeListTbl, userid, columnName);
-
-      getAllCompleteList(sql);
+      getAllCompleteList(columnName);
     }
     private void btn_rv_cancel_Click(object sender, EventArgs e)
     {
